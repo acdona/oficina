@@ -3,7 +3,7 @@
 
 Objetivo é de aplicações de técnicas de desenvolvimento com PHP, MySql, HTML5, CSS3, Java Script
 
-O software terá o cadastro de clientes, fornecedores, produtos e serviços.
+O software terá o cadastro de clientes, fornecedores, produtos, serviços e categorias.
 
 Conforme for desenvolvendo, vou alterando as instruções por aqui.
 

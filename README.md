@@ -16,6 +16,9 @@ Conforme for desenvolvendo, vou alterando as instruções por aqui.
 - [PHPMailer](https://github.com/PHPMailer/PHPMailer) - Para envio de emails
 - [WampServer](https://www.wampserver.com/en/)  - Para quem for trabalhar em localhost
 - [Composer](https://getcomposer.org/) - Para a criação do autload
+- [Bootstrap](https://getbootstrap.com/)
+- [jQuery](https://jquery.com/)
+- [Font Awesomwe](https://fontawesome.com/)
 
 
 ### Webservice de terceiros

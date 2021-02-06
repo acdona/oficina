@@ -18,7 +18,7 @@ Conforme for desenvolvendo, vou alterando as instruções por aqui.
 - [Composer](https://getcomposer.org/) - Para a criação do autload
 - [Bootstrap](https://getbootstrap.com/)
 - [jQuery](https://jquery.com/)
-- [Font Awesomwe](https://fontawesome.com/)
+- [Font Awesome](https://fontawesome.com/)
 
 
 ### Webservice de terceiros

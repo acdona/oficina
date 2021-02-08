@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'd1d703a925ac2da106d921c14e00cb6a4a6251ef',
+    'reference' => 'b9a556bb8b0740dc6bab4c592beca412ead38ec1',
     'name' => 'amacd/oficina',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'd1d703a925ac2da106d921c14e00cb6a4a6251ef',
+      'reference' => 'b9a556bb8b0740dc6bab4c592beca412ead38ec1',
     ),
   ),
 );

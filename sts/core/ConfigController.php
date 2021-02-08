@@ -41,8 +41,7 @@ class ConfigController extends Config
     
 
     public function __construct() {
-        $config = new \Core\Config();
-        $config->config();
+        $this->config();
         if (!empty(filter_input(INPUT_GET, "url", FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, "url", FILTER_DEFAULT);
             $this->limparUrl();

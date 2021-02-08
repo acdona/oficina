@@ -26,6 +26,6 @@
 config.php
 
 # pasta de testes
-.testes/*
+.testes/**/*
 
 *empty

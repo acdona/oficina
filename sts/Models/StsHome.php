@@ -16,7 +16,7 @@ if (!defined('48b5t9')) {
  * @access public
  *
 */
-class StsHome
+class StsHome extends App/sts/Models/helper/StsConn
 {
 
     private object $connection;

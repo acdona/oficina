@@ -1,5 +1,4 @@
 <?php
-
 namespace App\sts\Models;
 
 if (!defined('R4F5CC')) {

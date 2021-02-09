@@ -1,6 +1,7 @@
 <?php
-
 namespace App\sts\Models\helper;
+
+use Exception;
 
 if (!defined('R4F5CC')) {
     header("Location: /");

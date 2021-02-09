@@ -25,7 +25,7 @@ class ConfigController extends Config {
     /** @var string $urlMetodo Recebe da URL o método */
     private string $urlMetodo;
 
-    /** @var string $urlParamentro Recebe da URL o parâmetro */
+    /** @var string $urlParametro Recebe da URL o parâmetro */
     private string $urlParametro;
 
     /** @var string $classe Recebe a classe */
@@ -120,8 +120,8 @@ class ConfigController extends Config {
         $this->urlLimpa = trim($this->urlLimpa);
         //Eliminar a barra no final da URL
         $this->urlLimpa = rtrim($this->urlLimpa, "/");
-        $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª ';
-        $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr--------------------------------';
+        $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª´`¨|^ ';
+        $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr--------------------------------------';
         $this->urlLimpa = strtr(utf8_decode($this->urlLimpa), utf8_decode($this->format['a']), $this->format['b']);
         
         return $this->urlLimpa;
@@ -137,6 +137,9 @@ class ConfigController extends Config {
      */
     public function carregar(): void {
         $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
+
+        echo "Caminho do Controller é: " . $this->classe . "<br>";
+
         if(class_exists($this->classe)){
             $this->carregarClasse();
         }else{

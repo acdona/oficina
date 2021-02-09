@@ -7,11 +7,11 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller da página Erro
+ * Controller da página Error
  *
  * @author acd
  */
-class Erro
+class Error
 {
     /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private array $dados;
@@ -23,7 +23,7 @@ class Erro
      */
     public function index(): void {
         $this->dados = [];
-        $carregarView = new \Core\ConfigView("sts/Views/erro/erro", $this->dados);
+        $carregarView = new \Core\ConfigView("sts/Views/error/error", $this->dados);
         $carregarView->renderizar();
     }
 }

@@ -1,8 +1,8 @@
 <?php
-
 namespace App\sts\Models\helper;
 
 use PDO;
+use Exception;
 
 if (!defined('R4F5CC')) {
     header("Location: /");

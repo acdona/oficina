@@ -1,0 +1,17 @@
+{
+    "description": "ACD Projeto Oficina",
+    "name": "acd/app",
+    "authors": [
+        {
+            "name": "Antonio Carlos Dona",
+            "email": "acdona@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app",
+            "Core\\": "core"
+        }
+    },
+    "require": {}
+}

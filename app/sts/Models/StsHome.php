@@ -38,7 +38,7 @@ class StsHome
     
     private function viewTop() {
         $viewTop = new \App\sts\Models\helper\StsRead();
-        $viewTop->fullRead("SELECT id, title_top, description_top, link_btn_top, txt_btn_top, image
+        $viewTop->fullRead("SELECT id, title_top, description_top, link_btn_top, txt_btn_top, image_top
                 FROM sts_homes_tops
                 LIMIT :limit", "limit=1");
         $this->dataTop = $viewTop->getResult();
@@ -47,7 +47,7 @@ class StsHome
     
     private function viewServ() {
         $viewServ = new \App\sts\Models\helper\StsRead();
-        $viewServ->fullRead("SELECT id, title_serv, description_serv, icone_um_serv, titulo_um_serv, description_um_serv, icone_dois_serv, titulo_dois_serv, description_dois_serv, icone_tres_serv, titulo_tres_serv, description_tres_serv
+        $viewServ->fullRead("SELECT id, title_serv, description_serv, icon_one_serv, title_one_serv, description_one_serv, icon_two_serv, title_two_serv, description_two_serv, icon_three_serv, title_three_serv, description_three_serv
                 FROM sts_homes_servs
                 LIMIT :limit", "limit=1");
         $this->dataServ = $viewServ->getResult();
@@ -56,7 +56,7 @@ class StsHome
     
     private function viewAction() {
         $viewAction = new \App\sts\Models\helper\StsRead();
-        $viewAction->fullRead("SELECT id, title_action, subtitle_action, description_action, link_btn_action, txt_btn_action, image
+        $viewAction->fullRead("SELECT id, title_action, subtitle_action, description_action, link_btn_action, txt_btn_action, image_action
                 FROM sts_homes_actions
                 LIMIT :limit", "limit=1");
         $this->dataAction = $viewAction->getResult();
@@ -65,7 +65,7 @@ class StsHome
     
     private function viewDet() {
         $viewDet = new \App\sts\Models\helper\StsRead();
-        $viewDet->fullRead("SELECT id, title_det, subtitle_det, description_det, image
+        $viewDet->fullRead("SELECT id, title_det, subtitle_det, description_det, image_det
                 FROM sts_homes_dets
                 LIMIT :limit", "limit=1");
         $this->dataDet = $viewDet->getResult();

@@ -1,5 +1,5 @@
 # Oficina de Manutenção de Hardware 🧑‍💻
-> Sistema para gerenciar uma oficina de manutenção de hardwares diversos, computadores, notbooks, etc...
+> Sistema para gerenciar uma oficina de manutenção de hardwares diversos, computadores, notebooks, impressoras, etc...
 
 Objetivo é de aplicações de técnicas de desenvolvimento com PHP, MySql, HTML5, CSS3, Java Script
 

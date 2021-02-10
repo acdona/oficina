@@ -45,7 +45,8 @@ class ConfigController extends Config {
     
     public function __construct()
     {
-        $this->configAdm();
+        //Instancia o Config para as Constantes
+        $this->configSts();
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);            
 
@@ -144,7 +145,7 @@ class ConfigController extends Config {
             $this->carregarClasse();
         }else{
             $this->urlController = $this->slugController(CONTROLLERERRO);
-            $this->carregarClasse();
+            $this->carregar();
         }
     }
 
@@ -156,9 +157,12 @@ class ConfigController extends Config {
      */    
     private function carregarClasse(): void {
         $classeCarregar = new $this->classe();
-        if(method_exists($classeCarregar, "index")){
-            $classeCarregar->index();
-        }else{
+        if(method_exists($classeCarregar, $this->urlMetodo)){
+            echo $this->urlMetodo . "<br>";
+            $classeCarregar->{$this->urlMetodo}();
+        } else{
+            echo "O método escolhido não existe.<br> Verificar e não esquecer de tirar essa mensagem no final!!!<br><br>";
+            echo "Redirecionar para página home/index ao invés de mostrar erro<br><br>";
             die('Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador ' . EMAILADM . '<br>');
         }
     }

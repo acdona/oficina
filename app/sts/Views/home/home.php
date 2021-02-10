@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 //A função extract é utilizado para extrair o array e imprimir através do nome da chave
 extract($this->dados['sts_homes']['top']);
 
-$imagem_topo = URL . "app/sts/assets/images/home_topo/" . $image;
+$imagem_topo = URL . "app/sts/assets/images/home_topo/" . $image_top;
 ?>
 
 <div class="jumbotron descr-top" style="background-image: url('<?php echo $imagem_topo; ?>');">
@@ -29,24 +29,24 @@ extract($this->dados['sts_homes']['serv']);
         <div class="row">
             <div class="col-lg-4">
                 <div class="rounded-circle circulo centralizar border border-info shadow">
-                    <i class="<?php echo $icone_um_serv; ?>"></i>
+                    <i class="<?php echo $icon_one_serv; ?>"></i>
                 </div>
-                <h2 class="mt-4 mb-4"><?php echo $titulo_um_serv; ?></h2>
-                <p><?php echo $description_um_serv; ?></p>
+                <h2 class="mt-4 mb-4"><?php echo $title_one_serv; ?></h2>
+                <p><?php echo $description_one_serv; ?></p>
             </div>
             <div class="col-lg-4">
                 <div class="rounded-circle circulo centralizar border border-info shadow">
-                    <i class="<?php echo $icone_dois_serv; ?>"></i>
+                    <i class="<?php echo $icon_two_serv; ?>"></i>
                 </div>
-                <h2 class="mt-4 mb-4"><?php echo $titulo_dois_serv; ?></h2>
-                <p><?php echo $description_dois_serv; ?></p>
+                <h2 class="mt-4 mb-4"><?php echo $title_two_serv; ?></h2>
+                <p><?php echo $description_two_serv; ?></p>
             </div>
             <div class="col-lg-4">
                 <div class="rounded-circle circulo centralizar border border-info shadow">
-                    <i class="<?php echo $icone_tres_serv; ?>"></i>
+                    <i class="<?php echo $icon_three_serv; ?>"></i>
                 </div>
-                <h2 class="mt-4 mb-4"><?php echo $titulo_tres_serv; ?></h2>
-                <p><?php echo $description_tres_serv; ?></p>
+                <h2 class="mt-4 mb-4"><?php echo $title_three_serv; ?></h2>
+                <p><?php echo $description_three_serv; ?></p>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@ extract($this->dados['sts_homes']['serv']);
 <?php
 extract($this->dados['sts_homes']['action']);
 
-$imagem_action = URL . "app/sts/assets/images/home_action/" . $image;
+$imagem_action = URL . "app/sts/assets/images/home_action/" . $image_action;
 ?>
 
 <div class="jumbotron descr-action" style="background-image: url('<?php echo $imagem_action; ?>');">
@@ -72,7 +72,7 @@ $imagem_action = URL . "app/sts/assets/images/home_action/" . $image;
 <?php
 extract($this->dados['sts_homes']['det']);
 
-$imagem_det = URL . "app/sts/assets/images/home_det/" . $image;
+$imagem_det = URL . "app/sts/assets/images/home_det/" . $image_det;
 ?>
 
 <div class="jumbotron descr-det">

@@ -17,13 +17,15 @@ class Error
     private array $dados;
 
     /**
-     * Instantiar a classe responsável em carregar a View
+     * Instanciar a classe responsável em carregar a View
      * 
      * @return void
      */
     public function index(): void {
+
         $this->dados = [];
         $carregarView = new \Core\ConfigView("sts/Views/error/error", $this->dados);
         $carregarView->renderizar();
     }
-}
+
+ }

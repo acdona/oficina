@@ -16,7 +16,7 @@ body {
       border-radius: .0rem;
   }
   
-  /* Seletor para personalizar a área de serviços da página home */
+  /* Seletor para personalizar a área de categorias */
   .descr-serv{
       background-color: #fff;
       padding-top: 80px;
@@ -97,14 +97,14 @@ body {
     margin: 5rem 0; 
   }
   /* Seletor para personalizar o titulo da página contato*/
-  .head-contato{
+  .head-categoria {
       padding-top: 60px;
       padding-bottom: 0px;    
       background-color: #fff;
       margin-bottom: 0rem !important;
       border-radius: 0rem;    
   }
-  .contato{
+  .categoria{
       padding-top: 60px;
       padding-bottom: 60px;    
       background-color: #fff;

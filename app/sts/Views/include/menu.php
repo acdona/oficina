@@ -7,7 +7,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
     <div class="container">
-        <a class="navbar-brand" href="<?php echo URL; ?>">Celke</a>
+        <a class="navbar-brand" href="<?php echo URL; ?>">AMACD</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,10 +18,13 @@
                     <a class="nav-link" href="<?php echo URL; ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>sobre-empresa">Sobre Empresa</a>
+                    <a class="nav-link" href="<?php echo URL; ?>sobre-empresa/index">Sobre Empresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>contato">Contato</a>
+                    <a class="nav-link" href="<?php echo URL; ?>list-accountcategory/index">Listar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URL; ?>account-category/index">Categorias</a>
                 </li>
             </ul>                    
         </div>

@@ -14,7 +14,7 @@
     <!-- Especifica a codificação de caracteres para o documento HTML ---------------------------------------------------------->
     <meta charset="utf-8">
     <!-- Define o ícone a ser usado nas páginas "favicon.ico" ------------------------------------------------------------------>
-    <link rel="icon" href="<?php echo URL; ?>app/sts/assets/icon/favicon.ico">
+    <link rel="icon" href="<?php echo URL; ?>app/sts/assets/images/icon/favicon.ico">
     <!-- Configura a página para ser renderizada pelo internet explorer -------------------------------------------------------->
     <meta http-equiv="X-UA-Compatible"            content="IE=edge">
     <!-- desativa estilo de toque padrão dos navegadores ----------------------------------------------------------------------->
@@ -36,7 +36,7 @@
     <!-- Caminho do arquivo de estilo do site----------------------------------------------------------------------------------->
     <link rel=     "stylesheet" type="text/css" href="<?php echo URL; ?>app/sts/assets/css/style.css"> 
     <!--Título que será exibido no site ---------------------------------------------------------------------------------------->
-    <title>ACD Consultoria Projeto PHP</title>
+    <title>AMACD Projeto Oficina</title>
 <!-- Final do cabeçalho  ------------------------------------------------------------------------------------------------------->
 </head>
 <!--Início do BODY, onde começa o corpo do site -------------------------------------------------------------------------------->

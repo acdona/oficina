@@ -18,10 +18,13 @@ extract($this->dados['footer']);
                         <a href="<?php echo URL; ?>" class="link-footer">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL; ?>sobre-empresa" class="link-footer">Sobre Empresa</a>
+                        <a href="<?php echo URL; ?>sobre-empresa/index" class="link-footer">Sobre Empresa</a>
                     </li>
                     <li>
                         <a href="<?php echo URL; ?>contato" class="link-footer">Contato</a>
+                    </li>
+                    <li>
+                        <a href="<?php echo URL; ?>account-categories/index" class="link-footer">Categoria</a>
                     </li>
                 </ul>
             </div>

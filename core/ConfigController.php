@@ -28,9 +28,6 @@ class ConfigController extends Config {
     /** @var string $urlParametro Recebe da URL o parâmetro */
     private string $urlParametro;
 
-    /** @var string $classe Recebe a classe */
-    private string $classe;
-
     /** @var string $urlSlugController Recebe a controller convertida para o formato do nome da classe */
     private string $urlSlugController;
 
@@ -42,12 +39,17 @@ class ConfigController extends Config {
 
     /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
     private array $format;
+
+     /** @var string $classe Recebe a classe */
+     private string $classe;
+
     
     public function __construct()
     {
         //Instancia o Config para as Constantes
         $this->configSts();
-        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
+        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) 
+        {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);            
 
             $this->url = $this->limparUrl($this->url);      
@@ -81,10 +83,6 @@ class ConfigController extends Config {
             $this->urlParametro = "";
             
         }
-        echo "o Controle é: " . $this->urlController . "<br>";
-        echo "o Método  é: " . $this->urlMetodo . "<br>";
-        echo "o Parâmetro é: " . $this->urlParametro . "<br>";
-        
     }
 
 /**
@@ -128,42 +126,14 @@ class ConfigController extends Config {
         return $this->urlLimpa;
     }
 
-
-
-/**  
-     * Verificar se a classe existe.
-     * Não existindo a classe atribuir a classe erro
-     * 
-     * @return void
+     /**
+     * @method carregar Instanciar a classe e o método responsável em validar e carregar as páginas.
      */
-    public function carregar(): void {
-        $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
-
-        echo "Caminho do Controller é: " . $this->classe . "<br>";
-
-        if(class_exists($this->classe)){
-            $this->carregarClasse();
-        }else{
-            $this->urlController = $this->slugController(CONTROLLERERRO);
-            $this->carregar();
-        }
-    }
-
-     /**  
-     * Verificar se o método existe, existindo o método carrega a página;
-     * Não existindo o método, para o carregamento e apresenta mensagem de erro.
-     * 
-     * @return void
-     */    
-    private function carregarClasse(): void {
-        $classeCarregar = new $this->classe();
-        if(method_exists($classeCarregar, $this->urlMetodo)){
-            echo $this->urlMetodo . "<br>";
-            $classeCarregar->{$this->urlMetodo}();
-        } else{
-            echo "O método escolhido não existe.<br> Verificar e não esquecer de tirar essa mensagem no final!!!<br><br>";
-            echo "Redirecionar para página home/index ao invés de mostrar erro<br><br>";
-            die('Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador ' . EMAILADM . '<br>');
-        }
+    public function carregar(){
+        $carregarPgSts =  new \Core\CarregarPgSts();
+        
+        $carregarPgSts->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
+        
     }
 }
+?>

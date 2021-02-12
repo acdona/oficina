@@ -11,7 +11,18 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 title ">Listagem das Categorias das Contas</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="jumbotron categoria">
+
     <div class="container">
         <table class="table table-primary table-striped table-bordered"> 
             <thead class="table-dark">
@@ -49,27 +60,6 @@ if (isset($_SESSION['msg'])) {
             ?>
             </tbody>
         </table>
-
-        <!-- <nav aria-label="paginacao">
-            <ul class="pagination pagination-sm justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Primeira</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Última</a>
-                </li>
-            </ul>
-        </nav> -->
-
-
-
               <?php echo $this->dados['pagination']; ?>
 
     </div>

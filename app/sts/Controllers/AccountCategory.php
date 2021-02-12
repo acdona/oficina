@@ -6,6 +6,11 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
+if (isset($_SESSION['msg'])) {
+    echo $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
+
 /**
  * Controller AccountCategory responsável pela  
  * manutenção das categorias das contas
@@ -36,15 +41,15 @@ class AccountCategory
         
         $accountCategory = new \App\sts\Models\StsAccountCategory();
         $accountCategory->index($this->pag);
-
-        $this->dados['sts_account_categories'] = $accountCategory->index();
+        
+        $this->dados['viewCategory'] = $accountCategory->index();
         $this->dados['pagination'] = $accountCategory->getResultPg();
         
-       $viewFooter = new \App\sts\Models\StsFooter();
-       $this->dados['footer'] = $viewFooter->view();
+        $viewFooter = new \App\sts\Models\StsFooter();
+        $this->dados['footer'] = $viewFooter->view();
         
-       $carregarView = new \App\sts\core\ConfigView("sts/Views/accountcategory/accountcategory", $this->dados);
-       $carregarView->renderizar();
+        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/accountcategory", $this->dados);
+        $carregarView->renderizar();
     }
 
 }

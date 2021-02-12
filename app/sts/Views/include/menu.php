@@ -21,10 +21,10 @@
                     <a class="nav-link" href="<?php echo URL; ?>sobre-empresa/index">Sobre Empresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-accountcategory/index">Listar</a>
+                    <a class="nav-link" href="<?php echo URL; ?>list-category/index">Categorias</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>account-category/index">Categorias</a>
+                    <a class="nav-link" href="<?php echo URL; ?>list-account-category/index">Categorias de Contas</a>
                 </li>
             </ul>                    
         </div>

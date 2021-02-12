@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Models StsListAccountcategory responsável pelo  
+ * Models StsListAccountCategory responsável pelo  
  * coleta de informações do banco de dados 
  *
  * @version 1.0
@@ -17,12 +17,9 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class StsListAccountcategory
+class StsListAccountCategory
 {
-    // /** @var array $data Recebe o registro do banco de dados */
-    private array $data;
-
-    /** variáveis a cadastrar que trazem a paginação
+     /** variáveis a cadastrar que trazem a paginação
      * 
      */
     private $resultadoBd;
@@ -41,39 +38,29 @@ class StsListAccountcategory
     function getResultPg() {
         return $this->resultPg;
     }
-
-        /**
-     * Instancia a classe genérica no helper responsável em buscar os registro no banco de dados.
-     * Possui a QUERY responsável em buscar os registros no BD.
-     * @return array Retorna o registro do banco de dados com informações para página Home
-     */
-    public function index(): array {
-        $this->ListAccountcategory();
-        return $this->data;
-    }
-
-    public function ListAccountcategory($pag = null) {
+    
+    public function listAccountCategory($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\sts\Models\helper\StsPagination(URL . 'list-accountcategory/index');
+        $paginacao = new \App\sts\Models\helper\StsPagination(URL . 'list-account-category/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
         $paginacao->pagination("SELECT COUNT(acat.id) AS num_result FROM sts_account_categories acat");
         $this->resultPg =$paginacao->getResult();
 
-        $listAccountcategory = new \App\sts\Models\helper\StsRead();
-        $listAccountcategory->fullRead("SELECT acat.id, acat.name 
+        $listAccountCategory = new \App\sts\Models\helper\StsRead();
+        $listAccountCategory->fullRead("SELECT acat.id, acat.name 
                 FROM sts_account_categories acat 
                 LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}");
-        $this->resultadoBd = $listAccountcategory->getResult(); 
+        $this->resultadoBd = $listAccountCategory->getResult(); 
            
-        // if ($this->resultadoBd) {
-        //     $this->resultado = true;
-        // } else {
-        //     $_SESSION['msg'] = "Nenhum usuário encontrado!<br>";
-        //     $this->resultado = false;
-        // }  
-        $this->resultado = true;
+        if ($this->resultadoBd) {
+            $this->resultado = true;
+        } else {
+            $_SESSION['msg'] = "Nenhum usuário encontrado!<br>";
+            $this->resultado = false;
+        }  
+        
     }
 }
 ?>

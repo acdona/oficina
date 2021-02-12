@@ -28,8 +28,8 @@ class ConfigController extends Config {
     /** @var string $urlParametro Recebe da URL o parâmetro */
     private string $urlParametro;
 
-    /** @var string $urlSlugController Recebe a controller convertida para o formato do nome da classe */
-    private string $urlSlugController;
+    /** @var string $slugController Recebe a controller convertida para o formato do nome da classe */
+    private string $slugController;
 
     /** @var array $slugMetodo Metodo */
     private string $slugMetodo;
@@ -39,31 +39,30 @@ class ConfigController extends Config {
 
     /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
     private array $format;
-
-     /** @var string $classe Recebe a classe */
-     private string $classe;
-
     
     public function __construct()
     {
         //Instancia o Config para as Constantes
         $this->configSts();
-        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) 
-        {
+        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);            
-
-            $this->url = $this->limparUrl($this->url);      
+    
+            $this->url = $this->limparUrl($this->url);     
+    
             
             $this->urlConjunto = explode("/", $this->url);
 
+
             if (isset($this->urlConjunto[0])) {
                 $this->urlController = $this->slugController($this->urlConjunto[0]);
+    
             } else {
                 $this->urlController = $this->slugController(CONTROLLER);
             }
 
             if (isset($this->urlConjunto[1])) {
                 $this->urlMetodo = $this->slugMetodo($this->urlConjunto[1]);
+    
             } else {
                 $this->urlController = $this->slugController(CONTROLLER);
                 $this->urlMetodo = $this->slugMetodo(METODO);
@@ -71,16 +70,19 @@ class ConfigController extends Config {
 
             if (isset($this->urlConjunto[2])) {
                 $this->urlParametro = $this->urlConjunto[2];
+    
             } else {
                 $this->urlParametro = "";
+    
             }
         } else {
 
             $this->urlController = $this->slugController(CONTROLLER);
-            
+  
             $this->urlMetodo = $this->slugMetodo(METODO);
-          
+  
             $this->urlParametro = "";
+  
             
         }
     }
@@ -93,15 +95,15 @@ class ConfigController extends Config {
      */
     private function slugController($slugController) {
         //Converter para minusculo
-        $this->urlSlugController = strtolower($slugController);
+        $this->slugController = strtolower($slugController);
         //Converter o traço para espaço em braco
-        $this->urlSlugController = str_replace("-", " ", $this->urlSlugController);
+        $this->slugController = str_replace("-", " ", $this->slugController);
         //Converter a primeira letra de cada palavra para maiusculo
-        $this->urlSlugController = ucwords($this->urlSlugController);
+        $this->slugController = ucwords($this->slugController);
         //Retirar o espaço em braco
-        $this->urlSlugController = str_replace(" ", "", $this->urlSlugController);
+        $this->slugController = str_replace(" ", "", $this->slugController);
 
-        return $this->urlSlugController;
+        return $this->slugController;
     }
 
     private function slugMetodo($slugMetodo) {
@@ -122,7 +124,7 @@ class ConfigController extends Config {
         $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª´`¨|^ ';
         $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr--------------------------------------';
         $this->urlLimpa = strtr(utf8_decode($this->urlLimpa), utf8_decode($this->format['a']), $this->format['b']);
-        
+
         return $this->urlLimpa;
     }
 
@@ -130,8 +132,8 @@ class ConfigController extends Config {
      * @method carregar Instanciar a classe e o método responsável em validar e carregar as páginas.
      */
     public function carregar(){
+ 
         $carregarPgSts =  new \Core\CarregarPgSts();
-        
         $carregarPgSts->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
         
     }

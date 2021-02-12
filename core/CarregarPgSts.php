@@ -21,7 +21,7 @@ class CarregarPgSts
      //para receber o parâmetro
      private string $urlParametro;
      private string $classe;
-     private array $pgPublica;
+     private $pgPublica;
      private array $pgRestrita;
      
     public function carregarPg($urlController = null, $urlMetodo = null, $urlParametro = null){
@@ -32,6 +32,7 @@ class CarregarPgSts
         $this->pgPublica();
 
         if (class_exists($this->classe)) {
+
             $this->carregarMetodo();
         } else {
             $this->urlController = $this->slugController(CONTROLLER);
@@ -46,17 +47,17 @@ class CarregarPgSts
         $classCarregar = new $this->classe();
         if(method_exists($classCarregar, $this->urlMetodo)){
             $classCarregar->{$this->urlMetodo}($this->urlParametro);
+            
         }else{
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
         }        
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountcategory"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "ListCategory"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\sts\\Controllers\\" . $this->urlController;
-
         } else {
             $this->pgRestrita();
         }
@@ -78,7 +79,7 @@ class CarregarPgSts
             $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
         } else {
             $_SESSION['msg'] = "Erro: Página não encontrada<br>";
-            $urlDestino = URLADM . "login/index";
+            $urlDestino = URLADM . "home/index";
             header("Location: $urlDestino");
         }
     }

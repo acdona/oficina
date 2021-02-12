@@ -15,7 +15,7 @@ if (isset($_SESSION['msg'])) {
 
 echo "<hr>";
                        
-foreach ($this->dados['sts_account_categories'] as $account_cat) {
+foreach ($this->dados['listAccountCategory'] as $account_cat) {
     extract($account_cat);
     echo "ID: " . $id . "<br>";
     echo "Nome: " . $name . "<br>";

@@ -25,7 +25,7 @@ if (!defined('R4F5CC')) {
             <tbody>
                 <?php
                     //Ler o array de registro sobre empresa retornado do banco de dados
-                    foreach ($this->dados['sts_account_categories'] as $account_cat){
+                    foreach ($this->dados['viewCategory'] as $account_cat){
                         //A função extract é utilizada para extrair o array e imprimir através do nome da chave
                         extract($account_cat);
                 ?>

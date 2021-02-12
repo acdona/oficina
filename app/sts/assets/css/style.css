@@ -96,7 +96,7 @@ body {
   .featurette-divider {
     margin: 5rem 0; 
   }
-  /* Seletor para personalizar o titulo da página contato*/
+  /* Seletor para personalizar o titulo da página categoria*/
   .head-categoria {
       padding-top: 60px;
       padding-bottom: 0px;    
@@ -104,9 +104,10 @@ body {
       margin-bottom: 0rem !important;
       border-radius: 0rem;    
   }
-  .categoria{
-      padding-top: 60px;
-      padding-bottom: 60px;    
+  /* Seletor para personalizar o conteúdo da página categoria*/
+  .categoria {
+      padding-top: 80px;
+      padding-bottom:80px;    
       background-color: #fff;
       margin-bottom: 0rem !important;
       border-radius: 0rem;       

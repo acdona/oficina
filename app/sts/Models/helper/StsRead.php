@@ -11,9 +11,9 @@ if (!defined('R4F5CC')) {
 use PDO;
 
 /**
- * Classe gernérica para buscar regsitro no banco de dados
+ * Classe genérica para buscar regsitro no banco de dados
  *
- * @author Celke
+ * @author acd
  */
 class StsRead extends StsConn
 {

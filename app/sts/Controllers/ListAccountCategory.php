@@ -25,7 +25,6 @@ class ListAccountCategory
 
     public function index($pag = null) { 
 
-
         $this->pag = (int) $pag ? $pag : 1;
         
         $listAccountCategory = new \App\sts\Models\StsListAccountCategory();

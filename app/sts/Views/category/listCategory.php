@@ -5,7 +5,7 @@ if(!defined('R4F5CC')){
     die("Erro: Página não encontrada!");
 }
 
-echo "<h3>Lista Categorias das Contas</h3>";
+echo "<h3>Lista de Categorias dos Produtos e Serviços</h3>";
 
 
 if (isset($_SESSION['msg'])) {
@@ -15,7 +15,7 @@ if (isset($_SESSION['msg'])) {
 
 echo "<hr>";
                        
-foreach ($this->dados['listAccountCategory'] as $account_cat) {
+foreach ($this->dados['listCategory'] as $account_cat) {
     extract($account_cat);
     echo "ID: " . $id . "<br>";
     echo "Nome: " . $name . "<br>";

@@ -6,14 +6,6 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
-echo "<h3>Lista Categorias</h3>";
-
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
-echo "<hr>";
-
 /**
  * Controller ListCategory responsável por Listar Categorias
  *
@@ -30,20 +22,20 @@ class ListCategory
     private $dados;
     private $pag;
     
-    public function index($pag = null)
-    {
+    public function index($pag = null) {
+
         $this->pag = (int) $pag ? $pag : 1;
 
         $listCategory = new \App\sts\Models\StsListCategory();
-        $listCategory->index($this->pag);
+        $listCategory->listCategory($this->pag);
 
-        $this->dados['listCategory'] = $listCategory->index();
+        $this->dados['listCategory'] = $listCategory->getResultadoBd();
         $this->dados['pagination'] = $listCategory->getResultPg();
   
         $viewFooter = new \App\sts\Models\StsFooter();
         $this->dados['footer'] = $viewFooter->view();
     
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/listCategory", $this->dados);       
+        $carregarView = new \App\sts\core\ConfigView("sts/Views/category/listCategory", $this->dados);       
         $carregarView->renderizar();
 
     }

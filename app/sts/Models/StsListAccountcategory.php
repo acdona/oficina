@@ -25,7 +25,7 @@ class StsListAccountCategory
     private $resultadoBd;
     private bool $resultado;
     private $pag;    
-    private $limitResult = 2;
+    private $limitResult = 5;
     private $resultPg;
 
     function getResultado() {

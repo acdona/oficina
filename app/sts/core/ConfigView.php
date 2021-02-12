@@ -1,5 +1,4 @@
 <?php
-
 namespace App\sts\core;
 
 if(!defined('R4F5CC')){
@@ -30,6 +29,7 @@ class ConfigView
             include 'app/sts/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
             include 'app/sts/Views/include/footer.php';
+            include 'app/sts/Views/include/libraries_js.php';
             
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
@@ -47,5 +47,5 @@ class ConfigView
     //         echo "Erro ao carregar view: {$this->nome}<br>";
     //     }
     // }
-
+  
 }

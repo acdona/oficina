@@ -5,25 +5,74 @@ if(!defined('R4F5CC')){
     die("Erro: Página não encontrada!");
 }
 
-echo "<h3>Lista Categorias das Contas</h3>";
-
-
 if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 }
+?>
 
-echo "<hr>";
-                       
-foreach ($this->dados['listAccountCategory'] as $account_cat) {
-    extract($account_cat);
-    echo "ID: " . $id . "<br>";
-    echo "Nome: " . $name . "<br>";
-    
-    // echo "<a href='" . URLADM . "view-users/index/$id'>Visualizar</a><br>";
-    // echo "<a href='" . URLADM . "edit-users/index/$id'>Editar</a><br>";
-    // echo "<a href='" . URLADM . "delete-users/index/$id'>Apagar</a><br>";
-    echo "<hr>";
-}
+<div class="jumbotron categoria">
+    <div class="container">
+        <table class="table table-primary table-striped table-bordered"> 
+            <thead class="table-dark">
+                <tr>
+                    <th class="text-center">ID</th>
+                    <th>NOME</th>
+                    <th class="text-right">AÇÃO</th>
+                </tr>
+            </thead>
 
-echo $this->dados['pagination'];
+            <tbody>
+                <?php
+                    //Ler o array de registro sobre empresa retornado do banco de dados
+                    foreach ($this->dados['listAccountCategory'] as $cat){
+                        //A função extract é utilizada para extrair o array e imprimir através do nome da chave
+                        extract($cat);
+                ?>
+            <tr>
+                <td class="text-center"><?php echo $id; ?></td>
+                <td><?php echo $name; ?></td>
+                <td class="text-right">
+                    <div class="fa-2x">
+                        <a href="#" ><i class="fas fa-eye" style="color:green"></i></a>
+                        <a href="#" ><i class="fas fa-edit" style="color:brown"></i></a>
+                        <a href="#" ><i class="fas fa-trash" style="color:red"></i></a>
+                        <a href="#" ><i class="fas fa-print" style="color:blue"></i></a>
+                        
+                    </div>
+                </td>
+           </tr>
+
+           <?php
+           
+              }
+            ?>
+            </tbody>
+        </table>
+
+        <!-- <nav aria-label="paginacao">
+            <ul class="pagination pagination-sm justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Primeira</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">3</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Última</a>
+                </li>
+            </ul>
+        </nav> -->
+
+
+
+              <?php echo $this->dados['pagination']; ?>
+
+    </div>
+
+
+</div>

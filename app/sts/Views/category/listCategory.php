@@ -4,12 +4,9 @@ if(!defined('R4F5CC')){
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
-
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
 ?>
+<div class="content p-1">
+    <div class="list-group-item">
 
         <div class="list-group-item">
             <div class="d-flex">
@@ -21,6 +18,12 @@ if (isset($_SESSION['msg'])) {
                 </div>
             </div>
             <hr class="hr-title">
+            <?php
+                if (isset($_SESSION['msg'])) {
+                    echo $_SESSION['msg'];
+                    unset($_SESSION['msg']);
+                }
+            ?>
 
             <div class="table-responsive">
                 <table class="table table-striped table-light table-bordered table-hover">
@@ -74,6 +77,8 @@ if (isset($_SESSION['msg'])) {
                 </nav>
             </div>    
         </div>
+    </div>
+</div>
  
   <!-- Modal -->
   <div class="modal fade" id="deleteData" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">

@@ -4,23 +4,26 @@ if(!defined('R4F5CC')){
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
-
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
 ?>
 
+<div class="content p-1">
+    <div class="list-group-item">
         <div class="list-group-item">
             <div class="d-flex">
                 <div class="mr-auto p-2">
                     <h2 class="display-4 title">Listagem - Categorias Contas</h2>
                 </div>
                 <div class="p-2">
-                    <a href="#" class="btn btn-outline-success btn-sm">Cadastrar</a>
+                    <a href="<?php echo URLADM; ?>add-account-category/index" class="btn btn-outline-success btn-sm">Cadastrar</a>
                 </div>
             </div>
             <hr class="hr-title">
+            <?php
+                if (isset($_SESSION['msg'])) {
+                echo $_SESSION['msg'];
+                unset($_SESSION['msg']);
+                }
+            ?>
 
             <div class="table-responsive">
                 <table class="table table-striped table-light table-bordered table-hover">
@@ -34,7 +37,7 @@ if (isset($_SESSION['msg'])) {
                     <tbody>
 
                     <?php
-                        //Ler o array de registro sobre empresa retornado do banco de dados
+                        //Ler o array de registro retornado do banco de dados
                         foreach ($this->dados['listAccountCategory'] as $cat){
                         //A função extract é utilizada para extrair o array e imprimir através do nome da chave
                         extract($cat);
@@ -46,7 +49,7 @@ if (isset($_SESSION['msg'])) {
 
                         <td class="text-center">
                                 <span class="d-none d-lg-block">
-                                    <a href="visualizar.html" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                    <a href="<?php echo URLADM . 'view-account-category/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                                     <a href="editar.html" class="btn btn-outline-warning btn-sm">Editar</a>
                                     <a href="apagar.html" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteData">Apagar</a> 
                                 </span>
@@ -55,7 +58,8 @@ if (isset($_SESSION['msg'])) {
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="visualizar.html">Visualizar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'view-account-category/index/' . $id; ?>">Visualizar</a>
+                                                            
                                         <a class="dropdown-item" href="editar.html">Editar</a>
                                         <a class="dropdown-item" href="apagar.html" data-toggle="modal" data-target="#deleteData">Apagar</a>
                                     </div>
@@ -74,6 +78,8 @@ if (isset($_SESSION['msg'])) {
                 </nav>
             </div>    
         </div>
+    </div>
+</div>
  
   <!-- Modal -->
   <div class="modal fade" id="deleteData" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">

@@ -14,7 +14,7 @@ if (isset($_SESSION['msg'])) {
         <div class="list-group-item">
             <div class="d-flex">
                 <div class="mr-auto p-2">
-                    <h2 class="display-4 title">Listagem - Categorias das Contas</h2>
+                    <h2 class="display-4 title">Listagem - Categorias Contas</h2>
                 </div>
                 <div class="p-2">
                     <a href="#" class="btn btn-outline-success btn-sm">Cadastrar</a>

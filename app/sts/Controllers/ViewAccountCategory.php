@@ -37,7 +37,7 @@ class ViewAccountCategory
                 header("Location: $urlDestino");
             }
         } else {
-            $_SESSION['msg'] = "Categoria não encontrada da controller<br>";
+            $_SESSION['msg'] = "Categoria não encontrada!<br>";
             $urlDestino = URL . "list-account-category/index";
             header("Location: $urlDestino");
         }

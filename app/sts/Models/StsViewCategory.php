@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsViewAccountCategory responsável por vizualializar a categoria das contas
+ * Models StsViewCategory responsible for viewing a category.
  *
  * @version 1.0
  *
@@ -15,7 +15,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class StsViewAccountCategory
+class StsViewCategory
 {
 
     private $resultadoBd;
@@ -30,15 +30,15 @@ class StsViewAccountCategory
         return $this->resultadoBd;
     }
 
-    public function viewAccountCategory($id) {
+    public function viewCategory($id) {
         $this->id = (int) $id;
-        $viewAccountCategory = new \App\sts\Models\helper\StsRead();
-        $viewAccountCategory->fullRead("SELECT id, name
-                FROM sts_account_categories 
+        $viewCategory = new \App\sts\Models\helper\StsRead();
+        $viewCategory->fullRead("SELECT id, name
+                FROM sts_categories 
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
                 
-        $this->resultadoBd = $viewAccountCategory->getResult();
+        $this->resultadoBd = $viewCategory->getResult();
 
         if($this->resultadoBd){
             $this->resultado = true;

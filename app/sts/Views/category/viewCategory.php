@@ -8,27 +8,27 @@ if (!defined('R4F5CC')) {
     <div class="list-group-item">
         <div class="d-flex">
             <div class="mr-auto p-2">
-                <h2 class="display-4 title">Detalhes da Categoria das Contas</h2>
+                <h2 class="display-4 title">Detalhes da Categoria</h2>
             </div>
             <?php
             
-            if (!empty($this->dados['viewAccountCategory'])) {
-                extract($this->dados['viewAccountCategory'][0]);
+            if (!empty($this->dados['viewCategory'])) {
+                extract($this->dados['viewCategory'][0]);
                 ?>
                 <div class="p-2">
                     <span class="d-none d-lg-block">
-                        <a href="<?php echo URL; ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
-                        <a href="<?php echo URL . 'edit-account-category/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
-                        <a href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                        <a href="<?php echo URL; ?>list-category/index" class="btn btn-outline-info btn-sm">Listar</a>
+                        <a href="<?php echo URL . 'edit-category/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
+                        <a href="<?php echo URL . 'delete-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                     </span>
                     <div class="dropdown d-block d-lg-none">
                         <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                            <a class="dropdown-item" href="<?php echo URL; ?>list-account-category/index">Listar</a>
-                            <a class="dropdown-item" href="<?php echo URL . 'edit-account-category/index/' . $id; ?>">Editar</a>
-                            <a class="dropdown-item" href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                            <a class="dropdown-item" href="<?php echo URL; ?>list-category/index">Listar</a>
+                            <a class="dropdown-item" href="<?php echo URL . 'edit-category/index/' . $id; ?>">Editar</a>
+                            <a class="dropdown-item" href="<?php echo URL . 'delete-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ if (!defined('R4F5CC')) {
             unset($_SESSION['msg']);
         }
         
-        if (!empty($this->dados['viewAccountCategory'])) {
+        if (!empty($this->dados['viewCategory'])) {
             ?>
             <dl class="row">
 

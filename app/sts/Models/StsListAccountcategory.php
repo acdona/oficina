@@ -57,7 +57,8 @@ class StsListAccountCategory
         if ($this->resultadoBd) {
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Nenhum usuário encontrado!<br>";
+          
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Nenhuma Categoria encontrada!</div>";
             $this->resultado = false;
         }  
         

@@ -50,7 +50,8 @@ class StsValAccountCategory
         if (!$this->resultadoBd) {
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Erro: Esta categoria já está cadastrada!";
+            
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Esta categoria já está cadastrada!</div>";
             $this->resultado = false;
         }
     }

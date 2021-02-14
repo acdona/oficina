@@ -50,7 +50,7 @@ if(!defined('R4F5CC')){
                         <td class="text-center">
                                 <span class="d-none d-lg-block">
                                     <a href="<?php echo URLADM . 'view-account-category/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                    <a href="editar.html" class="btn btn-outline-warning btn-sm">Editar</a>
+                                    <a href="<?php echo URLADM . 'edit-account-category/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
                                     <a href="apagar.html" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteData">Apagar</a> 
                                 </span>
                                 <div class="dropdown d-block d-lg-none">
@@ -60,7 +60,7 @@ if(!defined('R4F5CC')){
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                         <a class="dropdown-item" href="<?php echo URLADM . 'view-account-category/index/' . $id; ?>">Visualizar</a>
                                                             
-                                        <a class="dropdown-item" href="editar.html">Editar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'edit-account-category/index/' . $id; ?>">Editar</a>
                                         <a class="dropdown-item" href="apagar.html" data-toggle="modal" data-target="#deleteData">Apagar</a>
                                     </div>
                                 </div>

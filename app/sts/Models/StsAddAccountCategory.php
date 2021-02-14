@@ -38,7 +38,7 @@ class StsAddAccountCategory
     private function valInput() {
         $valAccountCategory = new \App\sts\Models\helper\StsValAccountCategory();
         $valAccountCategory->validarAccountCategory($this->dados['name']);
-        //até auqi deu verdadeiro
+      
         if ($valAccountCategory->getResultado()) {
             $this->add();
         } else {
@@ -51,7 +51,7 @@ class StsAddAccountCategory
         $this->dados['created'] = date("Y-m-d H:i:s");
         $createAccountCategory = new \App\sts\Models\helper\StsCreate();
         $createAccountCategory->exeCreate("sts_account_categories", $this->dados);
-        var_dump($this->dados);
+
         if ($createAccountCategory->getResult()) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Categoria cadastrada com sucesso!</div>";
             $this->resultado = true;

@@ -21,14 +21,14 @@ if (isset($valorForm['id'])) {
     <div class="list-group-item">
         <div class="d-flex">
                 <div class="mr-auto p-2">
-                    <h2 class="display-4 title">Editar categoria das contas</h2>
+                    <h2 class="display-4 title">Editar Categorias</h2>
                 </div>
                 <div class="p-2">
                 <span class="d-none d-lg-block">
 
-                    <a href="<?php echo URL ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URL ?>list-category/index" class="btn btn-outline-info btn-sm">Listar</a>
                     
-                    <a href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                    <a href="<?php echo URL . 'delete-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                 </span>
                 </div>
 
@@ -38,7 +38,7 @@ if (isset($valorForm['id'])) {
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                     <a class="dropdown-item" href="<?php echo URL ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
-                                    <a class="dropdown-item" href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                    <a class="dropdown-item" href="<?php echo URL . 'delete-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@ if (isset($valorForm['id'])) {
         }
         ?>
 
-        <form id="form_account_category" method="POST" action="">
+        <form id="form_category" method="POST" action="">
             <input name="id" type="hidden" id="id" value="<?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
@@ -71,7 +71,7 @@ if (isset($valorForm['id'])) {
                 <span class="text-danger">*</span> Campo Obrigatório
             </p>
 
-            <input name="EditAccountCategory" type="submit" class="btn btn-outline-warning btn-sm" value="Salvar">  
+            <input name="EditCategory" type="submit" class="btn btn-outline-warning btn-sm" value="Salvar">  
         </form>
 
 

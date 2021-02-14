@@ -30,9 +30,7 @@ if (isset($this->dados['form'])) {
    
    
    
-    </div>
-    
-</div>
+ 
 
 <span class="msg"></span>
 <form id="add_account_category" method="POST" action="">
@@ -43,12 +41,20 @@ if (isset($this->dados['form'])) {
     if (isset($valorForm['name'])) {
         echo $valorForm['name'];
     }
+    
     ?>">
+
+<p>
+<br>
+        <span class="text-danger">*</span> Campo Obrigatório<br><br>
+        <input name="AddAccountCategory" type="submit" class="btn btn-outline-success btn-sm" value="Cadastrar">  
+    </p>
     </div>
    
-    <p>
-        <span class="text-danger">*</span> Campo Obrigatório
-    </p>
     
-    <input name="AddAccountCategory" type="submit" class="btn btn-outline-success btn-sm" value="Cadastrar">  
+    
+    
 </form>
+</div>
+    
+    </div>

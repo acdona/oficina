@@ -1,9 +1,15 @@
-/* Definir altura mínima para o menu fixo */
+/* Definir altura da página */
 body {
-    min-height: 75rem;
+    /* min-height: 35rem; */
     padding-top: 3.5rem;
+    height: 100%;
   }
-  
+
+.content {
+    position: relative;
+    width:100vw;
+    height: 68vh;
+}
   /* Seletor para personalizar o topo da página home */
   .descr-top{    
       background-repeat: no-repeat;

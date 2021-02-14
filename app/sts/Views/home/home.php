@@ -10,7 +10,7 @@ extract($this->dados['sts_homes']['top']);
 $imagem_topo = URL . "app/sts/assets/images/home_topo/" . $image_top;
 ?>
 
-<div class="jumbotron descr-top" style="background-image: url('<?php echo $imagem_topo; ?>');">
+<div class="jumbotron descr-top content" style="background-image: url('<?php echo $imagem_topo; ?>');">
     <div class="container text-center">
         <h1 class="display-4"><?php echo $title_top; ?></h1>
         <p class="lead"><?php echo $description_top; ?></p>

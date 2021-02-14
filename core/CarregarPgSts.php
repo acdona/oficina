@@ -54,7 +54,7 @@ class CarregarPgSts
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "ListCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "ListCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\sts\\Controllers\\" . $this->urlController;
@@ -68,7 +68,7 @@ class CarregarPgSts
         if(in_array($this->urlController, $this->pgRestrita)) {
             $this->verificarLogin();
         } else {
-            $_SESSION['msg'] = "Erro: Página não encontrada<br>";
+            $_SESSION['msg'] = "Erro: Página não encontrada======================================= restrita<br>";
             $urlDestino = URLADM . "error/index";
             header("Location: $urlDestino");
         }
@@ -78,7 +78,7 @@ class CarregarPgSts
         if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name']) AND isset($_SESSION['user_email'])) {
             $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
         } else {
-            $_SESSION['msg'] = "Erro: Página não encontrada<br>";
+            $_SESSION['msg'] = "Erro: Página não encontrada ====================================== verificar login <br>";
             $urlDestino = URLADM . "home/index";
             header("Location: $urlDestino");
         }

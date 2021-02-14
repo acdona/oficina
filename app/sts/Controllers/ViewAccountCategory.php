@@ -1,6 +1,10 @@
 <?php
 namespace App\sts\Controllers;
 
+if (!defined('R4F5CC')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller ViewAccountCategory responsável por visualizar uma categoria de contas
  *

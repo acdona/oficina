@@ -28,7 +28,7 @@ if (isset($valorForm['id'])) {
 
                     <a href="<?php echo URLADM ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
                     
-                    <a href="apagar.html" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#deleteData">Apagar</a> 
+                    <a href="<?php echo URLADM . 'delete-account-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                 </span>
                 </div>
 
@@ -38,8 +38,7 @@ if (isset($valorForm['id'])) {
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                     <a class="dropdown-item" href="listar.html">Listar</a>
-                                    
-                                    <a class="dropdown-item" href="apagar.html" data-toggle="modal" data-target="#deleteData">Apagar</a>
+                                    <a class="dropdown-item" href="<?php echo URLADM . 'delete-account-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                 </div>
                             </div>
 
@@ -78,24 +77,3 @@ if (isset($valorForm['id'])) {
 
     </div>
 </div>
-
- <!-- Modal -->
- <div class="modal fade" id="deleteData" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="deleteDataLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header bg-danger">
-          <h5 class="modal-title text-light" id="deleteDataLabel"><i class="fas fa-user-times fa-lg"></i>  Excluir Registro</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <span>Tem certeza que deseja excluir o registro selecionado?</span>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger">Apagar</button>
-        </div>
-      </div>
-    </div>
-  </div>

@@ -1,6 +1,10 @@
 <?php
 namespace App\sts\Models\helper;
 
+if (!defined('R4F5CC')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Models StsValCampoVazio responsável por validar campo vazio
  *

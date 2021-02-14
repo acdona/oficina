@@ -26,9 +26,9 @@ if (isset($valorForm['id'])) {
                 <div class="p-2">
                 <span class="d-none d-lg-block">
 
-                    <a href="<?php echo URLADM ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URL ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
                     
-                    <a href="<?php echo URLADM . 'delete-account-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                    <a href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                 </span>
                 </div>
 
@@ -38,7 +38,7 @@ if (isset($valorForm['id'])) {
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                     <a class="dropdown-item" href="listar.html">Listar</a>
-                                    <a class="dropdown-item" href="<?php echo URLADM . 'delete-account-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                    <a class="dropdown-item" href="<?php echo URL . 'delete-account-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                 </div>
                             </div>
 

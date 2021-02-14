@@ -13,10 +13,10 @@ if (isset($this->dados['form'])) {
     <div class="list-group-item">
         <div class="d-flex">
                 <div class="mr-auto p-2">
-                    <h2 class="display-4 title">Cadastrar categoria das contas</h2>
+                    <h2 class="display-4 title">Cadastrar Categoria</h2>
                 </div>
                 <div class="p-2">
-                    <a href="<?php echo URL ?>list-account-category/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URL ?>list-category/index" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
         </div>  
         <hr class="hr-title">
@@ -30,7 +30,7 @@ if (isset($this->dados['form'])) {
         ?>  
 
         <span class="msg"></span>
-        <form id="add_account_category" method="POST" action="">
+        <form id="add_category" method="POST" action="">
 
             <div class="form-group col-md-6">
                     <label for="name"><span class="text-danger">*</span> Nome</label>
@@ -44,7 +44,7 @@ if (isset($this->dados['form'])) {
                 <p>
                     <br>
                     <span class="text-danger">*</span> Campo Obrigatório<br><br>
-                    <input name="AddAccountCategory" type="submit" class="btn btn-outline-success btn-sm" value="Cadastrar">  
+                    <input name="AddCategory" type="submit" class="btn btn-outline-success btn-sm" value="Cadastrar">  
                 </p>
             </div>
 

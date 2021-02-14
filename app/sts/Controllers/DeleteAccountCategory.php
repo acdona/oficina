@@ -30,7 +30,7 @@ class DeleteAccountCategory
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma categoria!</div>";
         }
         
-        $urlDestino = URLADM . "list-account-category/index";
+        $urlDestino = URL . "list-account-category/index";
         header("Location: $urlDestino");
     }
 

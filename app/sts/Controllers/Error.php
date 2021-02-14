@@ -25,9 +25,6 @@ class Error
 
         $this->dados = [];
 
-        $viewFooter = new \App\sts\Models\StsFooter();
-        $this->dados['footer'] = $viewFooter->view();
-
         $carregarView = new \Core\ConfigView("sts/Views/error/error", $this->dados);
         $carregarView->renderizar();
     }

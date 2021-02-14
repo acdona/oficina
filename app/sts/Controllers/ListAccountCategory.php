@@ -32,10 +32,7 @@ class ListAccountCategory
 
         $this->dados['listAccountCategory'] = $listAccountCategory->getResultadoBd();
         $this->dados['pagination'] = $listAccountCategory->getResultPg();
-  
-        $viewFooter = new \App\sts\Models\StsFooter();
-        $this->dados['footer'] = $viewFooter->view();
-    
+     
         $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/listAccountCategory", $this->dados);       
         $carregarView->renderizar();
     }

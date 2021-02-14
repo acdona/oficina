@@ -32,9 +32,6 @@ class ListCategory
         $this->dados['listCategory'] = $listCategory->getResultadoBd();
         $this->dados['pagination'] = $listCategory->getResultPg();
   
-        $viewFooter = new \App\sts\Models\StsFooter();
-        $this->dados['footer'] = $viewFooter->view();
-    
         $carregarView = new \App\sts\core\ConfigView("sts/Views/category/listCategory", $this->dados);       
         $carregarView->renderizar();
 

@@ -33,21 +33,18 @@ class ViewAccountCategory
                 $this->dados['viewAccountCategory'] = $viewAccountCategory->getResultadoBd();
                 $this->viewAccountCategory();
             } else {
-                $urlDestino = URLADM . "list-account-category/index";
+                $urlDestino = URL . "list-account-category/index";
                 header("Location: $urlDestino");
             }
         } else {
             $_SESSION['msg'] = "Categoria não encontrada da controller<br>";
-            $urlDestino = URLADM . "list-account-category/index";
+            $urlDestino = URL . "list-account-category/index";
             header("Location: $urlDestino");
         }
     }
     
     private function viewAccountCategory() {
-
-        $viewFooter = new \App\sts\Models\StsFooter();
-        $this->dados['footer'] = $viewFooter->view();
-        
+       
         $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/viewAccountCategory", $this->dados);
         $carregarView->renderizar();
     }

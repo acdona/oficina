@@ -33,7 +33,7 @@ class EditAccountCategory
                 $this->dados['form'] = $viewAccountCategory->getResultadoBd();
                 $this->viewAccountCategory();
             } else {
-                $urlDestino = URLADM . "list-account-category/index";
+                $urlDestino = URL . "list-account-category/index";
                 header("Location: $urlDestino");
             }
         } else {
@@ -42,10 +42,7 @@ class EditAccountCategory
     }
 
     private function viewAccountCategory() {       
-        
-        $viewFooter = new \App\sts\Models\StsFooter();
-        $this->dados['footer'] = $viewFooter->view();
-        
+   
         $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/editAccountCategory", $this->dados);
         $carregarView->renderizar();
     }
@@ -56,7 +53,7 @@ class EditAccountCategory
             $editAccountCategory = new \App\sts\Models\StsEditAccountCategory();
             $editAccountCategory->update($this->dadosForm);
             if ($editAccountCategory->getResultado()) {
-                $urlDestino = URLADM . "list-account-category/index";
+                $urlDestino = URL . "list-account-category/index";
                 header("Location: $urlDestino");
             } else {
                 $this->dados['form'] = $this->dadosForm;
@@ -64,7 +61,7 @@ class EditAccountCategory
             }
         } else {
             $_SESSION['msg'] = "Categoria não encontrada!<br>";
-            $urlDestino = URLADM . "list-account-category/index";
+            $urlDestino = URL . "list-account-category/index";
             header("Location: $urlDestino");
         }
     }

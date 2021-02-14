@@ -25,6 +25,8 @@ class ConfigView
     public function renderizar() {
         
         if (file_exists('app/' . $this->nome . '.php')) {
+            $viewFooter = new \App\sts\Models\StsFooter();
+            $this->dados['footer'] = $viewFooter->view();
             include 'app/sts/Views/include/head.php';
             include 'app/sts/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';

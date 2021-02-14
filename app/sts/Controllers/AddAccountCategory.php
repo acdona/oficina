@@ -29,7 +29,7 @@ class AddAccountCategory
             $createNewAccountCategory = new \App\sts\Models\StsAddAccountCategory();
             $createNewAccountCategory->create($this->dadosForm);
             if($createNewAccountCategory->getResultado()) {
-                $urlDestino = URLADM . "add-account-category/index";
+                $urlDestino = URL . "add-account-category/index";
                 header("Location: $urlDestino");
             } else {
                 $this->dados['form'] = $this->dadosForm;
@@ -41,9 +41,6 @@ class AddAccountCategory
     }
 
        private function viewNewAccountCategory() {  
-           
-            $viewFooter = new \App\sts\Models\StsFooter();
-            $this->dados['footer'] = $viewFooter->view();
 
             $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/addAccountCategory", $this->dados);
             $carregarView->renderizar();   

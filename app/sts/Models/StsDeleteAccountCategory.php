@@ -65,7 +65,7 @@ class StsDeleteAccountCategory
         $checkUseAccountCategory = new \App\sts\Models\helper\StsRead();
         $checkUseAccountCategory->fullRead("SELECT id FROM sts_accounts WHERE sts_account_category_id=:sts_account_category_id LIMIT :limit", "sts_account_category_id={$this->id}&limit=1");
         if($checkUseAccountCategory->getResult()){
-            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: A categoria de contas não pode ser apagada, há situação de conta utilizando essa categoria!</div>";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: A categoria não pode ser apagada, ela está sendo usada por uma conta!</div>";
             return false;
         }else{
             return true;

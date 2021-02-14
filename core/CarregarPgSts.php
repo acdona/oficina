@@ -54,7 +54,7 @@ class CarregarPgSts
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "ListCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\sts\\Controllers\\" . $this->urlController;
@@ -69,7 +69,7 @@ class CarregarPgSts
             $this->verificarLogin();
         } else {
             $_SESSION['msg'] = "Erro: Página não encontrada!<br>";
-            $urlDestino = URLADM . "error/index";
+            $urlDestino = URL . "error/index";
             header("Location: $urlDestino");
         }
     }
@@ -79,7 +79,7 @@ class CarregarPgSts
             $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
         } else {
             $_SESSION['msg'] = "Erro: Página não encontrada!<br>";
-            $urlDestino = URLADM . "home/index";
+            $urlDestino = URL . "home/index";
             header("Location: $urlDestino");
         }
     }

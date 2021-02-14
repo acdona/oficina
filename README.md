@@ -36,7 +36,7 @@ Conforme for desenvolvendo, vou alterando as instruções por aqui.
 - Antonio Carlos Doná - [acdona](https://guithub.com/acdona)
 
 ### Agradecimentos
-Agradeço a Microsoft, que dispinibiliza gratuitamente, esse sensacional software o [**Visual Studio Code**](https://code.visualstudio.com/).
+Agradeço a Microsoft, por disponibilizar gratuitamente, esse sensacional software o [**Visual Studio Code**](https://code.visualstudio.com/).
 
 ## Licença
 Software de código fonte aberto licenciado conforme a [licença MIT](/LICENSE).

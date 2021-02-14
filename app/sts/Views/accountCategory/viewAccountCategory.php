@@ -54,7 +54,7 @@ if (!defined('R4F5CC')) {
             </dl>
             <?php
         } else {
-            echo "<div class='alert alert-danger' role='alert'>Erro: Categoria não encontrada!</div>";
+            echo "<div class='alert alert-danger' role='alert'>Erro: Categoria não encontrada! na VIEW</div>";
         }
         ?>
     </div>

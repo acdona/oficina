@@ -29,17 +29,17 @@ class StsViewAccountCategory
     public function viewAccountCategory($id) {
         $this->id = (int) $id;
         $viewAccountCategory = new \App\sts\Models\helper\StsRead();
-        $viewAccountCategory->fullRead("SELECT acat.id, acat.name
-                FROM sts_account_categories acat
-                WHERE acat.id=:id
-                LIMIT :limit", "acat.id={$this->id}&limit=1");
+        $viewAccountCategory->fullRead("SELECT id, name
+                FROM sts_account_categories 
+                WHERE id=:id
+                LIMIT :limit", "id={$this->id}&limit=1");
                 
         $this->resultadoBd = $viewAccountCategory->getResult();
-        var_dump($this->resultadoBd);
+
         if($this->resultadoBd){
             $this->resultado = true;
         }else{
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Categoria não encontrada!</div>";
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Categoria não encontrada na models!</div>";
             $this->resultado = false;
         }
     }

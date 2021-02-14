@@ -24,7 +24,7 @@ class ViewAccountCategory
             
             $viewAccountCategory = new \App\sts\Models\StsViewAccountCategory();
             $viewAccountCategory->viewAccountCategory($this->id);
-            //
+            
             if ($viewAccountCategory->getResultado()) {
                 $this->dados['viewAccountCategory'] = $viewAccountCategory->getResultadoBd();
                 $this->viewAccountCategory();
@@ -40,8 +40,11 @@ class ViewAccountCategory
     }
     
     private function viewAccountCategory() {
-        $carregarView = new \App\sts\core\ConfigView("adms/Views/accountCategory/viewAccountCategory", $this->dados);
-        //var_dump($carregarView);
+
+        $viewFooter = new \App\sts\Models\StsFooter();
+        $this->dados['footer'] = $viewFooter->view();
+        
+        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/viewAccountCategory", $this->dados);
         $carregarView->renderizar();
     }
 

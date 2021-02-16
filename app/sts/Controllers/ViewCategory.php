@@ -17,8 +17,10 @@ if (!defined('R4F5CC')) {
 */
 class ViewCategory
 {
- 
-    private $id;
+    /** @var int $id Recebe um inteiro referente ao ID da cetagoria */
+    private int $id;
+    
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private $dados;
 
     public function index($id) {

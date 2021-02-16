@@ -17,8 +17,8 @@ if (!defined('R4F5CC')) {
 */
 class DeleteCategory
 {
-
-    private $id;
+    /** @var int $id Recebe um inteiro referente ao  ID da categoria. */
+    private int $id;
 
     public function index($id = null) {
         $this->id = (int) $id;

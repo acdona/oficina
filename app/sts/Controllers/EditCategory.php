@@ -17,9 +17,13 @@ if (!defined('R4F5CC')) {
 */
 class EditCategory
 {
-
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private $dados;
+
+    /** @var array $dadosForm Recebe os dados do formulário */
     private $dadosForm;
+
+    /** @var int $id Recebe um inteiro referente ao  ID da categoria. */
     private $id;
 
     public function index($id) {

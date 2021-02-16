@@ -18,8 +18,10 @@ if (!defined('R4F5CC')) {
 */
 class ListCategory
 {
-
-    private $dados;
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
+    private array $dados;
+    
+    /** @var int $pag um número inteiro referente a página */
     private $pag;
     
     public function index($pag = null) {

@@ -18,8 +18,11 @@ if (!defined('R4F5CC')) {
 class AddAccountCategory
 {
 
-    private $dados;
-    private $dadosForm;
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
+    private array $dados;
+
+    /** @var array $dadosForm Recebe os dados do formulário */
+    private array $dadosForm;
 
     public function index() {
 

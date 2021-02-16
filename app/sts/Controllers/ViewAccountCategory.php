@@ -18,8 +18,11 @@ if (!defined('R4F5CC')) {
 class ViewAccountCategory
 {
  
+    /** @var int $id Recebe um inteiro ref. ao ID da categoria das contas */
     private $id;
-    private $dados;
+    
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
+    private array $dados;
 
     public function index($id) {
         $this->id = $id;

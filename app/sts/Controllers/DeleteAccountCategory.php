@@ -17,8 +17,8 @@ if (!defined('R4F5CC')) {
 */
 class DeleteAccountCategory
 {
-
-    private $id;
+    /** @var int $id Recebe im inteiro referente ao ID da categoria das contas */
+    private int $id;
 
     public function index($id = null) {
         $this->id = (int) $id;

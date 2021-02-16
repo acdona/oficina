@@ -25,12 +25,16 @@ class StsAddUser
     function getResultado() {
         return $this->resultado;
     }
-
+    /** Função create para adicionar usuários
+     * @param $dados
+     */
     public function create(array $dados = null) {
         $this->dados = $dados;
+        /** Instancia o helper para validar campo vazio */
         $valCampoVazio = new \App\sts\Models\helper\StsValCampoVazio();
+        /** Valida os dados enviados pela control */
         $valCampoVazio->validarDados($this->dados);
-
+        /** Se for verdadeito carregar o validar usuário */
         if ($valCampoVazio->getResultado()) {
             $this->valInput();
         } else {
@@ -38,13 +42,17 @@ class StsAddUser
         }
     }
 
+    /** Função que valida se o usuário já existe na tabela */
     private function valInput() {
-        $valCategory = new \App\sts\Models\helper\StsValCategory();
-        $valCategory->validarCategory($this->dados['name']);
+        /** Instancia o helper que verifica se usuário já existe */
+        $valUser = new \App\sts\Models\helper\StsValUser();
+        /** Verifica se o usuáro já existe */
+        $valUser->validarUser($this->dados['name']);
       
-        if ($valCategory->getResultado()) {
+        /** Se existe o usuário carrega a função add */
+        if ($valUser->getResultado()) {
             $this->add();
-        } else {
+        } else { /** Se não existe  */
             $this->resultado = false;
         }
     }
@@ -52,14 +60,14 @@ class StsAddUser
     private function add() {
         $this->dados['name'] = $this->dados['name'];
         $this->dados['created'] = date("Y-m-d H:i:s");
-        $createCategory = new \App\sts\Models\helper\StsCreate();
-        $createCategory->exeCreate("sts_categories", $this->dados);
+        $createUser = new \App\sts\Models\helper\StsCreate();
+        $createUser->exeCreate("sts_user", $this->dados);
 
-        if ($createCategory->getResult()) {
-            $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Categoria cadastrada com sucesso!</div>";
+        if ($createUser->getResult()) {
+            $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
             $this->resultado = true;
         }else {
-            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Categoria não cadastrada</div>";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado</div>";
             $this->resultado = false;
         }
 

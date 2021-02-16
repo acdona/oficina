@@ -17,8 +17,10 @@ if (!defined('R4F5CC')) {
 */
 class AddCategory
 {
-
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private $dados;
+
+    /** @var array $dadosForm Recebe os dados do formulário */
     private $dadosForm;
 
     public function index() {

@@ -19,8 +19,9 @@ if (!defined('R4F5CC')) {
 */
 class ListAccountCategory
 {
-
-    private $dados;
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
+    private array $dados;
+    /** @var int $pag Recebe um inteiro referente a página. */
     private $pag;
 
     public function index($pag = null) { 

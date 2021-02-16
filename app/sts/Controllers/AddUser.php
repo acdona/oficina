@@ -37,7 +37,7 @@ if (!defined('R4F5CC')) {
 class AddUser
 {
     /** @var array $dados Recebe os dados do banco de dados*/
-    private array $dados;
+    private array $dados=[];
 
     /** @var array $dadosForm Recebe os dados do formulário */
     private $dadosForm;
@@ -68,7 +68,7 @@ class AddUser
                 $this->dados['form'] = $this->dadosForm;
                 $this->viewNewUser();
             }
-        } else {
+        } else { /**Se estiver vazio carrega a página */
             $this->viewNewUser();
         }
     }

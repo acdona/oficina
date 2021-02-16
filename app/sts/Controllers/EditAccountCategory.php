@@ -18,7 +18,10 @@ if (!defined('R4F5CC')) {
 class EditAccountCategory
 {
 
+    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private $dados;
+
+    /** @var array $dadosForm Recebe os dados do formulário */
     private $dadosForm;
     private $id;
 

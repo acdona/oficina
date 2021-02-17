@@ -27,7 +27,7 @@
                     <a class="nav-link" href="<?php echo URL; ?>list-account-category/index">Categorias de Contas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>add-user/index">Adicionar User</a>
+                    <a class="nav-link" href="<?php echo URL; ?>list-colors/index">Lista Cores</a>
                 </li>
             </ul>                    
         </div>

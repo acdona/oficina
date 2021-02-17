@@ -21,14 +21,14 @@ if (isset($valorForm['id'])) {
     <div class="list-group-item">
         <div class="d-flex">
                 <div class="mr-auto p-2">
-                    <h2 class="display-4 title">Editar Categorias</h2>
+                    <h2 class="display-4 title">Editar Cor</h2>
                 </div>
                 <div class="p-2">
                 <span class="d-none d-lg-block">
 
-                    <a href="<?php echo URL ?>list-category/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URL ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
                     
-                    <a href="<?php echo URL . 'delete-category/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                    <a href="<?php echo URL . 'delete-color/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                 </span>
                 </div>
 
@@ -37,8 +37,8 @@ if (isset($valorForm['id'])) {
                                     Ações
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                    <a class="dropdown-item" href="<?php echo URL ?>list-category/index" class="btn btn-outline-info btn-sm">Listar</a>
-                                    <a class="dropdown-item" href="<?php echo URL . 'delete-category/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                    <a class="dropdown-item" href="<?php echo URL ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
+                                    <a class="dropdown-item" href="<?php echo URL . 'delete-color/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                 </div>
                             </div>
 
@@ -53,7 +53,7 @@ if (isset($valorForm['id'])) {
         }
         ?>
 
-        <form id="form_category" method="POST" action="">
+        <form id="form_color" method="POST" action="">
             <input name="id" type="hidden" id="id" value="<?php
             if (isset($valorForm['id'])) {
                 echo $valorForm['id'];
@@ -61,9 +61,16 @@ if (isset($valorForm['id'])) {
             ?>">
 
             <label for="name"><span class="text-danger">*</span> Nome</label>
-            <input name="name" type="text"  class="form-control" id="name" placeholder="Nome da categoria" value="<?php
+            <input name="name" type="text"  class="form-control" id="name" placeholder="Nome da cor" value="<?php
             if (isset($valorForm['name'])) {
                 echo $valorForm['name'];
+            }
+            ?>" autofocus required><br><br>
+
+            <label for="color"><span class="text-danger">*</span> Cor</label>
+            <input name="color" type="text"  class="form-control" id="color" placeholder="Cor" value="<?php
+            if (isset($valorForm['color'])) {
+                echo $valorForm['color'];
             }
             ?>" autofocus required><br><br>
 
@@ -71,7 +78,7 @@ if (isset($valorForm['id'])) {
                 <span class="text-danger">*</span> Campo Obrigatório
             </p>
 
-            <input name="EditCategory" type="submit" class="btn btn-outline-warning btn-sm" value="Salvar">  
+            <input name="EditColor" type="submit" class="btn btn-outline-warning btn-sm" value="Salvar">  
         </form>
 
 

@@ -7,10 +7,15 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Cadastrar nova mensagem no banco de dados
+ * StsFooter Model responsible for the footer.
  *
- * @author Celke
- */
+ * @version 1.0
+ *
+ * @author Antonio Carlos Doná
+ *
+ * @access public
+ *
+*/
 class StsFooter
 {
 

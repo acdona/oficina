@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller ViewAccountCategory responsável por visualizar uma categoria de contas
+ * ViewAccountCategory Controller responsible for viewing an account category.
  *
  * @version 1.0
  *

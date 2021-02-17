@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller DeleteAccountCategory responsável por deletar categoria das contas
+ * DeleteAccountCategory Controller responsible for deleting an account category.
  *
  * @version 1.0
  *

@@ -7,8 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Models StsListAccountCategory responsável pelo  
- * coleta de informações do banco de dados 
+ * StsListAccountCategory Model responsible for listing the account categories.
  *
  * @version 1.0
  *

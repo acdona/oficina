@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller da página Home
+ * Controller - Home page.
  *
  * @author acd
  */

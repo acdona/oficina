@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Models StsError responsável pelo controle de erros
+ * StsError Model responsible for error control.
  *
  * @version 1.0
  *

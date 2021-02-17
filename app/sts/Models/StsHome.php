@@ -6,10 +6,15 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models responsável em buscar os dados da página home
+ * StsFooter Model responsible for the home page.
  *
- * @author acd
- */
+ * @version 1.0
+ *
+ * @author Antonio Carlos Doná
+ *
+ * @access public
+ *
+*/
 class StsHome
 {
     /** @var array $data Recebe o registro do banco de dados */

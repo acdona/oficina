@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsDeleteAccountCategory responsável por deletar categoria das contas
+ * StsDeleteAccountCategory Model responsible for deleting a account category.
  *
  * @version 1.0
  *

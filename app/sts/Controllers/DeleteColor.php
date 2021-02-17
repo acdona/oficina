@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller DeleteColor responsible for deleting a color
+ * DeleteColor Controller responsible for deleting a color.
  *
  * @version 1.0
  *

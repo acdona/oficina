@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller ViewColor responsible for viewing a color
+ * ViewColor Controller responsible for viewing a color.
  *
  * @version 1.0
  *

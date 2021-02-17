@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Classe StsEditAccountCategory responsável por 
+ * StsEditAccountCategory Model responsible for editing an account category.
  *
  * @version 1.0
  *

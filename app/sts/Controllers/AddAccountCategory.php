@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller AddccountCategory responsável por cadastrar categorias das contas
+ * AddccountCategory Controller responsible for adding a account category.
  *
  * @version 1.0
  *

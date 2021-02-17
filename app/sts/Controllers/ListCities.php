@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * ListColors Controller responsible for listing colors.
+ * ListCities Controller responsible for listing cities.
  *
  * @version 1.0
  *
@@ -16,7 +16,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class ListColors
+class ListCities
 {
     /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private array $dados=[];
@@ -28,14 +28,14 @@ class ListColors
 
         $this->pag = (int) $pag ? $pag : 1;
 
-        $listColors = new \App\sts\Models\StsListColors();
-        $listColors->listColors($this->pag);
+        $listCities = new \App\sts\Models\StsListCities();
+        $listCities->listCities($this->pag);
     
-        $this->dados['listColors']   = $listColors->getResultBd();
-        $this->dados['pagination'] = $listColors->getResultPg();
+        $this->dados['listCities']   = $listCities->getResultBd();
+        $this->dados['pagination'] = $listCities->getResultPg();
 
      
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/listColors" , $this->dados);
+        $carregarView = new \App\sts\core\ConfigView("sts/Views/cities/listCities" , $this->dados);
         $carregarView->renderizar();
     }
 

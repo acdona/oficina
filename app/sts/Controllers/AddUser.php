@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller AddUser responsável por cadastrar usuários
+ * AddUser Controller responsible for adding an user. 
  * 
  * Específica a versão da classe/função.
  * @version 1.0

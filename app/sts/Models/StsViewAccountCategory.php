@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsViewAccountCategory responsável por vizualializar a categoria das contas
+ * StsViewAccountCategory Model responsible for listing an account category.
  *
  * @version 1.0
  *

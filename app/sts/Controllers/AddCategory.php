@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller AddCategory responsável por cadastrar categorias
+ * AddCategory Controller responsible for adding a category.
  *
  * @version 1.0
  *

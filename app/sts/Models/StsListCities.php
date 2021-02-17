@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * StsListColors Model responsible for listing the colors.
+ * StsListCities Model responsible for listing the cities.
  *
  * @version 1.0
  *
@@ -16,7 +16,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class StsListColors
+class StsListCities
 {
       /** variáveis a cadastrar que trazem a paginação
      * 
@@ -44,27 +44,27 @@ class StsListColors
         return $this->resultPg;
     }
 
-    public function ListColors($pag = null) {
+    public function ListCities($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\sts\Models\helper\StsPagination(URL . 'list-colors/index');
+        $paginacao = new \App\sts\Models\helper\StsPagination(URL . 'list-cities/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(cor.id) AS num_result FROM sts_colors cor");
+        $paginacao->pagination("SELECT COUNT(cit.id) AS num_result FROM sts_cities cit");
         $this->resultPg =$paginacao->getResult();
 
 
-        $ListColors  = new \App\sts\Models\helper\StsRead();
-        $ListColors->fullRead("SELECT id, name, color 
-                               FROM sts_colors
+        $ListCities  = new \App\sts\Models\helper\StsRead();
+        $ListCities->fullRead("SELECT id, code, name, fs 
+                               FROM sts_cities
                                LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}
                                ");
 
-        $this->resultadoBd = $ListColors->getResult();
+        $this->resultadoBd = $ListCities->getResult();
         if($this->resultadoBd) {
             $this->resultado = true;
         }else{
-            $_SESSION['msg'] = "Nenhuma cor encontrada!<br>";
+            $_SESSION['msg'] = "Nenhuma cidade encontrada!<br>";
             $this->resultado = false;
         }    
     }

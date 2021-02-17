@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsViewColor responsible for viewing a color.
+ * StsViewColor Model responsible for viewing a category.
  *
  * @version 1.0
  *

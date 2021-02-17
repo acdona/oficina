@@ -7,8 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Models StsSobreEmpresa responsável pelo  
- * coleta de informações do banco de dados 
+ * StsSobreEmpresa Model responsible for the company page.
  *
  * @version 1.0
  *

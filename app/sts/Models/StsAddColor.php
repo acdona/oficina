@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Model StsAddColor responsável por cadastrar Cor
+ * StsAddColor Model responsible for adding a color.
  *
  * @version 1.0
  *

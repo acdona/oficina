@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsViewCategory responsible for viewing a category.
+ * StsViewCategory Model responsible for viewing a category.
  *
  * @version 1.0
  *

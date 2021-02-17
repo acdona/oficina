@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller da página Error
+ * Controller - Error page.
  *
  * @author acd
  */

@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller ListCategory responsável por Listar Categorias
+ * ListCategory Controller responsible for listing categories.
  *
  * @version 1.0
  *

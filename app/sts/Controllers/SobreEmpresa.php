@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller SobreEmpresa responsável por  
+ * Controller - Company page. 
  * mostrar a tela sobre-empresa
  *
  * @version 1.0

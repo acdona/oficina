@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Model responsável por listar as categorias
+ * StsListCategory Model responsible for listing the categories.
  *
  * @version 1.0
  *

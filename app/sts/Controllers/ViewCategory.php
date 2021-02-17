@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller ViewCategory responsible for viewing a category
+ * ViewCategory Controller responsible for viewing a category.
  *
  * @version 1.0
  *

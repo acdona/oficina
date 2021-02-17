@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller EditCategory responsável por editar categoria
+ * EditCategory Controller responsible for editing a category.
  *
  * @version 1.0
  *

@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Model StsAddUser responsável por cadastrar Usuário
+ * StsAddUser Model responsible for adding an user.
  *
  * @version 1.0
  *

@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsDeleteColor responsible for deleting a color
+ * StsDeleteColor Model responsible for deleting a color.
  *
  * @version 1.0
  *

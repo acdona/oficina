@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Models StsDeleteCategory responsible for deleting a category
+ * StsDeleteCategory Model responsible for deleting a category.
  *
  * @version 1.0
  *

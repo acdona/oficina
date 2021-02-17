@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Model StsAddCategory responsável por cadastrar Categoria
+ * StsAddCategory Model responsible for editing a category.
  *
  * @version 1.0
  *

@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller DeleteCategory responsible for deleting a category
+ *  DeleteCategory Controller responsible for deleting a category
  *
  * @version 1.0
  *

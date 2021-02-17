@@ -7,8 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller ListAccountCategory responsável pela  
- * manutenção das categorias das contas
+ * ListAccountCategory Controller responsible for listing account categories.
  *
  * @version 1.0
  *

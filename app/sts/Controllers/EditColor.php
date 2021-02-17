@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Controller EditColor responsável por editar a cor.
+ * EditColor Controller responsible for editing a color.
  *
  * @version 1.0
  *

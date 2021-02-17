@@ -19,10 +19,10 @@ class AddAccountCategory
 {
 
     /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private array $dados;
+    private array $dados=[];
 
     /** @var array $dadosForm Recebe os dados do formulário */
-    private array $dadosForm;
+    private $dadosForm;
 
     public function index() {
 

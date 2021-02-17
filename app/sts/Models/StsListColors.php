@@ -1,6 +1,11 @@
 <?php
 namespace App\sts\Models;
 
+if (!defined('R4F5CC')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Model StsListColors responsável por listar as cores
  *
@@ -13,31 +18,54 @@ namespace App\sts\Models;
 */
 class StsListColors
 {
+      /** variáveis a cadastrar que trazem a paginação
+     * 
+     */
+    
+    private $pag;    
+    private $limitResult = 5;
+    private $resultPg;
 
-    /** @var array $resultDb Recebe o resultado do banco de dados */
-    private array $resultDb;
+    /** @var array $resultadoBd Recebe o resultado do banco de dados */
+    private array $resultadoBb;
 
-    /** @var bool $result Retorna se consulta ao banco de dados funcionou */
-    private bool $result;
+    /** @var bool $resultado Retorna se consulta ao banco de dados funcionou */
+    private bool $resultado;
 
-    function getResult(): bool {
-        return $this->result;
+    function getResultado(): bool {
+        return $this->resultado;
     }
 
-    function getResultDb() {
-        return $this->resultDb;
+    function getResultBd() {
+        return $this->resultadoBd;
     }
 
-    public function ListColors() {
+    function getResultPg() {
+        return $this->resultPg;
+    }
+
+    public function ListColors($pag = null) {
+
+        $this->pag = (int) $pag;
+        $paginacao = new \App\sts\Models\helper\StsPagination(URL . 'list-colors/index');
+
+        $paginacao->condition($this->pag, $this->limitResult);
+        $paginacao->pagination("SELECT COUNT(cor.id) AS num_result FROM sts_colors cor");
+        $this->resultPg =$paginacao->getResult();
+
+
         $ListColors  = new \App\sts\Models\helper\StsRead();
-        $ListColors->fullRead("SELECT id, name, color FROM sts_colors");
+        $ListColors->fullRead("SELECT id, name, color 
+                               FROM sts_colors
+                               LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}
+                               ");
 
-        $this->resultDb = $ListColors->getResult();
-        if($this->resultDb) {
-            $this->result = true;
+        $this->resultadoBd = $ListColors->getResult();
+        if($this->resultadoBd) {
+            $this->resultado = true;
         }else{
             $_SESSION['msg'] = "Nenhuma cor encontrada!<br>";
-            $this->result = false;
+            $this->resultado = false;
         }    
     }
 

@@ -38,9 +38,9 @@ if (!defined('R4F5CC')) {
                     <tbody>
                         <?php
                             //Ler o array de registro retornado do banco de dados
-                            foreach ($this->dados['listColors'] as $color) {
+                            foreach ($this->dados['listColors'] as $vcolor) {
                                 //A função extract é utilizada para extrair o array e imprimir através do nome da chave
-                                extract($color);
+                                extract($vcolor);
                         ?>
                         <tr class="table-striped">
                             <td class="text-center"><?php echo $id; ?></td>
@@ -71,11 +71,9 @@ if (!defined('R4F5CC')) {
                     </tbody>
                 </table>
                 <nav aria-label="paginacao">
-                        <?php echo $this->dados['pagination']; ?>             
+                    <?php echo $this->dados['pagination']; ?>             
                 </nav>
             </div>
-
-
         </div>
     </div>
 </div>

@@ -1,9 +1,13 @@
 <?php
 namespace App\sts\Controllers;
 
+if (!defined('R4F5CC')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 
 /**
- * Classe ListColors responsável por listar as cores
+ * Controller ListColors responsável por listar as cores
  *
  * @version 1.0
  *
@@ -17,15 +21,20 @@ class ListColors
     /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
     private array $dados=[];
 
-    public function index() {
+    /** @var int $pag um número inteiro referente a página */
+    private $pag;
+
+    public function index($pag = null) {
+
+        $this->pag = (int) $pag ? $pag : 1;
 
         $listColors = new \App\sts\Models\StsListColors();
-        $listColors->listColors();
-        if($listColors->getResult()) {
-            $this->dados['listColors']   = $listColors->getResultDb();
-        }else {
-            $this->dados['listColors']   = [];
-        }
+        $listColors->listColors($this->pag);
+    
+        $this->dados['listColors']   = $listColors->getResultBd();
+        $this->dados['pagination'] = $listColors->getResultPg();
+
+     
         $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/listColors" , $this->dados);
         $carregarView->renderizar();
     }

@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Helper StsValUser responsável por validar o usuário
+ * Helper StsValUserSingle responsável por validar o usuário
  *
  * @version 1.0
  *
@@ -15,7 +15,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class StsValUser
+class StsValUserSingle
 {
     /** @var string $userName Recebe o username  */
     private string $userName;
@@ -36,29 +36,29 @@ class StsValUser
         return $this->resultado;
     }
 
-    public function validarUser($username, $edit = null, $id = null) {
+    public function validarUserSingle($username, $edit = null, $id = null) {
         $this->userName = $username;
         
         $this->edit = $edit;
         
         $this->id = $id;
    
-        $valUser = new \App\sts\Models\helper\StsRead();
+        $valUserSingle = new \App\sts\Models\helper\StsRead();
 
         if (($this->edit == true) AND (!empty($this->id))) {
-            $valUser->fullRead("SELECT id, name 
+            $valUserSingle->fullRead("SELECT id
                                       FROM sts_users 
-                                      WHERE (name =:name) AND
+                                      WHERE (username =:username) OR email =:email AND
                                       id <>:id
                                       LIMIT :limit", 
-                                      "name={$this->userName}&id={$this->id}&limit=1");
+                                      "username={$this->userName}&email={$this->userName}&id={$this->id}&limit=1");
                                     
         }ELSE {
-            $valUser->fullRead("SELECT id, name FROM sts_users WHERE name =:name LIMIT :limit", "name={$this->userName}&limit=1");
+            $valUserSingle->fullRead("SELECT id FROM sts_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
 
         }
 
-        $this->resultadoBd = $valUser->getResult();
+        $this->resultadoBd = $valUserSingle->getResult();
 
         if (!$this->resultadoBd) {
             $this->resultado = true;

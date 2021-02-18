@@ -5,33 +5,15 @@ if (!defined('R4F5CC')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
+
 /**
  * AddUser Controller responsible for adding an user. 
  * 
- * Específica a versão da classe/função.
  * @version 1.0
  *
- * Específica o autor do código/classe/função.
  * @author Antonio Carlos Doná
  * 
- * Específica o tipo de acesso(public, protected e private).
  * @access public
- *
- * @copyright Específica os direitos autorais.
- * @deprecated Específica elementos que não devem ser usados.
- * @exemple Definir arquivo de exemplo, $path/to/example.php
- * @ignore Igonarar código
- * @internal Documenta função interna do código
- * @link link do código http://www.exemplo.com
- * @see
- * @since
- * @tutorial
- * @name Específica o apelido(alias).
- * @package Específica o nome do pacote pai, isto ajuda na organização das classes.
- * @param Específica os paramêtros muito usado em funções.
- * @return Específica o tipo de retorno muito usado em funções.
- * @subpackage Específica o nome do pacote filho.
- * Inline { @internal
  *
 */
 class AddUser
@@ -48,31 +30,37 @@ class AddUser
      * @return void
      */
     public function index() {
+
         /** Recebe os dados vindo do formulário */
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
         /** Verifica se os dados do formulário, não está vazio */
         if(!empty($this->dadosForm['AddUser'])){
+
             /** Se estiver vazio, destrói a variável */
             unset($this->dadosForm['AddUser']);
+
             /** Instancia a Models para adicionar usuário */
-            $createNewUser = new \App\sts\Models\StsAddUser();
+            $addUser = new \App\sts\Models\StsAddUser();
+
             /** Cria novo usuário com os dados do formulário */
-            $createNewUser->create($this->dadosForm);
+            $addUser->create($this->dadosForm);
+
             /** Se retornou verdadeiro o cadastro no banco de dados
-             * recarrega a página  */
-            if($createNewUser->getResultado()) {
-                $urlDestino = URL . "add-user/index";
+             * carrega a página de listar usuários  */
+            if($addUser->getResultado()) {
+                $urlDestino = URL . "list-user/index";
                 header("Location: $urlDestino");
             } else {
+
                 /** Caso falhe, recarrega o formulário */
                 $this->dados['form'] = $this->dadosForm;
-                $this->viewNewUser();
+                $this->viewAddUser();
             }
         } else { /**Se estiver vazio carrega a página */
-            $this->viewNewUser();
+            $this->viewAddUser();
         }
     }
-
 
     /**
      * Função viewNewUser. Carrega o formulário de cadastro
@@ -80,9 +68,17 @@ class AddUser
      *
      * @return void
     */
-    private function viewNewUser() {  
+    private function viewAddUser() {  
+       
+        /** instancia a model de criar usuário */
+        $listSelect = new \App\sts\Models\StsAddUser();
+
+        /** chama o método para mostrar o select */
+        $this->dados['select'] = $listSelect->listSelect();
+
         /** Carrega a View addUser */
         $carregarView = new \App\sts\core\ConfigView("sts/Views/user/addUser", $this->dados);
+
         /** Chama na ConfigController o renderizar, para mostrar a view(formulário) */
         $carregarView->renderizar();   
     }

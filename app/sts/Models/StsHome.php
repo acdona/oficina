@@ -31,8 +31,7 @@ class StsHome
      */
     public function index(): array {
         $this->viewTop();
-        // $this->viewAccountCategory();
-
+ 
         return $this->data;
 
     }
@@ -46,13 +45,6 @@ class StsHome
         $this->data['top'] = $this->dataTop[0];
     }
     
-    // private function viewAccountCategory() {
-    //     $viewAccountCategory = new \App\sts\Models\helper\StsRead();
-    //     $viewAccountCategory->fullRead("SELECT id, name
-    //             FROM sts_account_categories
-    //             LIMIT :limit", "limit=5");
-    //     $this->dataAccountCategory = $viewAccountCategory->getResult();
-    //     $this->data['category'] = $this->dataAccountCategory[0];
-    // }
+   
 }
 ?>

@@ -24,7 +24,7 @@ if (isset($_SESSION['msg'])) {
     ?>"><br><br>
 
     <label>E-mail: *</label>
-    <input name="email" type="text" id="email" placeholder="Melhor e-mail" value="<?php
+    <input name="email" type="text" id="email" placeholder="Digite o e-mail" value="<?php
     if (isset($valorForm['email'])) {
         echo $valorForm['email'];
     }
@@ -38,14 +38,14 @@ if (isset($_SESSION['msg'])) {
     ?>"><br><br>
 
     <label>Situação: *</label>
-    <select name="adms_sits_user_id" name="adms_sits_user_id">
+    <select name="sts_sits_user_id" name="sts_sits_user_id">
         <option value="">Selecione</option>
 
         <?php
          
             foreach ($this->dados['select']['sit'] as $sit) {
                 extract($sit);
-                if ((isset($valorForm['adms_sits_user_id'])) AND $valorForm['adms_sits_user_id'] == $id_sit){
+                if ((isset($valorForm['sts_sits_user_id'])) AND $valorForm['sts_sits_user_id'] == $id_sit){
 
                     echo "<option value='$id_sit' selected>$name_sit</option>";
                 } else {
@@ -58,10 +58,10 @@ if (isset($_SESSION['msg'])) {
           
     </select><br><br>
 
-
     <label>Senha: *</label>
     <input name="password" type="password" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()">
     <span id="msgViewStrength"></span><br><br>
 
     <input name="AddUser" type="submit" value="Cadastrar">  
 </form>
+

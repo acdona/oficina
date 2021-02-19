@@ -38,9 +38,11 @@ class StsValEmailSingle
         if (($this->edit == true) AND (!empty($this->id))) {
             $valEmailSingle->fullRead("SELECT id
                     FROM sts_users
-                    WHERE (email =:email OR username =:username) AND
-                    id <>:id
+                    WHERE (email =:email OR username =:username) AND 
+                    id <>:id 
                     LIMIT :limit", "email={$this->email}&username={$this->email}&id={$this->id}&limit=1");
+                    
+                    
         } else {
             $valEmailSingle->fullRead("SELECT id FROM sts_users WHERE email =:email LIMIT :limit", "email={$this->email}&limit=1");
         }
@@ -49,7 +51,7 @@ class StsValEmailSingle
         if (!$this->resultadoBd) {
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Erro: Este e-mail já está cadastrado!";
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este e-mail já está cadastrado!</div>";
             $this->resultado = false;
         }
     }

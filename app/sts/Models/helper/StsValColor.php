@@ -44,9 +44,9 @@ class StsValColor
                                       LIMIT :limit", 
                                       "name={$this->colorName}&id={$this->id}&limit=1");
                                     
-        }ELSE {
+        } else {
             $valColor->fullRead("SELECT id, name, color FROM sts_colors WHERE name =:name LIMIT :limit", "name={$this->colorName}&limit=1");
-
+            
         }
 
         $this->resultadoBd = $valColor->getResult();

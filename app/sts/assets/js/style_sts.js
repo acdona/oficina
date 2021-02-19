@@ -13,7 +13,6 @@ $(document).ready(function () {
 });
 
 //Carregar modal apagar
-//Carregar modal apagar
 $(document).ready(function () {
     $('a[data-confirm]').click(function () {
         var href = $(this).attr('href');
@@ -25,6 +24,21 @@ $(document).ready(function () {
         $('#dataConfirmOk').attr('href', href);
         $('#confirm-delete').modal({show: true});
         return false;
+    });
+});
+
+$(document).ready(function () {
+    $('#edit_user').on("submit", function () {
+        if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#email').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo e-mail!</div>");
+            return false;
+        } else if ($('#username').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>");
+            return false;
+        } 
     });
 });
 

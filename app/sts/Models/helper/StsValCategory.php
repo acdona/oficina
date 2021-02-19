@@ -44,7 +44,7 @@ class StsValCategory
                                       LIMIT :limit", 
                                       "name={$this->categoryName}&id={$this->id}&limit=1");
                                     
-        }ELSE {
+        } else {
             $valCategory->fullRead("SELECT id, name FROM sts_categories WHERE name =:name LIMIT :limit", "name={$this->categoryName}&limit=1");
 
         }

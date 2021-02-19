@@ -47,19 +47,20 @@ class StsValUserSingle
         $valUserSingle = new \App\sts\Models\helper\StsRead();
 
         if (($this->edit == true) AND (!empty($this->id))) {
-            $valUserSingle->fullRead("SELECT id
+            $valUserSingle->fullRead("SELECT id 
                                       FROM sts_users 
-                                      WHERE (username =:username) OR email =:email AND
+                                      WHERE (username =:username OR email =:email) AND
                                       id <>:id
                                       LIMIT :limit", 
-                                      "username={$this->userName}&email={$this->userName}&id={$this->id}&limit=1");
+                                      "username={$this->userName}&email={$this->userName}&id={$this->id}&limit=1"
+                                    );                                     
                                     
-        }ELSE {
+        } else {
             $valUserSingle->fullRead("SELECT id FROM sts_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
-
         }
 
         $this->resultadoBd = $valUserSingle->getResult();
+        
 
         if (!$this->resultadoBd) {
             $this->resultado = true;

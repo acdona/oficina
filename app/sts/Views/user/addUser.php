@@ -6,62 +6,87 @@ if (!defined('R4F5CC')) {
 if (isset($this->dados['form'])) {
     $valorForm = $this->dados['form'];
 }
-
-echo "<h3>Cadastrar Usuário</h3>";
-
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
 ?>
-<span class="msg"></span>
-<form id="add_user" method="POST" action="">
-    <label>Nome: *</label>
-    <input name="name" type="text" id="name" placeholder="Nome completo" value="<?php
-    if (isset($valorForm['name'])) {
-        echo $valorForm['name'];
-    }
-    ?>"><br><br>
 
-    <label>E-mail: *</label>
-    <input name="email" type="text" id="email" placeholder="Digite o e-mail" value="<?php
-    if (isset($valorForm['email'])) {
-        echo $valorForm['email'];
-    }
-    ?>"><br><br>
-    
-    <label>Usuário: *</label>
-    <input name="username" type="text" id="username" placeholder="Usuário para acessar o login" value="<?php
-    if (isset($valorForm['username'])) {
-        echo $valorForm['username'];
-    }
-    ?>"><br><br>
-
-    <label>Situação: *</label>
-    <select name="sts_sits_user_id" name="sts_sits_user_id">
-        <option value="">Selecione</option>
-
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 title">Cadastrar Usuário</h2>
+            </div>
+            <div class="p-2">
+                <a href="<?php echo URLADM; ?>list-users/index" class="btn btn-outline-info btn-sm">Listar</a>
+            </div>
+        </div>
+        <hr class="hr-title">
+        <span class="msg"></span>
         <?php
-         
-            foreach ($this->dados['select']['sit'] as $sit) {
-                extract($sit);
-                if ((isset($valorForm['sts_sits_user_id'])) AND $valorForm['sts_sits_user_id'] == $id_sit){
-
-                    echo "<option value='$id_sit' selected>$name_sit</option>";
-                } else {
-                    echo "<option value='$id_sit'>$name_sit</option>";
-
-                }
-            }
-         
+        if (isset($_SESSION['msg'])) {
+            echo $_SESSION['msg'];
+            unset($_SESSION['msg']);
+        }
         ?>
-          
-    </select><br><br>
+        <form id="add_user" method="POST" action="">
+            <div class="form-group">
+                <label for="name"><span class="text-danger">*</span> Nome:</label>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Nome completo"  value="<?php
+                if (isset($valorForm['name'])) {
+                    echo $valorForm['name'];
+                }
+                ?>" required autofocus>
+            </div>
 
-    <label>Senha: *</label>
-    <input name="password" type="password" id="password" placeholder="Digite a senha" onkeyup="passwordStrength()">
-    <span id="msgViewStrength"></span><br><br>
+            <div class="form-group">
+                <label for="email"><span class="text-danger">*</span> E-mail</label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Melhor e-mail" value="<?php
+                if (isset($valorForm['email'])) {
+                    echo $valorForm['email'];
+                }
+                ?>" required>
+            </div>
 
-    <input name="AddUser" type="submit" value="Cadastrar">  
-</form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="username"><span class="text-danger">*</span> Usuário</label>
+                    <input name="username" type="text" class="form-control" id="username" placeholder="Usuário para acessar o login" value="<?php
+                    if (isset($valorForm['username'])) {
+                        echo $valorForm['username'];
+                    }
+                    ?>" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="password"><span class="text-danger">*</span> Senha</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="A senha deve ter no mínimo 6 caracteres" onkeyup="passwordStrength()" required>
+                </div>
+            </div>  
+            <span id="msgViewStrength"></span>
+
+            <div class="form-group">
+                <label for="sts_sits_user_id"><span class="text-danger">*</span> Situação</label>
+                <select name="sts_sits_user_id" id="sts_sits_user_id" class="form-control">
+                    <option value="">Selecione</option>
+                    <?php
+                    foreach ($this->dados['select']['sit'] as $sit) {
+                        extract($sit);
+                        if ((isset($valorForm['sts_sits_user_id'])) AND $valorForm['sts_sits_user_id'] == $id_sit) {
+                            echo "<option value='$id_sit' selected>$name_sit</option>";
+                        } else {
+                            echo "<option value='$id_sit'>$name_sit</option>";
+                        }
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <p>
+                <span class="text-danger">*</span> Campo Obrigatório
+            </p>
+            
+            <input name="AddUser" type="submit" class="btn btn-outline-success btn-sm" value="Cadastrar"> 
+
+        </form>
+
+    </div>
+</div>
 

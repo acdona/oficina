@@ -115,6 +115,7 @@ class StsRead extends StsConn
                     $value = (int) $value;
                 }
                 $this->query->bindValue(":{$link}", $value, (is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR));
+                
             }
         }
     }

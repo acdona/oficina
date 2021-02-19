@@ -33,7 +33,7 @@
                     <a class="nav-link" href="<?php echo URL; ?>list-cities/index">Lista Cidades</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>add-user/index">Users</a>
+                    <a class="nav-link" href="<?php echo URL; ?>list-users/index">Users</a>
                 </li>
             </ul>                    
         </div>

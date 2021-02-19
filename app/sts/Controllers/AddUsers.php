@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * AddUser Controller responsible for adding an user. 
+ * AddUsers Controller responsible for adding an user. 
  * 
  * @version 1.0
  *
@@ -16,10 +16,10 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class AddUser
+class AddUsers
 {
     /** @var array $dados Recebe os dados do banco de dados*/
-    private array $dados=[];
+    private $dados;
 
     /** @var array $dadosForm Recebe os dados do formulário */
     private $dadosForm;
@@ -30,10 +30,10 @@ class AddUser
      * @return void
      */
     public function index() {
-
+        
         /** Recebe os dados vindo do formulário */
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
+        
         /** Verifica se os dados do formulário, não está vazio */
         if(!empty($this->dadosForm['AddUser'])){
 
@@ -41,15 +41,15 @@ class AddUser
             unset($this->dadosForm['AddUser']);
 
             /** Instancia a Models para adicionar usuário */
-            $addUser = new \App\sts\Models\StsAddUser();
-
+            $addUser = new \App\sts\Models\StsAddUsers();
+            
             /** Cria novo usuário com os dados do formulário */
             $addUser->create($this->dadosForm);
 
             /** Se retornou verdadeiro o cadastro no banco de dados
              * carrega a página de listar usuários  */
             if($addUser->getResultado()) {
-                $urlDestino = URL . "list-user/index";
+                $urlDestino = URL . "list-users/index";
                 header("Location: $urlDestino");
             } else {
 
@@ -71,7 +71,7 @@ class AddUser
     private function viewAddUser() {  
        
         /** instancia a model de criar usuário */
-        $listSelect = new \App\sts\Models\StsAddUser();
+        $listSelect = new \App\sts\Models\StsAddUsers();
 
         /** chama o método para mostrar o select */
         $this->dados['select'] = $listSelect->listSelect();

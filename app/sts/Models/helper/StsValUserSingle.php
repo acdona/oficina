@@ -24,7 +24,7 @@ class StsValUserSingle
     private $edit;
 
     /** @var  int $id Recebe o ID do isuário */
-    private int $id;
+    private $id;
 
     /** @var  bool $resultado Recebe verdadeiro ou falso na pesquisa do banco de dados */
     private bool $resultado;
@@ -37,6 +37,7 @@ class StsValUserSingle
     }
 
     public function validarUserSingle($username, $edit = null, $id = null) {
+      
         $this->userName = $username;
         
         $this->edit = $edit;

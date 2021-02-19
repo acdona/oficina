@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * StsAddUser Model responsible for adding an user.
+ * StsAddUsers Model responsible for adding an user.
  *
  * @version 1.0
  *
@@ -15,7 +15,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class StsAddUser
+class StsAddUsers
 {
     /** @var array $dados Recebe os dados do banco de dados */
     private array $dados;
@@ -50,32 +50,40 @@ class StsAddUser
         if ($valCampoVazio->getResultado()) {
             $this->valInput();
         } else {
-            $this->resultado = true;
+            $this->resultado = false;
         }
     }
 
     /** Função que valida se o usuário já existe na tabela */
     private function valInput() {
 
+        /** Instancia o helper que verifica se email é válido */
+        $valEmail = new \App\sts\Models\helper\StsValEmail();
+        $valEmail->validarEmail($this->dados['email']);
 
+        /** Instancia o helper que verifica se email já existe */
+        $valEmailSingle = new \App\sts\Models\helper\StsValEmailSingle();
+        $valEmailSingle->validarEmailSingle($this->dados['email']);
 
-
-
+        /** Instancia o helper que valida a senha */
+        $valPassword = new \App\sts\Models\helper\StsValPassword();
+        $valPassword->validarPassword($this->dados['password']);
+             
         /** Instancia o helper que verifica se usuário já existe */
-        $valUser = new \App\sts\Models\helper\StsValUserSingle();
-        /** Verifica se o usuáro já existe */
-        $valUser->validarUserSingle($this->dados['name']);
-      
-        /** Se existe o usuário carrega a função add */
-        if ($valUser->getResultado()) {
+        $valUserSingle = new \App\sts\Models\helper\StsValUserSingle();
+        $valUserSingle->validarUserSingle($this->dados['username']);
+        
+        /** Se todas validações deram certo, carrega o add */
+        if ($valEmail->getResultado() AND $valEmailSingle->getResultado() AND $valPassword->getResultado() AND $valUserSingle->getResultado()) {
             $this->add();
-        } else { /** Se não existe  */
+        } else {
             $this->resultado = false;
         }
     }
 
     private function add() {
-        $this->dados['name'] = $this->dados['name'];
+        $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
+        $this->dados['conf_email'] = password_hash($this->dados['password'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
         $this->dados['created'] = date("Y-m-d H:i:s");
 
         $createUser = new \App\sts\Models\helper\StsCreate();
@@ -85,7 +93,7 @@ class StsAddUser
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
             $this->resultado = true;
         }else {
-            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado</div>";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado?????????</div>";
             $this->resultado = false;
         }
 

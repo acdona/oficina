@@ -33,7 +33,7 @@ class StsViewUser
     public function viewUser($id) {
         $this->id = (int) $id;
         $viewUser = new \App\sts\Models\helper\StsRead();
-        $viewUser->fullRead("SELECT usu.id, usu.name, usu.nickname, usu.email, usu.username, usu.image_user,
+        $viewUser->fullRead("SELECT usu.id, usu.name, usu.nickname, usu.email, usu.username, usu.image,
                 sit.name name_sit,
                 cor.color
                 FROM sts_users usu

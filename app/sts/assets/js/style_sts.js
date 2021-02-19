@@ -43,5 +43,42 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    $('#edit_img').on("submit", function () {
+        if ($('#new_image').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma imagem JPG ou PNG!</div>");
+            return false;
+        } 
+    });
+    
+    $('#new_image').change( function(){
+        let validos = /(\.jpg|\.png)$/i;
+        let fileInput = $(this);
+        let name = fileInput.get(0).files["0"].name;
+        if(validos.test(name)){
+            $(".msg").html('<p></p>');
+            previewImage();
+        }else{
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma imagem JPG ou PNG!</div>");
+            return false;
+        }        
+    });
+    
+    function previewImage(){
+        var image = document.querySelector('input[name=new_image]').files[0];
+        var preview = document.querySelector('#preview-img');
+        
+        var reader = new FileReader();
+        reader.onloadend = function(){
+            preview.src = reader.result;
+        };
+        
+        if(image){
+            reader.readAsDataURL(image);
+        }else{
+            preview.src = "";
+        }
+    }
+});
 
 

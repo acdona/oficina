@@ -5,7 +5,7 @@ if (!defined('R4F5CC')) {
 }
 ?>
 
-<div class="content p-1 head-cor">
+<div class="content p-1">
     <div class="list-group-item">
         <div class="list-group-item">
             <div class="d-flex">
@@ -26,13 +26,13 @@ if (!defined('R4F5CC')) {
              ?>
 
             <div class="table-responsive">
-                <table class="table table-striped table-light table-bordered table-hover">
+                <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
                             <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Situação</th>
+                            <th class="d-none d-sm-table-cell">E-mail</th>
+                            <th class="d-none d-lg-table-cell">Situação</th>
                             <th class="text-center">Ações</th>
                         </tr>
                     </thead>
@@ -43,11 +43,13 @@ if (!defined('R4F5CC')) {
                                 //A função extract é utilizada para extrair o array e imprimir através do nome da chave
                                 extract($user);
                         ?>
-                        <tr class="table-striped">
+                        <tr>
                             <td class="text-center"><?php echo $id; ?></td>
                             <td><?php echo $name; ?></td>
-                            <td><?php echo $email; ?></td>
-                            <td><?php echo $name_sit; ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo $email; ?></td>
+                            <td class="d-none d-lg-table-cell">
+                                <span class="badge badge-primary"><?php echo $name_sit; ?></span>
+                            </td>
                             
                             <td class="text-center">
                                 <span class="d-none d-lg-block">

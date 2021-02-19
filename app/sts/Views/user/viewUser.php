@@ -29,7 +29,7 @@ if (!defined('R4F5CC')) {
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <a class="dropdown-item" href="<?php echo URL; ?>list-users/index">Listar</a>
                             <a class="dropdown-item" href="<?php echo URL . 'edit-user/index/' . $id; ?>">Editar</a>
-                            <a class="dropdown-item" href="<?php echo URLADM . 'edit-users-password/index/' . $id; ?>">Editar Senha</a>
+                            <a class="dropdown-item" href="<?php echo URLADM . 'edit-user-password/index/' . $id; ?>">Editar Senha</a>
                             <a class="dropdown-item" href="<?php echo URL . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                         </div>
                     </div>
@@ -49,19 +49,19 @@ if (!defined('R4F5CC')) {
           
             <?php
            
-                if (isset($image_user) AND (!empty($image_user)) AND (file_exists('app/sts/assets/images/users/' . $id . '/' . $image_user))) {
-                    $image_user = URLADM . 'app/sts/assets/images/users/' . $id . '/' . $image_user;
+                if (isset($image) AND (!empty($image)) AND (file_exists('app/sts/assets/images/users/' . $id . '/' . $image))) {
+                    $image = URLADM . 'app/sts/assets/images/users/' . $id . '/' . $image;
                 } else {
-                    $image_user = URLADM . 'app/sts/assets/images/users/icon_user.png';
+                    $image = URLADM . 'app/sts/assets/images/users/icon_user.png';
                 }
                 ?>
 
             <dt class="col-sm-3">Imagem</dt>
                 <dd class="col-sm-9 mb-4">
                     <div class="img-edit">
-                        <img src="<?php echo $image_user; ?>" alt="<?php echo $name; ?>" class="img-thumbnail view-img-size">
+                        <img src="<?php echo $image; ?>" alt="<?php echo $name; ?>" class="img-thumbnail view-img-size">
                         <div class="edit">
-                            <a href="<?php echo URLADM . 'edit-users-images/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">
+                            <a href="<?php echo URLADM . 'edit-user-image/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">
                                 <i class="far fa-edit"></i>
                             </a>
                         </div>
@@ -90,8 +90,7 @@ if (!defined('R4F5CC')) {
         
             </dl>
             <?php
-            // echo "<a href='" . URLADM . "edit-users-password/index/$id'>Editar Senha</a><br>";
-            // echo "<a href='" . URLADM . "edit-users-image/index/$id'>Editar Imagem</a><br>";
+          
         } else {
             
             echo "<div class='alert alert-danger' role='alert'>Erro: Usuário não encontrado!</div>";

@@ -51,7 +51,7 @@ class StsDeleteUser
 
     private function viewUsers() {
         $viewUser = new \App\sts\Models\helper\stsRead();
-        $viewUser->fullRead("SELECT id, image_user FROM sts_users
+        $viewUser->fullRead("SELECT id, image FROM sts_users
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
 
@@ -65,9 +65,9 @@ class StsDeleteUser
     }
 
     private function deleteImg() {
-        if ((!empty($this->resultadoBd[0]['image_user'])) OR ($this->resultadoBd[0]['image_user'] != null)) {
+        if ((!empty($this->resultadoBd[0]['image'])) OR ($this->resultadoBd[0]['image'] != null)) {
             $this->delDiretorio = "app/sts/assets/images/users/" . $this->resultadoBd[0]['id'];
-            $this->delImg = $this->delDiretorio . "/" . $this->resultadoBd[0]['image_user'];
+            $this->delImg = $this->delDiretorio . "/" . $this->resultadoBd[0]['image'];
             
             if(file_exists($this->delImg)){
                 unlink($this->delImg);

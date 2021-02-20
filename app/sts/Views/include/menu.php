@@ -35,6 +35,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URL; ?>list-users/index">Users</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URL; ?>list-sits-users/index">Situação Usuários</a>
+                </li>
             </ul>                    
         </div>
     </div>

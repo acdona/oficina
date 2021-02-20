@@ -11,7 +11,7 @@ if (!defined('R4F5CC')) {
 /**
  * Classe gernérica para cadastrar registro no banco de dados
  *
- * @author Celke
+ * @author ACD
  */
 
 class StsCreate extends StsConn
@@ -39,7 +39,7 @@ class StsCreate extends StsConn
     }
 
     /**
-     * Cadatrar no banco de dados
+     * Cadastrar no banco de dados
      * 
      * @param string $table Recebe o nome da tabela
      * @param array $data Recebe os dados do formulário

@@ -125,5 +125,23 @@ body {
         background-color: #fff;
         margin-bottom: 0rem !important;
         border-radius: 0rem;   
-        
+    }
+    .view-img-size{
+        width: 150px;
+        height: 150px;
+    }
+    .img-edit{
+        position: relative;
+        display: inline-block;
+    }
+    .img-edit:hover .edit{
+        display: block;
+    }
+    .edit{
+        padding-top: 7px;
+        padding-right: 7px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: none;
     }

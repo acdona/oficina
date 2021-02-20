@@ -85,9 +85,8 @@ if (!defined('R4F5CC')) {
                 <dd class="col-sm-9"><?php echo $username; ?></dd>
 
                 <dt class="col-sm-3">Situação</dt>
-                <dd class="col-sm-9"><?php echo "<span style='color: $color;'>" . $name_sit . "</span>"; ?></dd>
-               
-        
+                <dd class="col-sm-9"><span class="badge badge-<?php echo $color; ?>"><?php echo $name_sit; ?></span></dd>
+
             </dl>
             <?php
           

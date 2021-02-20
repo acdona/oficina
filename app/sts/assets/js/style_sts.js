@@ -27,6 +27,32 @@ $(document).ready(function () {
     });
 });
 
+
+$(document).ready(function () {
+    $('#add_user').on("submit", function () {
+        var password = $('#password').val();
+        if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#email').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo e-mail!</div>");
+            return false;
+        } else if ($('#username').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>");
+            return false;
+        }else if (password === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo senha!</div>");
+            return false;
+        } else if (password.length < 6 || password.match(/([1-9]+)\1{1,}/)) {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Senha muito fraca, não deve ter número repetido!</div>");
+            return false;
+        } else if (password.length < 6 || !password.match(/[A-Za-z]/)) {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Senha muito fraca, deve ter pelo menos uma letra!</div>");
+            return false;
+        }
+    });
+});
+
 $(document).ready(function () {
     $('#edit_user').on("submit", function () {
         if ($('#name').val() === "") {
@@ -42,6 +68,20 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#edit_perfil').on("submit", function () {
+        if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#email').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo e-mail!</div>");
+            return false;
+        } else if ($('#username').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>");
+            return false;
+        } 
+    });
+});
 
 $(document).ready(function () {
     $('#edit_img').on("submit", function () {
@@ -81,4 +121,92 @@ $(document).ready(function () {
     }
 });
 
+$(document).ready(function () {
+    $('#sits_user').on("submit", function () {
+        if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#sts_color_id').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo cor!</div>");
+            return false;
+        } 
+    });
+});
 
+$(document).ready(function () {
+    $('#form_color').on("submit", function () {
+        if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#color').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo cor!</div>");
+            return false;
+        } 
+    });
+});
+
+$(document).ready(function () {
+    $('#add_conf_email').on("submit", function () {
+        if ($('#title').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo título!</div>");
+            return false;
+        } else if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#email').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo e-mail!</div>");
+            return false;
+        } else if ($('#host').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo host!</div>");
+            return false;
+        } else if ($('#username').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>");
+            return false;
+        } else if ($('#password').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo senha!</div>");
+            return false;
+        } else if ($('#smtpsecure').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo SMTP!</div>");
+            return false;
+        } else if ($('#port').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo porta!</div>");
+            return false;
+        } 
+    });
+});
+
+$(document).ready(function () {
+    $('#edit_conf_email').on("submit", function () {
+        if ($('#title').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo título!</div>");
+            return false;
+        } else if ($('#name').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
+            return false;
+        } else if ($('#email').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo e-mail!</div>");
+            return false;
+        } else if ($('#host').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo host!</div>");
+            return false;
+        } else if ($('#username').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>");
+            return false;
+        } else if ($('#smtpsecure').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo SMTP!</div>");
+            return false;
+        } else if ($('#port').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo porta!</div>");
+            return false;
+        } 
+    });
+});
+
+$(document).ready(function () {
+    $('#edit_conf_email_pass').on("submit", function () {
+        if ($('#password').val() === "") {
+            $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo senha!</div>");
+            return false;
+        } 
+    });
+});

@@ -48,7 +48,7 @@ if (!defined('R4F5CC')) {
                             <td><?php echo $name; ?></td>
                             <td class="d-none d-sm-table-cell"><?php echo $email; ?></td>
                             <td class="d-none d-lg-table-cell">
-                                <span class="badge badge-primary"><?php echo $name_sit; ?></span>
+                                <span class="badge badge-<?php echo $color; ?>"><?php echo $name_sit; ?></span>
                             </td>
                             
                             <td class="text-center">

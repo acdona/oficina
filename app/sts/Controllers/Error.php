@@ -1,5 +1,4 @@
 <?php
-
 namespace App\sts\Controllers;
 
 if (!defined('R4F5CC')) {
@@ -24,7 +23,13 @@ class Error
     public function index(): void {
 
         $this->dados = [];
-
+        $viewError = new \App\sts\Models\StsError();
+        $this->dados['error'] = $viewError->view();
+        
+        /** Carregar o rodapé */
+        $viewFooter = new \App\sts\Models\StsFooter();
+        $this->dados['footer'] = $viewFooter->view();
+  
         $carregarView = new \Core\ConfigView("sts/Views/error/error", $this->dados);
         $carregarView->renderizar();
     }

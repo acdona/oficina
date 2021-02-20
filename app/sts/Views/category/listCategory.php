@@ -1,5 +1,4 @@
 <?php
-
 if(!defined('R4F5CC')){
     header("Location: /");
     die("Erro: Página não encontrada!");
@@ -7,7 +6,7 @@ if(!defined('R4F5CC')){
 ?>
 
 <div class="content p-1 head-categoria">
-    <div class="list-group-item">
+ 
         <div class="list-group-item">
             <div class="d-flex">
                 <div class="mr-auto p-2">
@@ -77,7 +76,7 @@ if(!defined('R4F5CC')){
                 </nav>
             </div>    
         </div>
-    </div>
+ 
 </div>
 
 

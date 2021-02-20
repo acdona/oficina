@@ -46,8 +46,10 @@ class ConfigView
             include 'app/sts/Views/include/libraries_js.php';
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
+           // echo "Erro ao carregar a view: {$this->nome}";
            
-            echo "Erro ao carregar a view: {$this->nome}";
+           $urlDestino = URL . "error/index";
+           header("Location: $urlDestino");
         }
     }
 
@@ -58,8 +60,10 @@ class ConfigView
             include 'app/sts/Views/include/footer.php';
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
-           
-            echo "Erro ao carregar a view: {$this->nome}";
+            
+            $urlDestino = URL . "error/index";
+            header("Location: $urlDestino");
+            //echo "Erro ao carregar a view: {$this->nome}";
         }
     }
  

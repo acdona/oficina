@@ -1,5 +1,4 @@
 <?php
-
 namespace App\sts\Controllers;
 
 if (!defined('R4F5CC')) {

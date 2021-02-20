@@ -23,6 +23,7 @@ class StsError
     private array $dataError;
 
     public function view() {
+        
         $viewError = new \App\sts\Models\helper\StsRead();
         $viewError->fullRead("SELECT title_error, description, image_error
                 FROM sts_errors

@@ -38,7 +38,10 @@ abstract class StsConn
             $this->connect = new PDO("mysql:host={$this->host};port={$this->port};dbname=" . $this->dbName, $this->user, $this->pass, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             return $this->connect;
         } catch (Exception $ex) {
-            die('Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador ' . EMAILADM . '<br>');
+            //die('Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador ' . EMAILADM . '<br>');
+            
+            $urlDestino = URL . "error/index";
+            header("Location: $urlDestino");
         }
     }
 

@@ -5,6 +5,7 @@ if (!defined('R4F5CC')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
+
 /**
  * StsFooter Model responsible for the home page.
  *

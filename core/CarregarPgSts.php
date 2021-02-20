@@ -49,7 +49,10 @@ class CarregarPgSts
             $classCarregar->{$this->urlMetodo}($this->urlParametro);
             
         }else{
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
+            //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
+           
+            $urlDestino = URL . "error/index";
+            header("Location: $urlDestino");
         }        
     }
 

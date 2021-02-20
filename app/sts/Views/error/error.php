@@ -5,17 +5,16 @@ if (!defined('R4F5CC')) {
 }
     //Ler o registro da página erro retornado do banco de dados
     //A função extract é utilizada para extrair o array e imprimir através do nome da chave
-    extract($this->dados['erro']);
+    extract($this->dados['error']);
     $imagem_error = URL . "app/sts/assets/images/home_error/" . $image_error;   
 ?>
-
-<div class="jumbotron head-error">
+<div class="content p-1 head-error">
     <div class="container">
         <h1 class="text-center"><?php  echo $title_error; ?></h1>
     </div>            
-</div>
 
-<div class="jumbotron error">
+
+<div class="p2 error" >
     <div class="container">
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
@@ -27,4 +26,4 @@ if (!defined('R4F5CC')) {
         </div>
     </div>
 </div>
-
+</div>

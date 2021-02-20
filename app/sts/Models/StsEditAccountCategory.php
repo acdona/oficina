@@ -5,6 +5,7 @@ if (!defined('R4F5CC')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
+
 /**
  * StsEditAccountCategory Model responsible for editing an account category.
  *

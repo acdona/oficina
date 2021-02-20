@@ -118,3 +118,12 @@ body {
       margin-bottom: 0rem !important;
       border-radius: 0rem;       
   }
+    /* Seletor para personalizar o conteúdo do erro*/
+    .head-error , .error {
+        padding-top: 80px;
+        padding-bottom:80px;    
+        background-color: #fff;
+        margin-bottom: 0rem !important;
+        border-radius: 0rem;   
+        
+    }

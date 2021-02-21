@@ -42,7 +42,7 @@ if(!defined('R4F5CC')){
                            
                             <td class="text-center">
                                 <span class="d-none d-lg-block">
-                                    <a href="<?php echo URLADM . 'view-sits-users/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                    <a href="<?php echo URLADM . 'view-sits-user/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
                                     <a href="<?php echo URLADM . 'edit-sits-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
                                     <a href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm">Apagar</a> 
                                 </span>
@@ -51,7 +51,7 @@ if(!defined('R4F5CC')){
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="<?php echo URLADM . 'view-sits-users/index/' . $id; ?>">Visualizar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'view-sits-user/index/' . $id; ?>">Visualizar</a>
                                         <a class="dropdown-item" href="<?php echo URLADM . 'edit-sits-user/index/' . $id; ?>">Editar</a>
                                         <a class="dropdown-item" href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>">Apagar</a>
                                     </div>

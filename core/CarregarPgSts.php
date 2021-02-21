@@ -57,7 +57,7 @@ class CarregarPgSts
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\sts\\Controllers\\" . $this->urlController;

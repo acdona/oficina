@@ -36,6 +36,8 @@ class ConfigView
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
             echo "Erro ao carregar view: {$this->nome}<br>";
+            //$urlDestino = URL . "error/index";
+            //header("Location: $urlDestino");
         }
     }
 

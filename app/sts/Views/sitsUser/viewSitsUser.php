@@ -19,7 +19,7 @@ if (!defined('R4F5CC')) {
                     <span class="d-none d-lg-block">
                         <a href="<?php echo URLADM; ?>list-sits-users/index" class="btn btn-outline-info btn-sm">Listar</a>
                         <a href="<?php echo URLADM . 'edit-sits-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
-                        <a href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm">Apagar</a> 
+                        <a href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                     </span>
                     <div class="dropdown d-block d-lg-none">
                         <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,7 +28,7 @@ if (!defined('R4F5CC')) {
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <a class="dropdown-item" href="<?php echo URLADM; ?>list-sits-users/index">Listar</a>
                             <a class="dropdown-item" href="<?php echo URLADM . 'edit-sits-user/index/' . $id; ?>">Editar</a> 
-                            <a class="dropdown-item" href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>">Apagar</a>
+                            <a class="dropdown-item" href="<?php echo URLADM . 'delete-sits-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                         </div>
                     </div>
                 </div>

@@ -21,23 +21,9 @@
                     <a class="nav-link" href="<?php echo URL; ?>sobre-empresa/index">Sobre Empresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-category/index">Categorias</a>
+                    <a class="nav-link" href="<?php echo URL; ?>contato/index">Contato</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-account-category/index">Categorias de Contas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-colors/index">Lista Cores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-cities/index">Lista Cidades</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-users/index">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo URL; ?>list-sits-users/index">Situação Usuários</a>
-                </li>
+        
             </ul>                    
         </div>
     </div>

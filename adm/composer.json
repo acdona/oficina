@@ -1,10 +1,10 @@
 {
     "description": "ACD Projeto Oficina",
-    "name": "app/sits",
+    "name": "adm/adms",
     "authors": [
         {
             "name": "Antonio Carlos Dona",
-            "email": "acdona@hotmail.com"
+            "email": "webmaster@amacd.com.br"
         }
     ],
     "autoload": {

@@ -1,15 +1,9 @@
-/* Definir altura da página */
+/* Definir altura mínima para o menu fixo */
 body {
-    /* min-height: 35rem; */
+    min-height: 58rem;
     padding-top: 3.5rem;
-    height: 100%;
   }
-
-.content {
-    position: relative;
-    width:100vw;
-    height: 68vh;
-}
+  
   /* Seletor para personalizar o topo da página home */
   .descr-top{    
       background-repeat: no-repeat;
@@ -22,7 +16,7 @@ body {
       border-radius: .0rem;
   }
   
-  /* Seletor para personalizar a área de categorias */
+  /* Seletor para personalizar a área de serviços da página home */
   .descr-serv{
       background-color: #fff;
       padding-top: 80px;
@@ -102,46 +96,30 @@ body {
   .featurette-divider {
     margin: 5rem 0; 
   }
-  /* Seletor para personalizar o titulo da página categoria*/
-  .head-categoria {
+  /* Seletor para personalizar o titulo da página contato*/
+  .head-contato{
       padding-top: 60px;
       padding-bottom: 0px;    
       background-color: #fff;
       margin-bottom: 0rem !important;
       border-radius: 0rem;    
   }
-  /* Seletor para personalizar o conteúdo da página categoria*/
-  .categoria {
-      padding-top: 80px;
-      padding-bottom:80px;    
+  .contato{
+      padding-top: 60px;
+      padding-bottom: 60px;    
       background-color: #fff;
       margin-bottom: 0rem !important;
       border-radius: 0rem;       
   }
-    /* Seletor para personalizar o conteúdo do erro*/
-    .head-error , .error {
-        padding-top: 80px;
-        padding-bottom:80px;    
-        background-color: #fff;
-        margin-bottom: 0rem !important;
-        border-radius: 0rem;   
-    }
-    .view-img-size{
-        width: 150px;
-        height: 150px;
-    }
-    .img-edit{
-        position: relative;
-        display: inline-block;
-    }
-    .img-edit:hover .edit{
-        display: block;
-    }
-    .edit{
-        padding-top: 7px;
-        padding-right: 7px;
-        position: absolute;
-        right: 0;
-        top: 0;
-        display: none;
-    }
+
+  .head-error , .error {
+      margin-top: 2.5rem;
+      padding-top: 60px;
+      padding-bottom: 60px;    
+      background-color: #fff;
+      margin-bottom: 0rem !important;
+      border-radius: 0rem;     
+  }
+
+    
+ 

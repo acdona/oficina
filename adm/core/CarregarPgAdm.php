@@ -11,7 +11,7 @@ if (!defined('R4F5CC')) {
  * 
  * @author ACD
  */
-class CarregarPgSts
+class CarregarPgAdm
 {
  
      //para receber a controller
@@ -38,7 +38,7 @@ class CarregarPgSts
             $this->urlController = $this->slugController(CONTROLLER);
             $this->urlMetodo = $this->slugMetodo(METODO);
             $this->urlParametro = "";
-            $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
+            $this->classe = "\\App\\adms\\Controllers\\" . $this->urlController;
             $this->carregarMetodo();
         }   
     }    
@@ -57,10 +57,10 @@ class CarregarPgSts
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Contato", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
-            $this->classe = "\\App\sts\\Controllers\\" . $this->urlController;
+            $this->classe = "\\App\adms\\Controllers\\" . $this->urlController;
         } else {
             $this->pgRestrita();
         }
@@ -79,7 +79,7 @@ class CarregarPgSts
 
     private function verificarLogin() {
         if(isset($_SESSION['user_id']) AND isset($_SESSION['user_name']) AND isset($_SESSION['user_email'])) {
-            $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
+            $this->classe = "\\App\\adms\\Controllers\\" . $this->urlController;
         } else {
             $_SESSION['msg'] = "Erro: Página não encontrada!<br>";
             $urlDestino = URL . "home/index";

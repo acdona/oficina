@@ -43,13 +43,13 @@ class ConfigView
             include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
             include 'app/adms/Views/include/footer.php';
-            include 'app/adms/Views/include/libraries_js.php';
+           // include 'app/adms/Views/include/libraries_js.php';
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
-           // echo "Erro ao carregar a view: {$this->nome}";
+            echo "Erro ao carregar a view: {$this->nome}";
            
-           $urlDestino = URL . "error/index";
-           header("Location: $urlDestino");
+         //  $urlDestino = URL . "error/index";
+         //  header("Location: $urlDestino");
         }
     }
 

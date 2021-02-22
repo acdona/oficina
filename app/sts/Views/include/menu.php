@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URL; ?>contato/index">Contato</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?php echo URLADM; ?>login/access">Área Restrita</a>
+                </li>
         
             </ul>                    
         </div>

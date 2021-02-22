@@ -1,6 +1,7 @@
 <?php
 namespace App\adms\Models\helper;
 
+
 if(!defined('R4F5CC')){
     header("Location: /");
     die("Erro: Página não encontrada!");
@@ -35,15 +36,17 @@ class AdmsValEmailSingle
         $this->id = $id;
 
         $valEmailSingle = new \App\adms\Models\helper\AdmsRead();
+      
         if (($this->edit == true) AND (!empty($this->id))) {
+            exit("Deu aqui");
             $valEmailSingle->fullRead("SELECT id
                     FROM adms_users
-                    WHERE (email =:email OR username =:username) AND 
-                    id <>:id 
+                    WHERE (email =:email) AND id <>:id 
                     LIMIT :limit", "email={$this->email}&username={$this->email}&id={$this->id}&limit=1");
                     
                     
         } else {
+          
             $valEmailSingle->fullRead("SELECT id FROM adms_users WHERE email =:email LIMIT :limit", "email={$this->email}&limit=1");
         }
 

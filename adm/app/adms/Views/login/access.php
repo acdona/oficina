@@ -12,7 +12,7 @@ if (isset($this->dados['form'])) {
 ?>
 
 <form method="POST" action="" class="form-signin">
-    <img class="mb-4" src="<?php echo URLADM; ?>app/adms/assets/imagens/login/logo.png" alt="" width="72" height="72">
+    <img class="mb-4" src="<?php echo URLADM; ?>app/adms/assets/images/login/logo.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Área restrita</h1>
     <?php
     if (isset($_SESSION['msg'])) {
@@ -21,10 +21,10 @@ if (isset($this->dados['form'])) {
     }
     ?>
 
-    <label for="user" class="sr-only">Usuário</label>
-    <input name="user" type="text" id="user" class="form-control mb-4" placeholder="Digite o usuário" value="<?php
-    if (isset($valorForm['user'])) {
-        echo $valorForm['user'];
+    <label for="username" class="sr-only">Usuário</label>
+    <input name="username" type="text" id="username" class="form-control mb-4" placeholder="Digite o usuário" value="<?php
+    if (isset($valorForm['username'])) {
+        echo $valorForm['username'];
     }
     ?>" required autofocus>
 
@@ -35,3 +35,8 @@ if (isset($this->dados['form'])) {
 
     <p><a href="#">Cadastrar</a> - <a href="#">Esqueceu a senha?</a></p>
 </form>
+
+<p><a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a></p>
+
+Usuário: acdona@hotmail.com<br>
+Senha: 123456a

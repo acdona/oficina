@@ -35,7 +35,7 @@ class AdmsViewAccountCategory
         $this->id = (int) $id;
         $viewAccountCategory = new \App\adms\Models\helper\AdmsRead();
         $viewAccountCategory->fullRead("SELECT id, name
-                FROM adms_account_categories 
+                FROM ofc_account_categories 
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
                 

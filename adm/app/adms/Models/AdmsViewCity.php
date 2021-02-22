@@ -35,7 +35,7 @@ class AdmsViewCity
         $this->id = (int) $id;
         $viewCity = new \App\adms\Models\helper\AdmsRead();
         $viewCity->fullRead("SELECT id, code, name, fs
-                FROM adms_cities 
+                FROM ofc_cities 
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
                 

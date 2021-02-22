@@ -13,7 +13,7 @@ if (!defined('R4F5CC')) {
                     <h2 class="display-4 title">Listagem - Usuários</h2>
                 </div>
                 <div class="p-2">
-                    <a href="<?php echo URL; ?>add-users/index" class="btn btn-outline-success btn-sm">Cadastrar</a>
+                    <a href="<?php echo URLADM; ?>add-users/index" class="btn btn-outline-success btn-sm">Cadastrar</a>
                 </div>
             </div>
             <hr class="hr-title">
@@ -53,18 +53,18 @@ if (!defined('R4F5CC')) {
                             
                             <td class="text-center">
                                 <span class="d-none d-lg-block">
-                                    <a href="<?php echo URL . 'view-user/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                    <a href="<?php echo URL . 'edit-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
-                                    <a href="<?php echo URL . 'delete-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                                    <a href="<?php echo URLADM . 'view-user/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                    <a href="<?php echo URLADM . 'edit-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
+                                    <a href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                                 </span>
                                 <div class="dropdown d-block d-lg-none">
                                     <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="<?php echo URL . 'view-user/index/' . $id; ?>">Visualizar</a>
-                                        <a class="dropdown-item" href="<?php echo URL . 'edit-user/index/' . $id; ?>">Editar</a>
-                                        <a class="dropdown-item" href="<?php echo URL . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'view-user/index/' . $id; ?>">Visualizar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'edit-user/index/' . $id; ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                     </div>
                                 </div>
                             </td>

@@ -47,7 +47,7 @@ class AdmsListUsers
     public function listUsers($pag = null) {
         
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URL . 'list-users/index');
+        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
         $paginacao->pagination("SELECT COUNT(usu.id) AS num_result 

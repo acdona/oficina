@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe pagar carregar página adms
+ * Classe CarregarPgAdm para carregar página Sts
  * 
  * @author ACD
  */
@@ -57,7 +57,7 @@ class CarregarPgAdm
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Contato", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser","ListStsServices","Login", "NewUser", "Sair"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\adms\\Controllers\\" . $this->urlController;

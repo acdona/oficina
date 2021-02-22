@@ -31,7 +31,7 @@ class ConfigView
             include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
             include 'app/adms/Views/include/footer.php';
-            include 'app/adms/Views/include/libraries_js.php';
+           // include 'app/adms/Views/include/libraries_js.php';
             
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");

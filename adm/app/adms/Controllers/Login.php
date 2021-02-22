@@ -1,8 +1,6 @@
 <?php
 namespace App\adms\Controllers;
 
-namespace Core;
-
 if (!defined('R4F5CC')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
@@ -25,7 +23,7 @@ class Login
     private $dados;
     private $dadosForm;
 
-    public function index() {
+    public function access() {
 
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         

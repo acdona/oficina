@@ -133,9 +133,9 @@ class ConfigController extends Config {
      */
     public function carregar(){
  
-        $carregarPgAdm =  new \Core\CarregarPgAdm();
+        $carregarPgAdm= new \Core\CarregarPgAdm();
         $carregarPgAdm->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
-        
+         
     }
 }
 ?>

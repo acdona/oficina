@@ -13,7 +13,7 @@ if (!defined('R4F5CC')) {
                     <h2 class="display-4 title">Listagem - Cores</h2>
                 </div>
                 <div class="p-2">
-                    <a href="<?php echo URL; ?>add-color/index" class="btn btn-outline-success btn-sm">Cadastrar</a>
+                    <a href="<?php echo URLADM; ?>add-color/index" class="btn btn-outline-success btn-sm">Cadastrar</a>
                 </div>
             </div>
             <hr class="hr-title">
@@ -49,18 +49,18 @@ if (!defined('R4F5CC')) {
 
                             <td class="text-center">
                                 <span class="d-none d-lg-block">
-                                    <a href="<?php echo URL . 'view-color/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                                    <a href="<?php echo URL . 'edit-color/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
-                                    <a href="<?php echo URL . 'delete-color/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                                    <a href="<?php echo URLADM . 'view-color/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                                    <a href="<?php echo URLADM . 'edit-color/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
+                                    <a href="<?php echo URLADM . 'delete-color/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                                 </span>
                                 <div class="dropdown d-block d-lg-none">
                                     <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Ações
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                        <a class="dropdown-item" href="<?php echo URL . 'view-color/index/' . $id; ?>">Visualizar</a>
-                                        <a class="dropdown-item" href="<?php echo URL . 'edit-color/index/' . $id; ?>">Editar</a>
-                                        <a class="dropdown-item" href="<?php echo URL . 'delete-color/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'view-color/index/' . $id; ?>">Visualizar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'edit-color/index/' . $id; ?>">Editar</a>
+                                        <a class="dropdown-item" href="<?php echo URLADM . 'delete-color/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                     </div>
                                 </div>
                             </td>

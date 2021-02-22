@@ -41,15 +41,15 @@ class AdmsListAccountCategory
     public function listAccountCategory($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URL . 'list-account-category/index');
+        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-account-category/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(acat.id) AS num_result FROM adms_account_categories acat");
+        $paginacao->pagination("SELECT COUNT(acat.id) AS num_result FROM ofc_account_categories acat");
         $this->resultPg =$paginacao->getResult();
 
         $listAccountCategory = new \App\adms\Models\helper\AdmsRead();
         $listAccountCategory->fullRead("SELECT acat.id, acat.name 
-                FROM adms_account_categories acat 
+                FROM ofc_account_categories acat 
                 LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}");
         $this->resultadoBd = $listAccountCategory->getResult(); 
            

@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * AdmsListCategory Model responsible for listing the categories.
+ * AdmsListStsServices Model responsible for listing the categories.
  *
  * @version 1.0
  *
@@ -16,7 +16,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class AdmsListCategory
+class AdmsListStsServices
 {
     /** variáveis a cadastrar que trazem a paginação
      * 
@@ -38,20 +38,20 @@ class AdmsListCategory
         return $this->resultPg;
     }
     
-    public function listCategory($pag = null) {
+    public function listStsServices($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-category/index');
+        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-sts-services/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(cat.id) AS num_result FROM ofc_categories cat");
+        $paginacao->pagination("SELECT COUNT(sserv.id) AS num_result FROM sts_homes_services sserv");
         $this->resultPg =$paginacao->getResult();
-
-        $listCategory = new \App\adms\Models\helper\AdmsRead();
-        $listCategory->fullRead("SELECT cat.id, cat.name 
-                FROM ofc_categories cat 
+        
+        $listStsServices = new \App\adms\Models\helper\AdmsRead();
+        $listStsServices->fullRead("SELECT id, title_serv, subtitle_serv, icone_one_serv, title_one_serv, desc_one_serv, icon_two_serv, title_two_serv, desc_two_serv, icon_three_serv, title_three_serv, desc_three_serv 
+                FROM sts_homes_services 
                 LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}");
-        $this->resultadoBd = $listCategory->getResult(); 
+        $this->resultadoBd = $listStsServices->getResult(); 
            
         if ($this->resultadoBd) {
             $this->resultado = true;
@@ -59,7 +59,7 @@ class AdmsListCategory
             $_SESSION['msg'] = "Nenhum usuário encontrado!<br>";
             $this->resultado = false;
         }  
-        
+        var_dump($this->resultadoBd);
     }
     
 

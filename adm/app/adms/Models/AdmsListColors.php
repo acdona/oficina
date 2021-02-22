@@ -47,7 +47,7 @@ class AdmsListColors
     public function ListColors($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URL . 'list-colors/index');
+        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-colors/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
         $paginacao->pagination("SELECT COUNT(cor.id) AS num_result FROM adms_colors cor");

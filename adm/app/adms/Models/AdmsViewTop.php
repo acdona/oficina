@@ -30,7 +30,7 @@ class AdmsViewTop extends Conn
         $this->dados = $result_home_top->fetch();
         return $this->dados;
     }
-    xxxxxxxxxxxxxxxxx
+   
     public function editTop($dados) {
         $this->dados = $dados;
         $this->conn = $this->connect();

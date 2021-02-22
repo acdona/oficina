@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Helper AdmsValUserSingle responsável por validar o usuário
+ * Helper AdmsValUserSingleLogin responsável por validar o usuário
  *
  * @version 1.0
  *
@@ -16,7 +16,7 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class AdmsValUserSingle
+class AdmsValUserSingleLogin
 {
     /** @var string $userName Recebe o username  */
     private string $userName;
@@ -37,7 +37,7 @@ class AdmsValUserSingle
         return $this->resultado;
     }
 
-    public function validarUserSingle($username, $edit = null, $id = null) {
+    public function validarUserSingleLogin($username, $edit = null, $id = null) {
       
         $this->userName = $username;
         
@@ -45,10 +45,10 @@ class AdmsValUserSingle
         
         $this->id = $id;
    
-        $valUserSingle = new \App\adms\Models\helper\AdmsRead();
+        $valUserSingleLogin = new \App\adms\Models\helper\AdmsRead();
 
         if (($this->edit == true) AND (!empty($this->id))) {
-            $valUserSingle->fullRead("SELECT id 
+            $valUserSingleLogin->fullRead("SELECT id 
                                       FROM adms_users 
                                       WHERE (username =:username OR email =:email) AND
                                       id <>:id
@@ -57,17 +57,17 @@ class AdmsValUserSingle
                                     );                                     
                                     
         } else {
-            $valUserSingle->fullRead("SELECT id FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
+            $valUserSingleLogin->fullRead("SELECT id FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
         }
 
-        $this->resultadoBd = $valUserSingle->getResult();
+        $this->resultadoBd = $valUserSingleLogin->getResult();
         
 
         if (!$this->resultadoBd) {
             $this->resultado = true;
         } else {
             
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este usuário já está cadastrado!</div>";
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este e-mail já está cadastrado!</div>";
             $this->resultado = false;
         }
     }

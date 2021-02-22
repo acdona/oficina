@@ -7,20 +7,20 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe Home responsável por 
+ * Classe DashBoard responsável por 
  *
  * @version 1.0
  *
  * @author Antonio Carlos Doná
  *
- * @access public 
+ * @access public
  *
 */
-class Home
+class DashBoard
 {
 
     public function index() {
-        $carregarView = new \Core\ConfigView("adms/Views/home/home");
+        $carregarView= new \Core\ConfigView("adms/Views/dashboard/home");
         $carregarView->renderizar();
     }
 

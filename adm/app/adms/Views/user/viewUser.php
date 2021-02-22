@@ -17,20 +17,20 @@ if (!defined('R4F5CC')) {
             ?>
                 <div class="p-2">
                     <span class="d-none d-lg-block">
-                        <a href="<?php echo URL; ?>list-users/index" class="btn btn-outline-info btn-sm">Listar</a>
-                        <a href="<?php echo URL . 'edit-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
+                        <a href="<?php echo URLADM; ?>list-users/index" class="btn btn-outline-info btn-sm">Listar</a>
+                        <a href="<?php echo URLADM . 'edit-user/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar</a>
                         <a href="<?php echo URLADM . 'edit-users-password/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar Senha</a>
-                        <a href="<?php echo URL . 'delete-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                        <a href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                     </span>
                     <div class="dropdown d-block d-lg-none">
                         <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Ações
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                            <a class="dropdown-item" href="<?php echo URL; ?>list-users/index">Listar</a>
-                            <a class="dropdown-item" href="<?php echo URL . 'edit-user/index/' . $id; ?>">Editar</a>
+                            <a class="dropdown-item" href="<?php echo URLADM; ?>list-users/index">Listar</a>
+                            <a class="dropdown-item" href="<?php echo URLADM . 'edit-user/index/' . $id; ?>">Editar</a>
                             <a class="dropdown-item" href="<?php echo URLADM . 'edit-user-password/index/' . $id; ?>">Editar Senha</a>
-                            <a class="dropdown-item" href="<?php echo URL . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                            <a class="dropdown-item" href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                         </div>
                     </div>
                 </div>

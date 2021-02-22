@@ -47,16 +47,16 @@ class AdmsListCities
     public function ListCities($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URL . 'list-cities/index');
+        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-cities/index');
 
         $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(cit.id) AS num_result FROM adms_cities cit");
+        $paginacao->pagination("SELECT COUNT(cit.id) AS num_result FROM ofc_cities cit");
         $this->resultPg =$paginacao->getResult();
 
 
         $ListCities  = new \App\adms\Models\helper\AdmsRead();
         $ListCities->fullRead("SELECT id, code, name, fs 
-                               FROM adms_cities
+                               FROM ofc_cities
                                LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}
                                ");
 

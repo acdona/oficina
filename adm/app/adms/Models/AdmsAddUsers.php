@@ -70,8 +70,8 @@ class AdmsAddUsers
         $valPassword->validarPassword($this->dados['password']);
              
         /** Instancia o helper que verifica se usuário já existe */
-        $valUserSingle = new \App\adms\Models\helper\AdmsValUserSingle();
-        $valUserSingle->validarUserSingle($this->dados['username']);
+        $valUserSingle = new \App\adms\Models\helper\AdmsValUserSingleLogin();
+        $valUserSingle->validarUserSingleLogin($this->dados['username']);
         
         /** Se todas validações deram certo, carrega o add */
         if ($valEmail->getResultado() AND $valEmailSingle->getResultado() AND $valPassword->getResultado() AND $valUserSingle->getResultado()) {

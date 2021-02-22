@@ -25,31 +25,31 @@ class EditTopImgPgHome
 
     public function index() {
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->dadosForm['EditTopoImgHome'])) {
+        if (!empty($this->dadosForm['EditTopImgHome'])) {
             $this->dadosForm['imagem_nova']= ($_FILES['imagem_nova'] ? $_FILES['imagem_nova'] : null);        
-            $editImgTopo = new \App\adms\Models\AdmsViewImgTopo;
-            if($editImgTopo->editImgTopo($this->dadosForm)){
+            $editImgTop = new \App\adms\Models\AdmsViewImgTop;
+            if($editImgTop->editImgTop($this->dadosForm)){
                 $urlDestino = URLADM . "view-pg-home";
                 header("Location: $urlDestino");
             }else{
-                $this->dadosTopo();
-                $this->viewTopo();
+                $this->dadosTop();
+                $this->viewTop();
             }
-            $this->dadosTopo();
-            $this->viewTopo();
+            $this->dadosTop();
+            $this->viewTop();
         }else{
-            $this->dadosTopo();
-            $this->viewTopo();
+            $this->dadosTop();
+            $this->viewTop();
         } 
     }
     
-    private function dadosTopo() {
-        $viewTopo = new \App\adms\Models\AdmsViewImgTopo;
-        $this->dados['topo'] = $viewTopo->viewImgTopo();
+    private function dadosTop() {
+        $viewTop = new \App\adms\Models\AdmsViewImgTop;
+        $this->dados['top'] = $viewTop->viewImgTop();
     }
     
-    private function viewTopo() {
-        $carregarView = new \Core\ConfigView("adms/Views/pgHome/editPgHomeImgTopo", $this->dados);
+    private function viewTop() {
+        $carregarView = new \Core\ConfigView("adms/Views/pgHome/editPgHomeImgTop", $this->dados);
         $carregarView->renderizar();
     }
 

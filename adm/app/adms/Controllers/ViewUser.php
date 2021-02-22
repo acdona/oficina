@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -26,7 +26,7 @@ class ViewUser
         
         $this->id = (int) $id;
         if (!empty($this->id)) {
-            $viewUser = new \App\sts\Models\StsViewUser();
+            $viewUser = new \App\adms\Models\AdmsViewUser();
             $viewUser->viewUser($this->id);
             if ($viewUser->getResultado()) {
                 $this->dados['viewUser'] = $viewUser->getResultadoBd();
@@ -43,7 +43,7 @@ class ViewUser
     }
     
     private function viewUser() {
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/user/viewUser", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/viewUser", $this->dados);
         $carregarView->renderizar();
     }
 

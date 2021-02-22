@@ -37,10 +37,10 @@ if (isset($_SESSION['msg'])) {
     <input name="new_image" type="file" id="new_image"><br><br>
 
     <?php
-    if (isset($valorForm['image']) AND (!empty($valorForm['image'])) AND (file_exists('app/sts/assets/images/users/' . $valorForm['id'] . '/' . $valorForm['image']))) {
-        $old_image = URLADM . 'app/sts/assets/images/users/' . $valorForm['id'] . '/' . $valorForm['image'];
+    if (isset($valorForm['image']) AND (!empty($valorForm['image'])) AND (file_exists('app/adms/assets/images/users/' . $valorForm['id'] . '/' . $valorForm['image']))) {
+        $old_image = URLADM . 'app/adms/assets/images/users/' . $valorForm['id'] . '/' . $valorForm['image'];
     } else {
-        $old_image = URLADM . 'app/sts/assets/images/users/icon_user.png';
+        $old_image = URLADM . 'app/adms/assets/images/users/icon_user.png';
     }
     ?>
 
@@ -48,6 +48,6 @@ if (isset($_SESSION['msg'])) {
 
     <p>( * ) Campos obrigatórios</p><br>
 
-    <input name="EditUserImagem" type="submit" value="Salvar">  
+    <input name="EditUserImage" type="submit" value="Salvar">  
 </form>
 

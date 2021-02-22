@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,14 +28,14 @@ class ListCities
 
         $this->pag = (int) $pag ? $pag : 1;
 
-        $listCities = new \App\sts\Models\StsListCities();
+        $listCities = new \App\adms\Models\AdmsListCities();
         $listCities->listCities($this->pag);
     
         $this->dados['listCities']   = $listCities->getResultBd();
         $this->dados['pagination'] = $listCities->getResultPg();
 
      
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/cities/listCities" , $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/cities/listCities" , $this->dados);
         $carregarView->renderizar();
     }
 

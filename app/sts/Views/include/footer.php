@@ -23,9 +23,6 @@ extract($this->dados['footer']);
                     <li>
                         <a href="<?php echo URL; ?>contato" class="link-footer">Contato</a>
                     </li>
-                    <li>
-                        <a href="<?php echo URL; ?>account-categories/index" class="link-footer">Categoria</a>
-                    </li>
                 </ul>
             </div>
             <div class="col-12 col-sm-12 col-md-4">

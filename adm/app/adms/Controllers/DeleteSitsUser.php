@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -25,7 +25,7 @@ class DeleteSitsUser
         $this->id = (int) $id;
         
         if(!empty($this->id)){
-            $deleteSitsUser = new \App\sts\Models\StsDeleteSitsUser();
+            $deleteSitsUser = new \App\adms\Models\AdmsDeleteSitsUser();
             $deleteSitsUser->deleteSitsUser($this->id);
         }else{
             $_SESSION['msg'] = "Erro: Necessário selecionar uma situação para usuário!";

@@ -126,7 +126,7 @@ $(document).ready(function () {
         if ($('#name').val() === "") {
             $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo nome!</div>");
             return false;
-        } else if ($('#sts_color_id').val() === "") {
+        } else if ($('#adms_color_id').val() === "") {
             $(".msg").html("<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo cor!</div>");
             return false;
         } 

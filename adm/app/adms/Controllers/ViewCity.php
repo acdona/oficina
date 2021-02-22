@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class ViewCity
         
         if (!empty($this->id)) {
             
-            $viewCity = new \App\sts\Models\StsViewCity();
+            $viewCity = new \App\adms\Models\AdmsViewCity();
             $viewCity->viewCity($this->id);
        
             if ($viewCity->getResultado()) {
@@ -47,7 +47,7 @@ class ViewCity
     
     private function viewCity() {
        
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/cities/viewCity", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/cities/viewCity", $this->dados);
         $carregarView->renderizar();
     }
 

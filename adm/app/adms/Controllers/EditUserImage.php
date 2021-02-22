@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class EditUserImage
 
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->id) AND (empty($this->dadosForm['EditUserImagem']))) {
-            $viewUser = new \App\sts\Models\stsEditUserImage();
+            $viewUser = new \App\adms\Models\AdmsEditUserImage();
             $viewUser->viewUser($this->id);
             if ($viewUser->getResultado()) {
                 $this->dados['form'] = $viewUser->getResultadoBd();
@@ -43,7 +43,7 @@ class EditUserImage
     }
 
     private function viewEditUserImage() {
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/user/editUserImage", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/editUserImage", $this->dados);
         $carregarView->renderizar();
     }
 
@@ -52,7 +52,7 @@ class EditUserImage
             unset($this->dadosForm['EditUserImagem']);
             $this->dadosForm['new_image'] = ($_FILES['new_image'] ? $_FILES['new_image'] : null);
             //var_dump($this->dadosForm);
-            $editUser = new \App\sts\Models\StsEditUserImage();
+            $editUser = new \App\adms\Models\AdmsEditUserImage();
             $editUser->update($this->dadosForm);
             if ($editUser->getResultado()) {
                 $urlDestino = URLADM . "view-user/index/" . $this->dadosForm['id'];

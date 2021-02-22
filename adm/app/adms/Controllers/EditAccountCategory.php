@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -30,7 +30,7 @@ class EditAccountCategory
 
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->id) AND (empty($this->dadosForm['EditAccountCategory']))) {
-            $viewAccountCategory = new \App\sts\Models\StsEditAccountCategory();
+            $viewAccountCategory = new \App\adms\Models\AdmsEditAccountCategory();
             $viewAccountCategory->viewAccountCategory($this->id);
             if ($viewAccountCategory->getResultado()) {
                 $this->dados['form'] = $viewAccountCategory->getResultadoBd();
@@ -46,14 +46,14 @@ class EditAccountCategory
 
     private function viewAccountCategory() {       
    
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/editAccountCategory", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/accountCategory/editAccountCategory", $this->dados);
         $carregarView->renderizar();
     }
 
     private function editAccountCategory() {
         if (!empty($this->dadosForm['EditAccountCategory'])) {
             unset($this->dadosForm['EditAccountCategory']);
-            $editAccountCategory = new \App\sts\Models\StsEditAccountCategory();
+            $editAccountCategory = new \App\adms\Models\AdmsEditAccountCategory();
             $editAccountCategory->update($this->dadosForm);
             if ($editAccountCategory->getResultado()) {
                 $urlDestino = URL . "list-account-category/index";

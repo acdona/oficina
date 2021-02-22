@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -27,7 +27,7 @@ class AddSitsUser
         if (!empty($this->dadosForm['AddSitsUser'])) {
             unset($this->dadosForm['AddSitsUser']);
 
-            $addSitsUser = new \App\sts\Models\stsAddSitsUser();
+            $addSitsUser = new \App\adms\Models\AdmsAddSitsUser();
             $addSitsUser->create($this->dadosForm);
             if ($addSitsUser->getResultado()) {
                 $urlDestino = URLADM . "list-sits-users/index";
@@ -42,12 +42,12 @@ class AddSitsUser
     }
 
     private function viewAddSitsUser() {
-        $listSelect = new \App\sts\Models\StsAddSitsUser();
+        $listSelect = new \App\adms\Models\AdmsAddSitsUser();
         $this->dados['select'] = $listSelect->listSelect();
         
         $this->dados['sidebarActive'] = "list-sits-users";
 
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/sitsUser/addSitsUser", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/addSitsUser", $this->dados);
         $carregarView->renderizar();
     }
 

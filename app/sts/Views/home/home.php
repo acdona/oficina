@@ -7,10 +7,10 @@ if (!defined('R4F5CC')) {
 //A função extract é utilizado para extrair o array e imprimir através do nome da chave
 extract($this->dados['sts_homes']['top']);
 
-$imagem_topo = URL . "app/sts/assets/images/home_topo/" . $image_top;
+$image_top = URL . "app/sts/assets/images/home_top/" . $image_top;
 ?>
 
-<div class="jumbotron descr-top" style="background-image: url('<?php echo $imagem_topo; ?>');">
+<div class="jumbotron descr-top" style="background-image: url('<?php echo $image_top; ?>');">
     <div class="container text-center">
         <h1 class="display-4"><?php echo $title_top; ?></h1>
         <p class="lead"><?php echo $description_top; ?></p>
@@ -55,10 +55,10 @@ extract($this->dados['sts_homes']['serv']);
 <?php
 extract($this->dados['sts_homes']['action']);
 
-$imagem_action = URL . "app/sts/assets/images/home_action/" . $image_action;
+$image_action = URL . "app/sts/assets/images/home_action/" . $image_action;
 ?>
 
-<div class="jumbotron descr-action" style="background-image: url('<?php echo $imagem_action; ?>');">
+<div class="jumbotron descr-action" style="background-image: url('<?php echo $image_action; ?>');">
     <div class="container text-center">
         <h4 class="lead mb-4"><?php echo $title_action; ?></h4>
         <h2 class="display-4 mb-4"><?php echo $subtitle_action; ?></h2>
@@ -72,7 +72,7 @@ $imagem_action = URL . "app/sts/assets/images/home_action/" . $image_action;
 <?php
 extract($this->dados['sts_homes']['det']);
 
-$imagem_det = URL . "app/sts/assets/images/home_det/" . $image_det;
+$image_det = URL . "app/sts/assets/images/home_det/" . $image_det;
 ?>
 
 <div class="jumbotron descr-det">
@@ -86,7 +86,7 @@ $imagem_det = URL . "app/sts/assets/images/home_det/" . $image_det;
             </div>
 
             <div class="col-md-5 order-md-1">
-                <img src="<?php echo $imagem_det; ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title_det; ?>">
+                <img src="<?php echo $image_det; ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title_det; ?>">
             </div>
         </div>
     </div>

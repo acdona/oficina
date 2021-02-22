@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -31,7 +31,7 @@ class EditCategory
 
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->id) AND (empty($this->dadosForm['EditCategory']))) {
-            $viewCategory = new \App\sts\Models\StsEditCategory();
+            $viewCategory = new \App\adms\Models\AdmsEditCategory();
             $viewCategory->viewCategory($this->id);
             if ($viewCategory->getResultado()) {
                 $this->dados['form'] = $viewCategory->getResultadoBd();
@@ -47,14 +47,14 @@ class EditCategory
 
     private function viewCategory() {       
    
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/category/editCategory", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/category/editCategory", $this->dados);
         $carregarView->renderizar();
     }
 
     private function editCategory() {
         if (!empty($this->dadosForm['EditCategory'])) {
             unset($this->dadosForm['EditCategory']);
-            $editCategory = new \App\sts\Models\StsEditCategory();
+            $editCategory = new \App\adms\Models\AdmsEditCategory();
             $editCategory->update($this->dadosForm);
             if ($editCategory->getResultado()) {
                 $urlDestino = URL . "list-category/index";

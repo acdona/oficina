@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -26,7 +26,7 @@ class ListSitsUsers
         
         $this->pag = (int) $pag ? $pag : 1;
         
-        $listSitsUsers= new \App\sts\Models\StsListSitsUsers();
+        $listSitsUsers= new \App\adms\Models\AdmsListSitsUsers();
         $listSitsUsers->listSitsUsers($this->pag);
         if($listSitsUsers->getResultado()){
             $this->dados['listSitsUsers'] = $listSitsUsers->getResultadoBd();
@@ -36,7 +36,7 @@ class ListSitsUsers
             $this->dados['pagination'] = null;
         }
         
-       $carregarView = new \App\sts\core\ConfigView("sts/Views/sitsUser/listSitsUsers", $this->dados);
+       $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/listSitsUsers", $this->dados);
        $carregarView->renderizar();
     }
 

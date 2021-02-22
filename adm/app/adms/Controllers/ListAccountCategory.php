@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -27,13 +27,13 @@ class ListAccountCategory
 
         $this->pag = (int) $pag ? $pag : 1;
         
-        $listAccountCategory = new \App\sts\Models\StsListAccountCategory();
+        $listAccountCategory = new \App\adms\Models\AdmsListAccountCategory();
         $listAccountCategory->listAccountCategory($this->pag);
 
         $this->dados['listAccountCategory'] = $listAccountCategory->getResultadoBd();
         $this->dados['pagination'] = $listAccountCategory->getResultPg();
      
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/listAccountCategory", $this->dados);       
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/accountCategory/listAccountCategory", $this->dados);       
         $carregarView->renderizar();
     }
 

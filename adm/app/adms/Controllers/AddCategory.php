@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class AddCategory
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if(!empty($this->dadosForm['AddCategory'])){
             unset($this->dadosForm['AddCategory']);
-            $createNewCategory = new \App\sts\Models\StsAddCategory();
+            $createNewCategory = new \App\sts\Models\AdmsAddCategory();
             $createNewCategory->create($this->dadosForm);
             if($createNewCategory->getResultado()) {
                 $urlDestino = URL . "add-category/index";
@@ -44,7 +44,7 @@ class AddCategory
 
        private function viewNewCategory() {  
 
-            $carregarView = new \App\sts\core\ConfigView("sts/Views/category/addCategory", $this->dados);
+            $carregarView = new \App\adms\core\ConfigView("adms/Views/category/addCategory", $this->dados);
             $carregarView->renderizar();   
        }
 

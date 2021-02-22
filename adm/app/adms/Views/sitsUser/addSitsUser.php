@@ -37,13 +37,13 @@ if (isset($this->dados['form'])) {
             </div>
 
             <div class="form-group">
-                <label for="sts_color_id">Cor</label>
-                <select name="sts_color_id" id="sts_color_id" class="form-control">
+                <label for="adms_color_id">Cor</label>
+                <select name="adms_color_id" id="adms_color_id" class="form-control">
                     <option value="">Selecione</option>
                     <?php
                     foreach ($this->dados['select']['cor'] as $cor) {
                         extract($cor);
-                        if ((isset($valorForm['sts_color_id'])) AND $valorForm['sts_color_id'] == $id_cor) {
+                        if ((isset($valorForm['adms_color_id'])) AND $valorForm['adms_color_id'] == $id_cor) {
                             echo "<option value='$id_cor' selected>$name_cor</option>";
                         } else {
                             echo "<option value='$id_cor'>$name_cor</option>";

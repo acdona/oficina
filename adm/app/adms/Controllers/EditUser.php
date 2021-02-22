@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -27,7 +27,7 @@ class EditUser
         
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if (!empty($this->id) AND (empty($this->dadosForm['EditUser']))) {
-            $viewUser = new \App\sts\Models\StsEditUser();
+            $viewUser = new \App\adms\Models\AdmsEditUser();
             $viewUser->viewUser($this->id);
             if ($viewUser->getResultado()) {
                 $this->dados['form'] = $viewUser->getResultadoBd();
@@ -43,17 +43,17 @@ class EditUser
 
     private function viewEditUser() {
           
-        $listSelect = new \App\sts\Models\StsEditUser();
+        $listSelect = new \App\adms\Models\AdmsEditUser();
         $this->dados['select'] = $listSelect->listSelect();        
         
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/user/editUser", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/editUser", $this->dados);
         $carregarView->renderizar();
     }
 
     private function editUser() {
         if (!empty($this->dadosForm['EditUser'])) {
             unset($this->dadosForm['EditUser']);
-            $editUser = new \App\sts\Models\StsEditUser();
+            $editUser = new \App\adms\Models\AdmsEditUser();
             $editUser->update($this->dadosForm);
             if ($editUser->getResultado()) {
                 $urlDestino = URLADM . "list-users/index";

@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,14 +28,14 @@ class ListColors
 
         $this->pag = (int) $pag ? $pag : 1;
 
-        $listColors = new \App\sts\Models\StsListColors();
+        $listColors = new \App\adms\Models\AdmsListColors();
         $listColors->listColors($this->pag);
     
         $this->dados['listColors']   = $listColors->getResultBd();
         $this->dados['pagination'] = $listColors->getResultPg();
 
      
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/listColors" , $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/listColors" , $this->dados);
         $carregarView->renderizar();
     }
 

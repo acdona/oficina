@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -25,7 +25,7 @@ class DeleteColor
         $this->id = (int) $id;
         
         if(!empty($this->id)){
-            $deleteColor = new \App\sts\Models\StsDeleteColor();
+            $deleteColor = new \App\adms\Models\AdmsDeleteColor();
             $deleteColor->deleteColor($this->id);
         }else{
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma cor!</div>";

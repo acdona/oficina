@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -24,7 +24,7 @@ class DeleteAccountCategory
         $this->id = (int) $id;
         
         if(!empty($this->id)){
-            $deleteAccountCategory = new \App\sts\Models\StsDeleteAccountCategory();
+            $deleteAccountCategory = new \App\adms\Models\AdmsDeleteAccountCategory();
             $deleteAccountCategory->deleteAccountCategory($this->id);
         }else{
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma categoria!</div>";

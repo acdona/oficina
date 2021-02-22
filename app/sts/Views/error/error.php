@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     //Ler o registro da página erro retornado do banco de dados
     //A função extract é utilizada para extrair o array e imprimir através do nome da chave
     extract($this->dados['error']);
-    $imagem_error = URL . "app/sts/assets/images/home_error/" . $image_error;   
+    $image_error = URL . "app/sts/assets/images/home_error/" . $image_error;   
 ?>
 <div class="content p-1 head-error">
     <div class="container">
@@ -21,7 +21,7 @@ if (!defined('R4F5CC')) {
                 <h2 class="featurette-heading"><?php echo $description; ?></h2>             
             </div>
             <div class="col-md-5 order-md-1">
-                <img src="<?php echo $imagem_error ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title_error; ?>">
+                <img src="<?php echo $image_error ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title_error; ?>">
             </div>
         </div>
     </div>

@@ -28,7 +28,7 @@ class AdmsLogin extends Conn
         return $this->resultado;
     }
 
-    
+    xxx
     public function login(array $dados = null) {
         $this->dados = $dados;
         $this->conn = $this->connect();

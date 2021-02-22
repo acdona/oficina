@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class ListUsers
         
         $this->pag = (int) $pag ? $pag : 1;
 
-        $listUsers = new \App\sts\Models\StsListUsers();
+        $listUsers = new \App\adms\Models\AdmsListUsers();
         $listUsers->listUsers($this->pag);
 
         if($listUsers->getResultado()) {
@@ -39,7 +39,7 @@ class ListUsers
             $this->dados['pagination'] = null;
         }
         
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/user/listUsers" , $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/listUsers" , $this->dados);
         $carregarView->renderizar();
     }
 

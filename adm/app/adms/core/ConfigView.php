@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\core;
+namespace App\adms\core;
 
 if(!defined('R4F5CC')){
     header("Location: /");
@@ -25,13 +25,13 @@ class ConfigView
     public function renderizar() {
         
         if (file_exists('app/' . $this->nome . '.php')) {
-            $viewFooter = new \App\sts\Models\StsFooter();
-            $this->dados['footer'] = $viewFooter->view();
-            include 'app/sts/Views/include/head.php';
-            include 'app/sts/Views/include/menu.php';
+           // $viewFooter = new \App\adms\Models\AdmsFooter();
+           // $this->dados['footer'] = $viewFooter->view();
+            include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
-            include 'app/sts/Views/include/footer.php';
-            include 'app/sts/Views/include/libraries_js.php';
+            include 'app/adms/Views/include/footer.php';
+            include 'app/adms/Views/include/libraries_js.php';
             
         } else {
             //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
@@ -41,15 +41,15 @@ class ConfigView
         }
     }
 
-    // public function renderizarLogin() {
-    //     if (file_exists('app/' . $this->nome . '.php')) {
-    //         include 'app/sts/Views/include/head.php';
-    //         include 'app/' . $this->nome . '.php';
-    //         include 'app/sts/Views/include/footer.php';
-    //     } else {
-    //         //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
-    //         echo "Erro ao carregar view: {$this->nome}<br>";
-    //     }
-    // }
+    public function renderizarLogin() {
+        if (file_exists('app/' . $this->nome . '.php')) {
+            include 'app/adms/Views/include/head.php';
+            include 'app/' . $this->nome . '.php';
+            include 'app/adms/Views/include/footer.php';
+        } else {
+            //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
+            echo "Erro ao carregar view: {$this->nome}<br>";
+        }
+    }
   
 }

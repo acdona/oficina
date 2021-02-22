@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe pagar carregar página Sts
+ * Classe pagar carregar página adms
  * 
  * @author ACD
  */

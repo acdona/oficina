@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -36,7 +36,7 @@ class EditColor
         /** Se o id não for vazio e os dados do formulário estiverem vazios */
         if (!empty($this->id) AND (empty($this->dadosForm['EditColor']))) {
             /** Instancia a model */
-            $viewColor = new \App\sts\Models\StsEditColor();
+            $viewColor = new \App\adms\Models\AdmsEditColor();
             /** Carrega viewColor da Model */
             $viewColor->viewColor($this->id);
             if ($viewColor->getResultado()) {
@@ -53,14 +53,14 @@ class EditColor
 
     private function viewColor() {       
    
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/editColor", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/editColor", $this->dados);
         $carregarView->renderizar();
     }
 
     private function editColor() {
         if (!empty($this->dadosForm['EditColor'])) {
             unset($this->dadosForm['EditColor']);
-            $editColor = new \App\sts\Models\StsEditColor();
+            $editColor = new \App\adms\Models\AdmsEditColor();
             $editColor->update($this->dadosForm);
             if ($editColor->getResultado()) {
                 $urlDestino = URL . "list-colors/index";

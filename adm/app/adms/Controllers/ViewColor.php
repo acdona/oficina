@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -29,7 +29,7 @@ class ViewColor
         
         if (!empty($this->id)) {
             
-            $viewColor = new \App\sts\Models\StsViewColor();
+            $viewColor = new \App\adms\Models\AdmsViewColor();
             $viewColor->viewColor($this->id);
        
             if ($viewColor->getResultado()) {
@@ -48,7 +48,7 @@ class ViewColor
     
     private function viewColor() {
        
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/viewColor", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/viewColor", $this->dados);
         $carregarView->renderizar();
     }
 

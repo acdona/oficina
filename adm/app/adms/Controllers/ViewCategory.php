@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class ViewCategory
         
         if (!empty($this->id)) {
             
-            $viewCategory = new \App\sts\Models\StsViewCategory();
+            $viewCategory = new \App\adms\Models\AdmsViewCategory();
             $viewCategory->viewCategory($this->id);
             
             if ($viewCategory->getResultado()) {
@@ -47,7 +47,7 @@ class ViewCategory
     
     private function viewCategory() {
        
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/category/viewCategory", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/category/viewCategory", $this->dados);
         $carregarView->renderizar();
     }
 

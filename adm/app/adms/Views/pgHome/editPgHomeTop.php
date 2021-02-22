@@ -4,8 +4,8 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
-if (isset($this->dados['topo'])) {
-    $valorForm = $this->dados['topo'];
+if (isset($this->dados['top'])) {
+    $valorForm = $this->dados['top'];
 }
 ?>
 <div class="container">
@@ -32,41 +32,41 @@ if (isset($this->dados['topo'])) {
                 echo $valorForm['id'];
             }
             ?>">
-            <label for="titulo_topo">Título</label>
-            <input name="titulo_topo" type="text" class="form-control" id="titulo_topo" placeholder="Título do topo" value="<?php
-            if ($valorForm['titulo_topo']) {
-                echo $valorForm['titulo_topo'];
+            <label for="title_top">Título</label>
+            <input name="title_top" type="text" class="form-control" id="title_top" placeholder="Título do topo" value="<?php
+            if ($valorForm['title_top']) {
+                echo $valorForm['title_top'];
             }
             ?>">
         </div>
         <div class="form-group">
-            <label for="subtitulo_topo">Subtítulo</label>
-            <input name="subtitulo_topo" type="text" class="form-control" id="subtitulo_topo" placeholder="Subtítulo do topo" value="<?php
-            if ($valorForm['subtitulo_topo']) {
-                echo $valorForm['subtitulo_topo'];
+            <label for="subtitle_top">Subtítulo</label>
+            <input name="subtitle_top" type="text" class="form-control" id="subtitle_top" placeholder="Subtítulo do topo" value="<?php
+            if ($valorForm['subtitle_top']) {
+                echo $valorForm['subtitle_top'];
             }
             ?>">
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="text_btn_topo">Texto do Botão</label>
-                <input name="text_btn_topo" type="text" class="form-control" id="text_btn_topo" placeholder="Texto do Botão" value="<?php
-            if ($valorForm['text_btn_topo']) {
-                echo $valorForm['text_btn_topo'];
+                <label for="text_btn_top">Texto do Botão</label>
+                <input name="text_btn_top" type="text" class="form-control" id="text_btn_top" placeholder="Texto do Botão" value="<?php
+            if ($valorForm['text_btn_top']) {
+                echo $valorForm['text_btn_top'];
             }
             ?>">
             </div>
             <div class="form-group col-md-6">
-                <label for="link_btn_topo">Link do Botão</label>
-                <input name="link_btn_topo" type="text" class="form-control" id="link_btn_topo" placeholder="Link do Botão" value="<?php
-            if ($valorForm['link_btn_topo']) {
-                echo $valorForm['link_btn_topo'];
+                <label for="link_btn_top">Link do Botão</label>
+                <input name="link_btn_top" type="text" class="form-control" id="link_btn_top" placeholder="Link do Botão" value="<?php
+            if ($valorForm['link_btn_top']) {
+                echo $valorForm['link_btn_top'];
             }
             ?>">
             </div>
         </div>
         
-        <input name="EditTopoHome" type="submit" class="btn btn-warning" value="Salvar" >
+        <input name="EditTopHome" type="submit" class="btn btn-warning" value="Salvar" >
     </form>
 </div>

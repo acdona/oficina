@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -28,7 +28,7 @@ class AddColor
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if(!empty($this->dadosForm['AddColor'])){
             unset($this->dadosForm['AddColor']);
-            $createNewColor = new \App\sts\Models\StsAddColor();
+            $createNewColor = new \App\adms\Models\AdmsAddColor();
             $createNewColor->create($this->dadosForm);
             if($createNewColor->getResultado()) {
                 $urlDestino = URL . "add-color/index";
@@ -44,7 +44,7 @@ class AddColor
 
        private function viewNewColor() {  
 
-            $carregarView = new \App\sts\core\ConfigView("sts/Views/colors/addColor", $this->dados);
+            $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/addColor", $this->dados);
             $carregarView->renderizar();   
        }
 

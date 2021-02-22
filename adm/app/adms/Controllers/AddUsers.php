@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -41,7 +41,7 @@ class AddUsers
             unset($this->dadosForm['AddUser']);
 
             /** Instancia a Models para adicionar usuário */
-            $addUser = new \App\sts\Models\StsAddUsers();
+            $addUser = new \App\adms\Models\AdmsAddUsers();
             
             /** Cria novo usuário com os dados do formulário */
             $addUser->create($this->dadosForm);
@@ -71,13 +71,13 @@ class AddUsers
     private function viewAddUser() {  
        
         /** instancia a model de criar usuário */
-        $listSelect = new \App\sts\Models\StsAddUsers();
+        $listSelect = new \App\adms\Models\AdmsAddUsers();
 
         /** chama o método para mostrar o select */
         $this->dados['select'] = $listSelect->listSelect();
 
         /** Carrega a View addUser */
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/user/addUser", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/addUser", $this->dados);
 
         /** Chama na ConfigController o renderizar, para mostrar a view(formulário) */
         $carregarView->renderizar();   

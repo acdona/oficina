@@ -43,7 +43,7 @@ class ConfigController extends Config {
     public function __construct()
     {
         //Instancia o Config para as Constantes
-        $this->configSts();
+        $this->configAdms();
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);            
     

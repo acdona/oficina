@@ -24,27 +24,27 @@ class EditTopPageHome
 
     public function index() {
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->dadosForm['EditTopoHome'])) {
-            $editTopo = new \App\adms\Models\AdmsViewTop();
-            if($editTopo->editTopo($this->dadosForm)){
+        if (!empty($this->dadosForm['EditTopHome'])) {
+            $editTop = new \App\adms\Models\AdmsViewTop();
+            if($editTop->editTop($this->dadosForm)){
                 $urlDestino = URLADM . "view-pg-home";
                 header("Location: $urlDestino");
             }else{
-                $this->dados['topo'] = $this->dadosForm;
-                $this->viewTopo();
+                $this->dados['top'] = $this->dadosForm;
+                $this->viewTop();
             }
         }else{
-            $this->dadosTopo();
-            $this->viewTopo();
+            $this->dadosTop();
+            $this->viewTop();
         }  
     }
     
-    private function dadosTopo() {
-        $viewTopo = new \App\adms\Models\AdmsViewTop();
-        $this->dados['topo'] = $viewTopo->viewTopo();
+    private function dadosTop() {
+        $viewTop = new \App\adms\Models\AdmsViewTop();
+        $this->dados['top'] = $viewTop->viewTop();
     }
     
-    private function viewTopo() {
+    private function viewTop() {
         $carregarView = new \Core\ConfigView("adms/Views/pgHome/editPgHomeTop", $this->dados);
         $carregarView->renderizar();
     }

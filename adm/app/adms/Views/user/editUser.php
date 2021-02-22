@@ -100,13 +100,13 @@ if (isset($this->dados['form'][0])) {
             </div> 
             
             <div class="form-group">
-                <label for="sts_sits_user_id"><span class="text-danger">*</span> Situação</label>
-                <select name="sts_sits_user_id" id="sts_sits_user_id" class="form-control">
+                <label for="adms_sits_user_id"><span class="text-danger">*</span> Situação</label>
+                <select name="adms_sits_user_id" id="adms_sits_user_id" class="form-control">
                     <option value="">Selecione</option>
                     <?php
                     foreach ($this->dados['select']['sit'] as $sit) {
                         extract($sit);
-                        if ((isset($valorForm['sts_sits_user_id'])) AND $valorForm['sts_sits_user_id'] == $id_sit) {
+                        if ((isset($valorForm['adms_sits_user_id'])) AND $valorForm['adms_sits_user_id'] == $id_sit) {
                             echo "<option value='$id_sit' selected>$name_sit</option>";
                         } else {
                             echo "<option value='$id_sit'>$name_sit</option>";

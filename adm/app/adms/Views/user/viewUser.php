@@ -49,10 +49,10 @@ if (!defined('R4F5CC')) {
           
             <?php
            
-                if (isset($image) AND (!empty($image)) AND (file_exists('app/sts/assets/images/users/' . $id . '/' . $image))) {
-                    $image = URLADM . 'app/sts/assets/images/users/' . $id . '/' . $image;
+                if (isset($image) AND (!empty($image)) AND (file_exists('app/adms/assets/images/users/' . $id . '/' . $image))) {
+                    $image = URLADM . 'app/adms/assets/images/users/' . $id . '/' . $image;
                 } else {
-                    $image = URLADM . 'app/sts/assets/images/users/icon_user.png';
+                    $image = URLADM . 'app/adms/assets/images/users/icon_user.png';
                 }
                 ?>
 

@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -29,7 +29,7 @@ class ViewAccountCategory
         
         if (!empty($this->id)) {
             
-            $viewAccountCategory = new \App\sts\Models\StsViewAccountCategory();
+            $viewAccountCategory = new \App\adms\Models\AdmsViewAccountCategory();
             $viewAccountCategory->viewAccountCategory($this->id);
             
             if ($viewAccountCategory->getResultado()) {
@@ -48,7 +48,7 @@ class ViewAccountCategory
     
     private function viewAccountCategory() {
        
-        $carregarView = new \App\sts\core\ConfigView("sts/Views/accountCategory/viewAccountCategory", $this->dados);
+        $carregarView = new \App\adms\core\ConfigView("adms/Views/accountCategory/viewAccountCategory", $this->dados);
         $carregarView->renderizar();
     }
 

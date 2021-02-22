@@ -1,5 +1,5 @@
 <?php
-namespace App\sts\Controllers;
+namespace App\adms\Controllers;
 
 if (!defined('R4F5CC')) {
     header("Location: /");
@@ -25,7 +25,7 @@ class DeleteUser
         $this->id = (int) $id;
         
         if(!empty($this->id)){
-            $deleteUser = new \App\sts\Models\StsDeleteUser();
+            $deleteUser = new \App\adms\Models\AdmsDeleteUser();
             $deleteUser->deleteUser($this->id);
         }else{
             $_SESSION['msg'] = "Erro: Necessário selecionar um usuário!";

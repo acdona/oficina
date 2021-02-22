@@ -20,7 +20,7 @@
         foreach ($this->dados['sts_sobres_empresas'] as $sobre_emp){
             //A função extract é utilizada para extrair o array e imprimir através do nome da chave
             extract($sobre_emp);
-            $imagem_about = URL . "app/sts/assets/images/about_company/" . $id . "/" . $image;
+            $image_about = URL . "app/sts/assets/images/about_company/" . $id . "/" . $image;
         ?>
 
         <div class="row featurette">
@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-md-5 order-md-1">
-                <img src="<?php echo $imagem_about ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title; ?>">
+                <img src="<?php echo $image_about ?>" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" alt="<?php echo $title; ?>">
             </div>
         </div>
 

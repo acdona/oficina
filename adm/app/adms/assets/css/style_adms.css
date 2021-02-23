@@ -1,0 +1,138 @@
+/* Define a cor de fundo da página 
+---------------------------------*/
+body {
+  background-color: #eaeef3;            
+}
+
+/* Define a cor da fonte do cabeçalho 
+------------------------------------*/
+.menu-header {
+  color: #fff !important;
+}
+
+/* Define largura e altura da imagem do usuário 
+----------------------------------------------*/
+.img-user {
+  width: 30px;
+  height: 30px;
+}
+
+/* Define cor, largura máxima, largura mínima
+   altura mínima e transição do menu
+---------------------------------------------*/
+.sidebar {
+  background-color: #222c3c;
+  min-width: 250px;
+  max-width: 250px;
+  min-height: calc(100vh - 62px);
+  transition: all 0.3s;
+}
+
+/* Define os itens do menu para ocuparem todo o espaço 
+   com distância de cima, direita, baixo, esquerda
+   quando omite o CSS repete os valores. No caso
+   baixo = 0.75 e esquerda = 1. 
+   Muda a cor da fonte, tira o risco de link
+----------------------------------------------------*/
+.sidebar ul li a { 
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #c7cace;
+  text-decoration: none;
+}
+
+/* Define cor de fundo e da fonte quando passar
+   o mouse por cima dos itens do menu 
+----------------------------------------------*/
+.sidebar ul li a:hover {
+  color: #ecedee;
+  background-color: #354358;
+}
+
+/* Define a cor da fonte e fundo para url ativa
+----------------------------------------------*/
+.sidebar ul .active a{
+  color: #ecedee;
+  background-color: #354358;
+}
+
+/* Coloca tabulação no sub-menu
+------------------------------*/
+.sidebar ul ul a {
+  padding-left: 2.5rem;
+  background-color: #1e2835;
+}
+
+
+/* Seletor utilizado para ativar o botão ocultar 
+   menu em PC
+------------------------ ----------------------*/
+.sidebar.toggled {
+  margin-left: -250px;
+}
+
+/* Verifica a resolução da tela e oculta o menu
+   quando for menor de 768px
+----------------------------------------------*/
+@media (max-width: 768px) {
+  .sidebar {
+    margin-left: -250px;
+  }
+  .sidebar.toggled {
+    margin-left: 0px;
+  }
+}
+
+/* Coloca um ícone a direita na opção de sub-menu
+------------------------------------------------*/
+.sidebar [data-toggle="collapse"]{
+  position: relative;
+}
+.sidebar [data-toggle="collapse"]:before{
+  content: "\f0d7";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  right: 1rem;
+}
+/* Inverte o ícone quando expande o submenu
+------------------------------------------*/
+.sidebar [aria-expanded="true"]{
+  background-color: #19222d;
+}
+.sidebar [aria-expanded="true"]:before{
+  content: "\f0d8";
+}
+
+/* Deixa o Conteúdo do site com 100% de largura
+----------------------------------------------*/
+.content {
+  width: 100%;
+}
+
+/* Altera o tamanho da fonte do título do conteúdo
+-------------------------------------------------*/
+.title {
+  font-size: 2.0rem !important;
+}
+
+/* Aplica padding nos cards
+   Faltou espaçamento embaixo para tela pequena
+-----------------------------------------------*/
+.card-dashboard {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+/* Diminui o espaço de topo do título com a linha
+------------------------------------------------*/
+.hr-title {
+  margin-top: 0rem !important;
+}
+
+/* Determina o tamanho da imagem do usuário em Visualizar
+--------------------------------------------------------*/
+.view-img-size {
+  width: 150px;
+  height: 150px;
+}

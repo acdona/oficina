@@ -67,7 +67,7 @@ class CarregarPgAdm
     }
 
     private function pgRestrita() {
-        $this->pgRestrita = ["Dashboard", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser","ListStsServices"];
+        $this->pgRestrita = ["Dashboard", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity", "ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser","ListStsServices", "EditUsersPassword"];
 
         if(in_array($this->urlController, $this->pgRestrita)) {
             $this->verificarLogin();

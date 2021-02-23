@@ -29,7 +29,7 @@ if (!defined('R4F5CC')) {
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                             <a class="dropdown-item" href="<?php echo URLADM; ?>list-users/index">Listar</a>
                             <a class="dropdown-item" href="<?php echo URLADM . 'edit-user/index/' . $id; ?>">Editar</a>
-                            <a class="dropdown-item" href="<?php echo URLADM . 'edit-user-password/index/' . $id; ?>">Editar Senha</a>
+                            <a class="dropdown-item" href="<?php echo URLADM . 'edit-users-password/index/' . $id; ?>">Editar Senha</a>
                             <a class="dropdown-item" href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                         </div>
                     </div>

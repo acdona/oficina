@@ -49,7 +49,7 @@ class AddUsers
             /** Se retornou verdadeiro o cadastro no banco de dados
              * carrega a página de listar usuários  */
             if($addUser->getResultado()) {
-                $urlDestino = URL . "list-users/index";
+                $urlDestino = URLADM . "list-users/index";
                 header("Location: $urlDestino");
             } else {
 

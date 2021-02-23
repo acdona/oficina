@@ -71,11 +71,10 @@ class AdmsNewUser
         $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
         $this->dados['username'] = $this->dados['email'];
         $this->dados['conf_email'] = password_hash($this->dados['password'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
-        $this->dados['adms_sits_user_id'] = 3;
+        //$this->dados['adms_sits_user_id'] = 3;
         $this->dados['created'] = date("Y-m-d H:i:s");
     
-        //var_dump($this->dados); exit("deu tudo certo");
-        $createUser = new \App\adms\Models\helper\AdmsCreate();
+         $createUser = new \App\adms\Models\helper\AdmsCreate();
         $createUser->exeCreate("adms_users", $this->dados);
         
         if ($createUser->getResult()) {

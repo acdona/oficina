@@ -38,7 +38,7 @@ class AdmsValEmailSingle
         $valEmailSingle = new \App\adms\Models\helper\AdmsRead();
       
         if (($this->edit == true) AND (!empty($this->id))) {
-            exit("Deu aqui");
+           
             $valEmailSingle->fullRead("SELECT id
                     FROM adms_users
                     WHERE (email =:email) AND id <>:id 

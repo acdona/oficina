@@ -17,11 +17,17 @@ if (!defined('R4F5CC')) {
                     <a class="nav-link" href="<?php echo URLADM ?>dashboard/index">Dashboard</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Site</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listagem</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown07">
                         <a class="dropdown-item" href="<?php echo URL; ?>home/index">Home</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-account-category/index">Categorias das Contas</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-category/index">Categorias</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-cities/index">Cidades</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-colors/index">Cores</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-stis-users/index">Situação Usuário</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-sts-services/index">Situação Serviços</a>
+                        <a class="dropdown-item" href="<?php echo URLADM ?>list-users/index">Usuários</a>
+                        
                     </div>
                 </li>
                 <li class="nav-item">

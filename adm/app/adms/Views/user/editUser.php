@@ -26,7 +26,7 @@ if (isset($this->dados['form'][0])) {
                     <span class="d-none d-lg-block">
                         <a href="<?php echo URLADM; ?>list-users/index" class="btn btn-outline-info btn-sm">Listar</a>
                         <a href="<?php echo URLADM . 'view-user/index/' . $id; ?>" class="btn btn-outline-primary btn-sm">Visualizar</a>
-                        <a href="<?php echo URLADM . 'edit-user-password/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar Senha</a>
+                        <a href="<?php echo URLADM . 'edit-users-password/index/' . $id; ?>" class="btn btn-outline-warning btn-sm">Editar Senha</a>
                         <a href="<?php echo URLADM . 'delete-user/index/' . $id; ?>" class="btn btn-outline-danger btn-sm">Apagar</a> 
                     </span>
                     <div class="dropdown d-block d-lg-none">

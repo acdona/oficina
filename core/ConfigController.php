@@ -128,14 +128,45 @@ class ConfigController extends Config {
         return $this->urlLimpa;
     }
 
-     /**
-     * @method carregar Instanciar a classe e o método responsável em validar e carregar as páginas.
-     */
-    public function carregar(){
+    //  /**
+    //  * @method carregar Instanciar a classe e o método responsável em validar e carregar as páginas.
+    //  */
+    // public function carregar(){
  
-        $carregarPgSts =  new \Core\CarregarPgSts();
-        $carregarPgSts->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
+    //     $carregarPgSts =  new \Core\CarregarPgSts();
+    //     $carregarPgSts->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
+        
+    // }
+
+/**
+     * Carregar as Controllers.
+     * Instanciar as classes da controller e carregar o método index
+     * 
+     * @return void
+     */
+    public function carregar(): void {
+  
+        $this->classe = "\\App\\sts\\Controllers\\" . $this->urlController;
+          
+        if(class_exists($this->classe)) {  
+            $this->carregarClasse();
+        } else {
+            $this->urlController = $this->slugController(CONTROLLERERRO);
+            $this->carregar();
+        }
+       
+    }
+
+    private function carregarClasse() {
+        $classeCarregar = new $this->classe();
+        if(method_exists($classeCarregar, "index")) {
+            $classeCarregar->index();
+        } else {
+            die('Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador ' . EMAILADM . '<br>');
+        }
         
     }
+
+
 }
 ?>

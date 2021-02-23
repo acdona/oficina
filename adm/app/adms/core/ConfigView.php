@@ -28,7 +28,7 @@ class ConfigView
            // $viewFooter = new \App\adms\Models\AdmsFooter();
            // $this->dados['footer'] = $viewFooter->view();
             include 'app/adms/Views/include/head.php';
-            include 'app/adms/Views/include/menu.php';
+           // include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
             include 'app/adms/Views/include/footer.php';
            // include 'app/adms/Views/include/libraries_js.php';
@@ -43,7 +43,7 @@ class ConfigView
 
     public function renderizarLogin() {
         if (file_exists('app/' . $this->nome . '.php')) {
-            include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/head_login.php';
             include 'app/' . $this->nome . '.php';
             include 'app/adms/Views/include/footer.php';
         } else {

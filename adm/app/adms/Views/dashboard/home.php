@@ -7,6 +7,6 @@ if (!defined('R4F5CC')) {
 <div class="container">
     <?php
     echo "Bem vindo " . $_SESSION['user_name'] . "<br>";
-    echo "<a href='" . URLADM . "sair'>Sair</a>";
+    echo "<a href='" . URLADM . "sair/index'>Sair</a>";
     ?>
 </div>

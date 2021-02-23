@@ -23,7 +23,7 @@ class Sair
         unset($_SESSION['user_id'], $_SESSION['user_nome'], $_SESSION['user_email']);
         
         $_SESSION['msg'] = '<div class="alert alert-success" role="alert">Deslogado com sucesso!</div>';
-        $urlDestino = URLADM . 'login';
+        $urlDestino = URLADM . 'login/index';
         header("Location: $urlDestino");
     }
 

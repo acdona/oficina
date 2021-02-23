@@ -7,21 +7,20 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe Home responsável por 
+ * Classe NivelAcesso responsável por 
  *
  * @version 1.0
  *
  * @author Antonio Carlos Doná
  *
- * @access public 
+ * @access public
  *
 */
-class Home
+class NivelAcesso
 {
 
-    public function index() {
-        $carregarView = new \Core\ConfigView("adms/Views/home/home");
-        $carregarView->renderizarLogin();
+    public function listAtivo() {
+        echo "Página listar Nivel de Acesso<br>";
     }
 
 }

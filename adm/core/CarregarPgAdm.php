@@ -57,7 +57,7 @@ class CarregarPgAdm
     }
 
     private function pgPublica() {
-        $this->pgPublica = ["Home", "SobreEmpresa", "Contato", "Error", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser","ListStsServices","Login", "NewUser", "Sair"];
+        $this->pgPublica = ["Home", "SobreEmpresa", "Contato", "Error", "Sair","Login","ViewPgHome"];
 
         if(in_array($this->urlController, $this->pgPublica)) {
             $this->classe = "\\App\adms\\Controllers\\" . $this->urlController;
@@ -67,11 +67,12 @@ class CarregarPgAdm
     }
 
     private function pgRestrita() {
-        $this->pgRestrita = ["Dashboard"];
+        $this->pgRestrita = ["Dashboard", "AccountCategory", "ListAccountCategory", "AddAccountCategory", "ViewAccountCategory", "EditAccountCategory", "DeleteAccountCategory", "ListCategory", "AddCategory", "EditCategory", "ViewCategory", "DeleteCategory", "AddUsers", "ListColors", "EditColor", "ViewColor", "AddColor", "DeleteColor", "ListCities", "ViewCity","ListUsers", "ViewUser","EditUser", "DeleteUser", "EditUserImage", "EditSitsUser", "ListSitsUsers", "ViewSitsUser", "DeleteSitsUser", "AddSitsUser","ListStsServices", "NewUser"];
+
         if(in_array($this->urlController, $this->pgRestrita)) {
             $this->verificarLogin();
         } else {
-            $_SESSION['msg'] = "Erro: Página não encontrada!<br>";
+            $_SESSION['msg'] = "Erro: Página não encontrada!!<br>";
             $urlDestino = URL . "error/index";
             header("Location: $urlDestino");
         }

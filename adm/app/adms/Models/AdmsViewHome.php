@@ -30,7 +30,7 @@ class AdmsViewHome extends Conn
         $this->viewContato();
         return $this->dados;
     }
-    xxx
+    
     private function viewTop() {
         $query_home_top = "SELECT title_top, subtitle_top, text_btn_top, link_btn_top, image_top FROM sts_homes_tops LIMIT 1";
         $result_home_top = $this->conn->prepare($query_home_top);

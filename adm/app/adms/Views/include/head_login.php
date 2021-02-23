@@ -13,7 +13,7 @@ if (!defined('R4F5CC')) {
         <link rel="icon" href="<?php echo URLADM; ?>app/adms/assets/imagens/icone/favicon.ico">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo URLADM; ?>app/adms/assets/css/signin.css">
-        <title>Adm - Celke</title>
+        <title>Adm - AMACD</title>
     </head>
     <body class="text-center">
 

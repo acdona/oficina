@@ -23,7 +23,7 @@ class Login
     private $dados;
     private $dadosForm;
 
-    public function access() {
+    public function index() {
 
         $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         

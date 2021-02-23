@@ -52,20 +52,6 @@ class ConfigView
            header("Location: $urlDestino");
         }
     }
-
-    public function renderizarLogin() {
-        if(file_exists('app/' . $this->nome . '.php')){
-            include 'app/sts/Views/include/head.php';
-            include 'app/' . $this->nome . '.php';
-            include 'app/sts/Views/include/footer.php';
-        } else {
-            //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
-            
-            $urlDestino = URL . "error/index";
-            header("Location: $urlDestino");
-            //echo "Erro ao carregar a view: {$this->nome}";
-        }
-    }
  
 }
  

@@ -28,7 +28,11 @@ class AdmsNewUser
 
     public function create(array $dados = null) {
         $this->dados = $dados;
+
+
         $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
+
+
         $valCampoVazio->validarDados($this->dados);
         if ($valCampoVazio->getResultado()) {
           
@@ -39,26 +43,22 @@ class AdmsNewUser
     }
     
     private function valInput() {
+        
+        
         $valEmail = new \App\adms\Models\helper\AdmsValEmail();
         $valEmail->validarEmail($this->dados['email']);
-      
+             
         $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
         $valEmailSingle->validarEmailSingle($this->dados['email']);
-        
+
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
         $valPassword->validarPassword($this->dados['password']);
         
         $valUserSingleLogin = new \App\adms\Models\helper\AdmsValUserSingleLogin();
         $valUserSingleLogin->validarUserSingleLogin($this->dados['email']);
-        
-        // var_dump($valEmail->getResultado()); 
-        // var_dump($valEmailSingle->validarEmailSingle($this->dados['email'])) ; 
-        // var_dump($valPassword->validarPassword($this->dados['password'])) ;
-        // var_dump($valUserSingleLogin->validarUserSingleLogin($this->dados['email'])) ; exit;
-
+       
         if($valEmail->getResultado() AND $valEmailSingle->getResultado() AND $valPassword->getResultado() AND $valUserSingleLogin->getResultado()){
-            //$_SESSION['msg'] = "Usuário deve ser cadastrado!";
-            //$this->resultado = false;
+      
             $this->add();
             
         }else{
@@ -70,15 +70,20 @@ class AdmsNewUser
     private function add() {
         $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
         $this->dados['username'] = $this->dados['email'];
+        $this->dados['conf_email'] = password_hash($this->dados['password'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+        $this->dados['adms_sits_user_id'] = 3;
         $this->dados['created'] = date("Y-m-d H:i:s");
+    
+        //var_dump($this->dados); exit("deu tudo certo");
         $createUser = new \App\adms\Models\helper\AdmsCreate();
         $createUser->exeCreate("adms_users", $this->dados);
-
+        
         if ($createUser->getResult()) {
-            $_SESSION['msg'] = "Erro: Usuário cadastrado com sucesso!";
+            
+            $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
             $this->resultado = true;
         } else {
-            $_SESSION['msg'] = "Erro: Usuário não cadastrado com sucesso!";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado!</div>";
             $this->resultado = false;
         }
     }

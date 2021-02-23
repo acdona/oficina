@@ -93,7 +93,7 @@ class AdmsAddUsers
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Usuário cadastrado com sucesso!</div>";
             $this->resultado = true;
         }else {
-            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado?????????</div>";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não cadastrado!</div>";
             $this->resultado = false;
         }
 

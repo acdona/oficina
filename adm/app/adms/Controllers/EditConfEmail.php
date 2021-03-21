@@ -35,8 +35,8 @@ class EditConfEmail
                 $this->data['form'] = $viewConfEmail->getDatabaseResult();
                 $this->viewEditConfEmail();
             } else {
-                $urlDestiny = URLADM . "list-conf-emails/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-conf-emails/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editConfEmail();
@@ -55,8 +55,8 @@ class EditConfEmail
             $editConfEmail = new \App\adms\Models\AdmsEditConfEmail();
             $editConfEmail->update($this->formData);
             if ($editConfEmail->getResult()) {
-                $urlDestiny = URLADM . "view-conf-email/index/" . $this->formData['id'];
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-conf-email/index/" . $this->formData['id'];
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditConfEmail();
@@ -64,8 +64,8 @@ class EditConfEmail
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>E-mail não encontrado!</div>";
-            $urlDestiny = URLADM . "list-conf-emails/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-conf-emails/index";
+            header("Location: $urlRedirect");
         }
     }
 

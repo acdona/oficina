@@ -37,8 +37,8 @@ class EditProfilePassword
                 $this->data['form'] = $viewProfilePass->getDatabaseResult();
                 $this->viewEditProfilePass();
             }else {
-                $urlDestiny = URLADM . "login/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "login/index";
+                header("Location: $urlRedirect");
             }
         }
 
@@ -64,16 +64,16 @@ class EditProfilePassword
             $editProfile = new \App\adms\Models\AdmsEditProfilePassword();
             $editProfile->update($this->formData);
             if($editProfile->getResult()) {
-                $urlDestiny = URLADM . "view-profile/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-profile/index";
+                header("Location: $urlRedirect");
             }else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditProfilePass();
             }
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Usuário não encontrado!</div>";
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
             
     }

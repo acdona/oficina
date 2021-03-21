@@ -30,8 +30,8 @@ class ConfEmail
         }else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Link inválido!</div>";
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 
@@ -40,11 +40,11 @@ class ConfEmail
         $confEmail = new \App\adms\Models\AdmsConfEmail();
         $confEmail->confEmail($this->key);
         if($confEmail->getResult()) {
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         } else {
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
 
     }

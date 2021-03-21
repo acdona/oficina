@@ -32,8 +32,8 @@ class EditPermission
         $editPermission = new \App\adms\Models\AdmsEditPermission();
         $editPermission->editPermission($this->id);
 
-         $urlDestiny = URLADM . "list-permission/index/{$this->pag}?level={$this->level}";
-          header("Location: $urlDestiny");
+         $urlRedirect = URLADM . "list-permission/index/{$this->pag}?level={$this->level}";
+          header("Location: $urlRedirect");
     }
 
 }

@@ -33,8 +33,8 @@ class ViewFormLevel
         
         } else {
            
-            $urlDestiny = URLADM . "dashboard/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "dashboard/index";
+            header("Location: $urlRedirect");
         }
     }
 

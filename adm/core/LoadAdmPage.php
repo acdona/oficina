@@ -52,8 +52,8 @@ class LoadAdmPage
       
             die("Erro: o método não foi encontrado Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM . "!<br>");
            
-        //     $urlDestiny = URLADM . "error/index";
-        //     header("Location: $urlDestiny");
+        //     $urlRedirect = URLADM . "error/index";
+        //     header("Location: $urlRedirect");
         }        
     }
 
@@ -79,8 +79,8 @@ class LoadAdmPage
            
             $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">Erro: Página não encontrada!</div>';
             
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 
@@ -92,8 +92,8 @@ class LoadAdmPage
         } else {
             
             $_SESSION['msg'] = '<div class="alert alert-danger" role="alert">Erro: Para acessar a página realize o login!</div>';
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 

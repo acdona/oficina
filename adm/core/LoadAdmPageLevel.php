@@ -50,8 +50,8 @@ class LoadAdmPageLevel
             }
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Página não encontrada!</div>";
-            $urlDestiny = URLADM . "dashboard/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "dashboard/index";
+            header("Location: $urlRedirect");
         }
     }
 
@@ -69,8 +69,8 @@ class LoadAdmPageLevel
             $this->searchLevelPage();
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Para acessar a página realize o login!</div>";
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 
@@ -89,8 +89,8 @@ class LoadAdmPageLevel
             $this->loadMethod();
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Sem permissão de acessar a página!</div>";
-            $urlDestiny = URLADM . "dashboard/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "dashboard/index";
+            header("Location: $urlRedirect");
         }
     }
 

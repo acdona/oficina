@@ -31,8 +31,8 @@ class RecoverPassword
             $recoverPassword= new \App\adms\Models\AdmsRecoverPassword();
             $recoverPassword->recoverPassword($this->formData);
             if($recoverPassword->getResult()){
-                $urlDestiny = URLADM . "login/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "login/index";
+                header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->formData;
                 $this->viewRecoverPass();

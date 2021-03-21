@@ -31,8 +31,8 @@ class AddColor
             $createNewColor = new \App\adms\Models\AdmsAddColor();
             $createNewColor->create($this->formData);
             if($createNewColor->getResult()) {
-                $urlDestiny = URLADM . "list-colors/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-colors/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewNewColor();

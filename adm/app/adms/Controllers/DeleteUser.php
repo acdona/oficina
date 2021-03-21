@@ -32,8 +32,8 @@ class DeleteUser
             
         }
         
-        $urlDestiny = URLADM . "list-users/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-users/index";
+        header("Location: $urlRedirect");
     }
 
 

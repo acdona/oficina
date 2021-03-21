@@ -32,14 +32,14 @@ class ViewSitsUser
                 $this->data['viewSitsUser'] = $viewSitsUser->getDatabaseResult();
                 $this->viewSitsUser();
             } else {
-                $urlDestiny = URLADM . "list-sits-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-sits-users/index";
+                header("Location: $urlRedirect");
             }
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Situação para usuário não encontrada</div>";
-            $urlDestiny = URLADM . "list-sits-users/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-sits-users/index";
+            header("Location: $urlRedirect");
         }
     }
     

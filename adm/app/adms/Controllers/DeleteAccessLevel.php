@@ -31,8 +31,8 @@ class DeleteAccessLevel
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar um nível de acesso!</div>";
         }
         
-        $urlDestiny = URLADM . "list-access-levels/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-access-levels/index";
+        header("Location: $urlRedirect");
     }
 
 }

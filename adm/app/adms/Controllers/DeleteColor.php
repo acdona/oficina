@@ -31,8 +31,8 @@ class DeleteColor
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma cor!</div>";
         }
         
-        $urlDestiny = URLADM . "list-colors/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-colors/index";
+        header("Location: $urlRedirect");
     }
 
 }

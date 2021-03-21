@@ -30,8 +30,8 @@ class ViewProfile
             $this->viewProfile();
         } else {
             
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
 
         }
     }

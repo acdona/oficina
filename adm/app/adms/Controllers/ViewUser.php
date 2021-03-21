@@ -32,14 +32,14 @@ class ViewUser
                 $this->data['viewUser'] = $viewUser->getDatabaseResult();
                 $this->viewUser();
             } else {
-                $urlDestiny = URLADM . "list-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-users/index";
+                header("Location: $urlRedirect");
             }
         } else {
            
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado</div>";
-            $urlDestiny = URLADM . "list-users/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-users/index";
+            header("Location: $urlRedirect");
         }
     }
     

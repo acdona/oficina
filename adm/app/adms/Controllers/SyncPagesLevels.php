@@ -23,8 +23,8 @@ class SyncPagesLevels
         $syncPagesLevels= new \App\adms\Models\AdmsSyncPagesLevels();
         $syncPagesLevels->syncPagesLevels();     
         
-        $urlDestiny = URLADM . "list-access-levels/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-access-levels/index";
+        header("Location: $urlRedirect");
        
    }
 

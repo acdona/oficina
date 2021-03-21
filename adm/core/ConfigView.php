@@ -58,8 +58,8 @@ class ConfigView
                // die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
               echo "Erro ao carregar a view: {$this->name}";
               // when finished delete the lines above -> only  development version  
-              // $urlDestiny = URLADM . "error/index";
-              // header("Location: $urlDestiny");
+              // $urlRedirect = URLADM . "error/index";
+              // header("Location: $urlRedirect");
            }
        }
 
@@ -74,8 +74,8 @@ class ConfigView
                 // die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
             echo "Erro ao carregar a view: {$this->name}";
             // when finished delete the lines above -> only  development version
-            // $urlDestiny = URLADM . "error/index";
-            // header("Location: $urlDestiny");
+            // $urlRedirect = URLADM . "error/index";
+            // header("Location: $urlRedirect");
             }
          }
 

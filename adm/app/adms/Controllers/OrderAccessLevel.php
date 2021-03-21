@@ -30,12 +30,12 @@ class OrderAccessLevel
         if (!empty($this->id) AND (!empty($this->pag))) {
             $orderAccessLevel = new \App\adms\Models\AdmsOrderAccessLevel();
             $orderAccessLevel->orderAccessLevel($this->id);
-            $urlDestiny = URLADM . 'list-access-levels/index/' . $this->pag;
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . 'list-access-levels/index/' . $this->pag;
+            header("Location: $urlRedirect");
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Nível de acesso não encontrado!</div>";
-            $urlDestiny = URLADM . 'list-access-levels/index';
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . 'list-access-levels/index';
+            header("Location: $urlRedirect");
         }
     }
 

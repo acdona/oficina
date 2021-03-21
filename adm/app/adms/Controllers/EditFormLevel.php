@@ -32,8 +32,8 @@ class EditFormLevel
                 $this->data['form'] = $viewFormLevel->getDatabaseResult();
                 $this->viewEditFormLevel();
             } else {
-                $urlDestiny = URLADM . "view-form-level/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-form-level/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editFormLevel();
@@ -58,16 +58,16 @@ class EditFormLevel
             $editFormLevel = new \App\adms\Models\AdmsEditFormLevel();
             $editFormLevel->update($this->formData);
             if ($editFormLevel->getResult()) {
-                $urlDestiny = URLADM . "view-form-level/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-form-level/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditFormLevel();
             }
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Nível de acesso, para formulário novo usuário, não encontrado!</div>";
-            $urlDestiny = URLADM . "view-form-level/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "view-form-level/index";
+            header("Location: $urlRedirect");
         }
     }
 }

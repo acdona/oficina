@@ -34,8 +34,8 @@ class EditConfEmailPassword
                 $this->data['form'] = $viewConfEmailPass->getDatabaseResult();
                 $this->viewEditConfEmailPass();
             } else {
-                $urlDestiny = URLADM . "list-conf-emails-password/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-conf-emails-password/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editConfEmailPass();
@@ -54,8 +54,8 @@ class EditConfEmailPassword
             $editConfEmailPass = new \App\adms\Models\AdmsEditConfEmailPass();
             $editConfEmailPass->update($this->formData);
             if ($editConfEmailPass->getResult()) {
-                $urlDestiny = URLADM . "view-conf-email/index/" . $this->formData['id'];
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-conf-email/index/" . $this->formData['id'];
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditConfEmailPass();
@@ -63,8 +63,8 @@ class EditConfEmailPassword
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: E-mail não encontrado!</div>";
-            $urlDestiny = URLADM . "list-conf-emails/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-conf-emails/index";
+            header("Location: $urlRedirect");
         }
     }
 

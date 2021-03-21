@@ -31,8 +31,8 @@ class AddAccessLevel
             $createNewAccessLevel = new \App\adms\Models\AdmsAddAccessLevel();
             $createNewAccessLevel->create($this->formData);
             if($createNewAccessLevel->getResult()) {
-                $urlDestiny = URLADM . "list-access-levels/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-access-levels/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewNewAccessLevel();

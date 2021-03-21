@@ -42,8 +42,8 @@ class UpdatePassword
         if($valkey->getResult()) {
           $this->viewUpdatePassword();
         } else {
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 
@@ -54,16 +54,16 @@ class UpdatePassword
             $upPassword = new \App\adms\Models\AdmsUpdatePassword();
             $upPassword->editPassword($this->formData);
             if($upPassword->getResult()){
-                $urlDestiny = URLADM . "login/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "login/index";
+                header("Location: $urlRedirect");
             }else {
                 $this->viewUpdatePassword();
             }
 
         }else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</div>";
-            $urlDestiny = URLADM . "login/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+            header("Location: $urlRedirect");
         }
     }
 

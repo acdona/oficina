@@ -34,8 +34,8 @@ class EditUserImage
                 $this->data['form'] = $viewUser->getDatabaseResult();
                 $this->viewEditUserImage();
             } else {
-                $urlDestiny = URLADM . "list-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-users/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editUser();
@@ -55,8 +55,8 @@ class EditUserImage
             $editUser = new \App\adms\Models\AdmsEditUserImage();
             $editUser->update($this->formData);
             if ($editUser->getResult()) {
-                $urlDestiny = URLADM . "view-user/index/" . $this->formData['id'];
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-user/index/" . $this->formData['id'];
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditUserImage();
@@ -64,8 +64,8 @@ class EditUserImage
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado!</div>";
-            $urlDestiny = URLADM . "list-users/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-users/index";
+            header("Location: $urlRedirect");
         }
     }
 

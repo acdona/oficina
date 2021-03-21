@@ -33,8 +33,8 @@ class DeleteConfEmail
             
         }
         
-        $urlDestiny = URLADM . "list-conf-emails/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-conf-emails/index";
+        header("Location: $urlRedirect");
     }
 
 

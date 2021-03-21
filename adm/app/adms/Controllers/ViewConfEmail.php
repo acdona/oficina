@@ -32,14 +32,14 @@ class ViewConfEmail
                 $this->data['viewConfEmail'] = $viewConfEmail->getDatabaseResult();
                 $this->viewConfEmail();
             } else {
-                $urlDestiny = URLADM . "list-conf-email/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-conf-email/index";
+                header("Location: $urlRedirect");
             }
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: E-mail não encontrado</div>";
-            $urlDestiny = URLADM . "list-conf-email/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-conf-email/index";
+            header("Location: $urlRedirect");
         }
     }
     

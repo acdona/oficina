@@ -48,8 +48,8 @@ class AddUser
 
             /** If the record returns true, load the user list. */
             if($addUser->getResult()) {
-                $urlDestiny = URLADM . "list-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-users/index";
+                header("Location: $urlRedirect");
             } else {
 
                 /** If the record return true, reload the form. */

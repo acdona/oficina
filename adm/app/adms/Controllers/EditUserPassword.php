@@ -34,8 +34,8 @@ class EditUserPassword
                 $this->data['form'] = $viewUserPass->getDatabaseResult();
                 $this->viewEditUserPass();
             } else {
-                $urlDestiny = URLADM . "list-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-users/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->EditUserPass();
@@ -55,16 +55,16 @@ class EditUserPassword
             $editUserPass = new \App\adms\Models\AdmsEditUsersPassword();
             $editUserPass->update($this->formData);
             if($editUserPass->getResult()) {
-                $urlDestiny = URLADM . "list-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-users/index";
+                header("Location: $urlRedirect");
             }else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditUserPass();
             }
         } else {
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado!</div>";
-            $urlDestiny = URLADM . "list-users/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-users/index";
+            header("Location: $urlRedirect");
         }
     }
 

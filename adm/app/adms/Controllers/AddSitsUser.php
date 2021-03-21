@@ -30,8 +30,8 @@ class AddSitsUser
             $addSitsUser = new \App\adms\Models\AdmsAddSitsUser();
             $addSitsUser->create($this->formData);
             if ($addSitsUser->getResult()) {
-                $urlDestiny = URLADM . "list-sits-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-sits-users/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewAddSitsUser();

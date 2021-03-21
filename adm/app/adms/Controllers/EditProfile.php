@@ -34,8 +34,8 @@ class EditProfile
                 $this->data['form'] = $viewProfile->getDatabaseResult();
                 $this->viewEditProfile();
             }else{
-                $urlDestiny = URLADM . "login/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "login/index";
+                header("Location: $urlRedirect");
                        
             }
         }        
@@ -53,8 +53,8 @@ class EditProfile
             $editProfile = new \App\adms\Models\AdmsEditProfile();
             $editProfile->update($this->formData);
             if($editProfile->getResult()){
-                $urlDestiny = URLADM . "view-profile/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "view-profile/index";
+                header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->formData;
                 $this->viewEditProfile();
@@ -62,8 +62,8 @@ class EditProfile
         }else{
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado!</div>";
-            $urlDestiny = URLADM . "login/index";
-                header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "login/index";
+                header("Location: $urlRedirect");
         }
     }
 }

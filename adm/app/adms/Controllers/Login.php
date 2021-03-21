@@ -37,8 +37,8 @@ class Login
             
             if($valLogin->getResult()) {        
               
-                $urlDestiny = URLADM . "dashboard/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "dashboard/index";
+                header("Location: $urlRedirect");
 
             }else{
                 $this->data['form'] = $this->formData;

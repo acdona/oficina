@@ -31,8 +31,8 @@ class AddConfEmail
             $addConfEmail = new \App\adms\Models\AdmsAddConfEmail();
             $addConfEmail->create($this->formData);
             if ($addConfEmail->getResult()) {
-                $urlDestiny = URLADM . "list-conf-emails/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-conf-emails/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewAddConfEmail();

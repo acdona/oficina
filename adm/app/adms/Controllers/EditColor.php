@@ -43,8 +43,8 @@ class EditColor
                 $this->data['form'] = $viewColor->getDatabaseResult();
                 $this->viewEditColor();
             } else {
-                $urlDestiny = URLADM . "list-colors/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-colors/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editColor();
@@ -63,8 +63,8 @@ class EditColor
             $editColor = new \App\adms\Models\AdmsEditColor();
             $editColor->update($this->formData);
             if ($editColor->getResult()) {
-                $urlDestiny = URLADM . "list-colors/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-colors/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditColor();
@@ -72,8 +72,8 @@ class EditColor
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Cor não encontrada!</div>";
-            $urlDestiny = URLADM . "list-colors/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-colors/index";
+            header("Location: $urlRedirect");
         }
     }
 

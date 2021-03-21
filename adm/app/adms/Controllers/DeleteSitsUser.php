@@ -32,8 +32,8 @@ class DeleteSitsUser
             
         }
         
-        $urlDestiny = URLADM . "list-sits-users/index";
-        header("Location: $urlDestiny");
+        $urlRedirect = URLADM . "list-sits-users/index";
+        header("Location: $urlRedirect");
     }
 
 }

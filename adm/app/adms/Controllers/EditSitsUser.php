@@ -33,8 +33,8 @@ class EditSitsUser
                 $this->data['form'] = $viewSitsUser->getDatabaseResult();
                 $this->viewEditSitsUser();
             } else {
-                $urlDestiny = URLADM . "list-sits-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-sits-users/index";
+                header("Location: $urlRedirect");
             }
         } else {
             $this->editSitsUser();
@@ -59,8 +59,8 @@ class EditSitsUser
             $editSitsUser = new \App\adms\Models\AdmsEditSitsUser();
             $editSitsUser->update($this->formData);
             if ($editSitsUser->getResult()) {
-                $urlDestiny = URLADM . "list-sits-users/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-sits-users/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditSitsUser();
@@ -68,8 +68,8 @@ class EditSitsUser
         } else {
        
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Situação para usuário não encontrada!</div>";
-            $urlDestiny = URLADM . "list-sits-users/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-sits-users/index";
+            header("Location: $urlRedirect");
         }
     }
 

@@ -45,8 +45,8 @@ class EditAccessLevel
                 $this->viewEditAccessLevel();
               
             } else {
-                $urlDestiny = URLADM . "list-access-levels/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-access-levels/index";
+                header("Location: $urlRedirect");
             }
         } else {
             
@@ -66,16 +66,16 @@ class EditAccessLevel
             $editAccessLevel = new \App\adms\Models\AdmsEditAccessLevel();
             $editAccessLevel->update($this->formData);
             if ($editAccessLevel->getResult()) {
-                $urlDestiny = URLADM . "list-access-levels/index";
-                header("Location: $urlDestiny");
+                $urlRedirect = URLADM . "list-access-levels/index";
+                header("Location: $urlRedirect");
             } else {
                 $this->data['form'] = $this->formData;
                 $this->viewEditAccessLevel();
             }
         } else {
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Nível de acesso não encontrado!</div>";
-            $urlDestiny = URLADM . "list-access-levels/index";
-            header("Location: $urlDestiny");
+            $urlRedirect = URLADM . "list-access-levels/index";
+            header("Location: $urlRedirect");
         }
     }
 

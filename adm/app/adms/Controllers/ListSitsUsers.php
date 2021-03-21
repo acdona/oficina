@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe ListSitsUsers responsável por 
+ * ListSitsUsers Controller. Responsible for listing the user's situation. 
  *
  * @version 1.0
  *
@@ -19,7 +19,7 @@ if (!defined('R4F5CC')) {
 class ListSitsUsers
 {
 
-    private $dados;
+    private $data;
     private $pag;
     
     public function index($pag = null) {
@@ -28,16 +28,17 @@ class ListSitsUsers
         
         $listSitsUsers= new \App\adms\Models\AdmsListSitsUsers();
         $listSitsUsers->listSitsUsers($this->pag);
-        if($listSitsUsers->getResultado()){
-            $this->dados['listSitsUsers'] = $listSitsUsers->getResultadoBd();
-            $this->dados['pagination'] = $listSitsUsers->getResultPg();
+        if($listSitsUsers->getResult()){
+            $this->data['listSitsUsers'] = $listSitsUsers->getDatabaseResult();
+            $this->data['pagination'] = $listSitsUsers->getResultPg();
         }else{
-            $this->dados['listSitsUsers'] = [];
-            $this->dados['pagination'] = null;
+            $this->data['listSitsUsers'] = [];
+            $this->data['pagination'] = null;
         }
-        
-       $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/listSitsUsers", $this->dados);
-       $carregarView->renderizar();
+       
+        $this->data['sidebarActive'] = "list-sits-users"; 
+        $loadView = new \Core\ConfigView("adms/Views/sitsUser/listSitsUsers", $this->data);
+        $loadView->render();
     }
 
 }

@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
 
 
 /**
- * Classe RecoverPassword responsável por 
+ * RecoverPassword Controller. Responsible for recovering the user's password.
  *
  * @version 1.0
  *
@@ -20,21 +20,21 @@ if (!defined('R4F5CC')) {
 class RecoverPassword
 {
 
-    private $dados;
-    private $dadosForm;
+    private $data;
+    private $formData;
 
     public function index() {
 
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->dadosForm['RecoverPassword'])) {
-            unset($this->dadosForm['RecoverPassword']);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($this->formData['RecoverPassword'])) {
+            unset($this->formData['RecoverPassword']);
             $recoverPassword= new \App\adms\Models\AdmsRecoverPassword();
-            $recoverPassword->recoverPassword($this->dadosForm);
-            if($recoverPassword->getResultado()){
-                $urlDestino = URLADM . "login/index";
-                header("Location: $urlDestino");
+            $recoverPassword->recoverPassword($this->formData);
+            if($recoverPassword->getResult()){
+                $urlDestiny = URLADM . "login/index";
+                header("Location: $urlDestiny");
             }else{
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewRecoverPass();
             }            
         }else{
@@ -43,8 +43,8 @@ class RecoverPassword
     }
     
     private function viewRecoverPass() {
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/recoverPassword", $this->dados);
-        $carregarView->renderizarLogin();
+        $carregarView = new \Core\ConfigView("adms/Views/login/recoverPassword", $this->data);
+        $carregarView->renderLogin();
     }
 
 

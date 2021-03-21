@@ -1,14 +1,13 @@
 <?php
 namespace App\adms\Models\helper;
 
-
-if(!defined('R4F5CC')){
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Helper AdmsValEmailSingle responsável por verificar se o email existe no bd
+ * AdmsValEmailSingle Helper. Responsible for cheking if the email exists in the database.
  *
  * @version 1.0
  *
@@ -23,14 +22,14 @@ class AdmsValEmailSingle
     private string $email;
     private $edit;
     private $id;
-    private bool $resultado;
-    private $resultadoBd;
+    private bool $result;
+    private $databaseResult;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    public function validarEmailSingle($email, $edit = null, $id = null) {
+    public function validateEmailSingle($email, $edit = null, $id = null) {
         $this->email = $email;
         $this->edit = $edit;
         $this->id = $id;
@@ -41,7 +40,7 @@ class AdmsValEmailSingle
            
             $valEmailSingle->fullRead("SELECT id
                     FROM adms_users
-                    WHERE (email =:email) AND id <>:id 
+                    WHERE (email =:email OR username =:username) AND id <>:id 
                     LIMIT :limit", "email={$this->email}&username={$this->email}&id={$this->id}&limit=1");
                     
                     
@@ -50,12 +49,12 @@ class AdmsValEmailSingle
             $valEmailSingle->fullRead("SELECT id FROM adms_users WHERE email =:email LIMIT :limit", "email={$this->email}&limit=1");
         }
 
-        $this->resultadoBd = $valEmailSingle->getResult();
-        if (!$this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $valEmailSingle->getReadingResult();
+        if (!$this->databaseResult) {
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este e-mail já está cadastrado!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe DeleteSitsUser responsável por 
+ * DeleteSitsUser Controller. Responsible for deleting the user's situation.
  *
  * @version 1.0
  *
@@ -28,11 +28,12 @@ class DeleteSitsUser
             $deleteSitsUser = new \App\adms\Models\AdmsDeleteSitsUser();
             $deleteSitsUser->deleteSitsUser($this->id);
         }else{
-            $_SESSION['msg'] = "Erro: Necessário selecionar uma situação para usuário!";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Necessário selecionar uma situação para usuário!</div>";
+            
         }
         
-        $urlDestino = URLADM . "list-sits-users/index";
-        header("Location: $urlDestino");
+        $urlDestiny = URLADM . "list-sits-users/index";
+        header("Location: $urlDestiny");
     }
 
 }

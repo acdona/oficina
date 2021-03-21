@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsDeleteSitsUser responsável por 
+ * AdmsDeleteSitsUser Model. Responsible for deleting the user's situation. 
  *
  * @version 1.0
  *
@@ -19,12 +19,12 @@ if (!defined('R4F5CC')) {
 class AdmsDeleteSitsUser
 {
 
-    private bool $resultado;
+    private bool $result;
     private int $id;
-    private $resultadoBd;
+    private $databaseResult;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
     
     public function deleteSitsUser($id) {
@@ -35,14 +35,14 @@ class AdmsDeleteSitsUser
             $deleteSitsUser->exeDelete("adms_sits_users", "WHERE id =:id", "id={$this->id}");
 
             if ($deleteSitsUser->getResult()) {
-                $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Situação para usuário apagado com sucesso!</div>";
-                $this->resultado = true;
+                $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Situação para usuário apagada com sucesso!</div>";
+                $this->result = true;
             } else {
-                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não apagado com sucesso!</div>";
-                $this->resultado = false;
+                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não apagada com sucesso!</div>";
+                $this->result = false;
             }
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
@@ -52,11 +52,11 @@ class AdmsDeleteSitsUser
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
 
-        $this->resultadoBd = $viewSitsUser->getResult();
-        if ($this->resultadoBd) {
+        $this->databaseResult = $viewSitsUser->getReadingResult();
+        if ($this->databaseResult) {
             return true;
         } else {
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não encontrado!</div>";
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não encontrada!</div>";
             return false;
         }
     }
@@ -64,7 +64,7 @@ class AdmsDeleteSitsUser
     private function verfUserCad() {
         $viewUserCad = new \App\adms\Models\helper\AdmsRead();
         $viewUserCad->fullRead("SELECT id FROM adms_users WHERE adms_sits_user_id=:adms_sits_user_id LIMIT :limit", "adms_sits_user_id={$this->id}&limit=1");
-        if($viewUserCad->getResult()){
+        if($viewUserCad->getReadingResult()){
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não pode ser apagada, há usuários cadastrados com essa situação!</div>";
             return false;
         }else{

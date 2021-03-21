@@ -33,7 +33,7 @@ if(!defined('R4F5CC')){
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($this->dados['listSitsUsers'] as $sitsUser) {
+                    foreach ($this->data['listSitsUsers'] as $sitsUser) {
                         extract($sitsUser);
                         ?>
                         <tr>
@@ -63,7 +63,7 @@ if(!defined('R4F5CC')){
                     ?>
                 </tbody>
             </table>
-            <?php echo $this->dados['pagination']; ?>
+            <?php echo $this->data['pagination']; ?>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsUpdatePassword responsável por 
+ * AdmsUpdatePassword Model. Responsible for receiving the password link. 
  *
  * @version 1.0
  *
@@ -19,78 +19,78 @@ if (!defined('R4F5CC')) {
 class AdmsUpdatePassword
 {
 
-    private $resultadoBd;
-    private bool $resultado;
-    private string $chave;
+    private $databaseResult;
+    private bool $result;
+    private string $key;
     private array $saveData;
-    private array $dados;
+    private array $data;
 
-    function getResultado() {
-        return $this->resultado;
+    function getResult() {
+        return $this->result;
     }
 
-    public function validarChave($chave) {
-        $this->chave = $chave;
+    public function validateKey($key) {
+        $this->key = $key;
 
-        $viewChaveUpPass = new \App\adms\Models\helper\AdmsRead();
-        $viewChaveUpPass->fullRead("SELECT id
+        $viewkeyUpPass = new \App\adms\Models\helper\AdmsRead();
+        $viewkeyUpPass->fullRead("SELECT id
                 FROM adms_users
                 WHERE recover_password =:recover_password
                 LIMIT :limit",
-                "recover_password={$this->chave}&limit=1");
+                "recover_password={$this->key}&limit=1");
 
-        $this->resultadoBd = $viewChaveUpPass->getResult();
-        if ($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $viewkeyUpPass->getReadingResult();
+        if ($this->databaseResult) {
+            $this->result = true;
             return true;
         } else {
-            $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!";
-            $this->resultado = false;
+            $_SESSION['msg'] =  "<div class='alert alert-danger' role='alert'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</div>";
+           
+            $this->result = false;
             return false;
         }
     }
 
-    public function editPassword(array $dados) {
-        $this->dados = $dados;
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if($valCampoVazio->getResultado()){            
+    public function editPassword(array $data) {
+        $this->data = $data;
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if($valEmptyField->getResult()){            
             $this->valInput();
         }else{
-            $this->resultado = false;
+            $this->result = false;
         }
     }
     
     private function valInput() {
         $valPassword= new \App\adms\Models\helper\AdmsValPassword();
-        $valPassword->validarPassword($this->dados['password']);
-        if($valPassword->getResultado()){
-            //echo "Continuar alteração da senha<br>";
-            //$this->resultado = true;
-            if($this->validarChave($this->dados['chave'])){
+        $valPassword->validatePassword($this->data['password']);
+        if($valPassword->getResult()){
+   
+            if($this->validateKey($this->data['key'])){
                 $this->updatePassword();
             }else{
-                $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!";
-            $this->resultado = false;
+                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</div>";
+            $this->result = false;
             }            
         }else{
-            $this->resultado = false;
+            $this->result = false;
         }
     }
     
     private function updatePassword() {
         $this->saveData['recover_password'] = null;
-        $this->saveData['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
+        $this->saveData['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
         $this->saveData['modified'] = date("Y-m-d H:i:s");
         
         $upPassword = new \App\adms\Models\helper\AdmsUpdate();
-        $upPassword->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->resultadoBd[0]['id']}");
+        $upPassword->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->databaseResult[0]['id']}");
         if($upPassword->getResult()){
-            $_SESSION['msg'] = "Senha atualizada com sucesso!<br>";
-            $this->resultado = true;
+            $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Senha atualizada com sucesso!</div>";
+            $this->result = true;
         }else{
-            $_SESSION['msg'] = "Erro: Senha não atualizada, tente novamente!<br>";
-            $this->resultado = false;            
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Senha não atualizada, tente novamente!<br></div>";
+            $this->result = false;            
         }
         
     }

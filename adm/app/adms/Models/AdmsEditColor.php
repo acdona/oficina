@@ -19,24 +19,24 @@ if (!defined('R4F5CC')) {
 class AdmsEditColor
 {
 
-    /** @var array $resultadoBd Recebe o resultado do banco de dados */
-    private array $resultadoBd;
+    /** @var array $databaseResult Receives the database result. */
+    private array $databaseResult;
 
-    /** @var bool $resultado Retorna se consulta ao banco de dados funcionou */
-    private bool $resultado;
+    /** @var bool $result Returns whether the database query worked. */
+    private bool $result;
 
-    /** @var int $id Recebe um inteiro do ID  */
+    /** @var int $id Receives an integer referring to the ID. */
     private int $id;
 
-    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private array $dados;
+    /** @var array $data Receives the data that must be sent to VIEW. */
+    private array $data;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewColor($id) {
@@ -47,53 +47,53 @@ class AdmsEditColor
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
 
-        $this->resultadoBd = $viewColor->getResult();
-        if ($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $viewColor->getReadingResult();
+        if ($this->databaseResult) {
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "Cor não encontrada!<br>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
-    public function update(array $dados) {
-        $this->dados = $dados;
+    public function update(array $data) {
+        $this->data = $data;
 
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if ($valCampoVazio->getResultado()) {
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if ($valEmptyField->getResult()) {
             $this->valInput();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function valInput() {
         $valColor = new \App\adms\Models\helper\AdmsValColor();
-        $valColor->valColor($this->dados['name']);
+        $valColor->valColor($this->data['name']);
         
-        if ($valColor->getResultado()) {
+        if ($valColor->getResult()) {
             $this->edit();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
 
     private function edit() {
-        $this->dados['modified'] = date("Y-m-d H:i:s");
+        $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upColor = new \App\adms\Models\helper\AdmsUpdate();
-        $upColor->exeUpdate("adms_colors", $this->dados, "WHERE id =:id", "id={$this->dados['id']}");
+        $upColor->exeUpdate("adms_colors", $this->data, "WHERE id =:id", "id={$this->data['id']}");
 
         if ($upColor->getResult()) {
         
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Cor editada com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Cor não editada!</div>";
             
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

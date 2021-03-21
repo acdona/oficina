@@ -1,68 +1,67 @@
 <?php
 namespace App\adms\Models\helper;
 
-use Exception;
-
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 use PDO;
+use Exception;
 
 /**
- * Classe AdmsRead genérica para buscar regsitro no banco de dados
+ * AdmsRead Generic helper to search the record in the database.
  *
  * @author acd
  */
 class AdmsRead extends AdmsConn
 {
 
-    /** @var string $select Recebe o QUERY */
+    /** @var string $select Receive QUERY */
     private string $select;
 
-    /** @var array $values Recebe os valores que deve ser atribuidos nos link da QUERY com bindValue */
+    /** @var array $values Receive the values that must be assigned on the QUERY links with bindValue*/
     private array $values = [];
 
-    /** @var array $result Recebe os registros do banco de dados e retorna para a Models */
+    /** @var array $result Receives records from the database and returns to Models */
     private array $result = [];
 
-    /** @var object $query Recebe a QUERY preparada */
+    /** @var object $query Receive the prepared QUERY */
     private object $query;
 
-    /** @var object $conn Recebe a QUERY preparada */
+    /** @var object $conn Receive the connection */
     private object $conn;
 
     /**
      * 
-     * @return array Retorna o array de dados
+     * @return array Returns the data array.
      */
-    function getResult(): array {
+    function getReadingResult(): array {
         return $this->result;
     }
 
-    /**     * 
-     * Recebe os valores para montar a QUERY.
-     * Converte a parseString de string para array.
-     * @param string $tabela Recebe o nome da tabela do banco de dados
-     * @param string $termos Recebe os links da QUERY, ex: adms_situation_id =:adms_situation_id
-     * @param string $parseString Recebe o valores que devem ser subtituidos no link, ex: adms_situation_id=1
+    /**  
+     * Receive the values to set up the QUERY.
+     * Convert the parseString from string to array.
+     * @param string $table Receive the name of the database table.
+     * @param string $terms Receive QUERY terms, ex: adms_situation_id =:adms_situation_id
+     * @param string $parseString Receives the values that must be replaced on the link, ex: adms_situation_id=1
      * 
      * @return void
      */
-    public function exeRead($tabela, $termos = null, $parseString = null): void {
+    public function exeRead($table, $terms = null, $parseString = null): void {
         if (!empty($parseString)) {
             parse_str($parseString, $this->values);
         }
-        $this->select = "SELECT * FROM {$tabela} {$termos}";
+        $this->select = "SELECT * FROM {$table} {$terms}";
         $this->exeIntruction();
     }
 
     /**
-     * Recebe os valores para montar a QUERY.
-     * Converte a parseString de string para array.
-     * @param string $query Recebe a QUERY da Models
-     * @param string $parseString Recebe o valores que devem ser subtituidos no link, ex: adms_situation_id=1
+     * Receive the values to set up the QUERY.
+     * Convert the parseString from string to array.
+     * @param string $query Receive model QUERY.
+     * @param string $parseString Receive the valus that must be replaced on the link, ex: adms_situation_id=1
      * 
      * @return void
      */
@@ -71,12 +70,12 @@ class AdmsRead extends AdmsConn
         if (!empty($parseString)) {
             parse_str($parseString, $this->values);
         }
-        $this->exeIntruction();
+        $this->exeIntruction(); 
     }
 
     /**
-     * Executa a QUERY. 
-     * Quando executa a query com sucesso retorna o array de dados, senão retorna null.
+     * Run the QUERY. 
+     * When you run the query successfully, it returns the data array, otherswise it returns null.
      * 
      * @return void
      */
@@ -92,8 +91,8 @@ class AdmsRead extends AdmsConn
     }
 
     /**
-     * Obtem a conexão com o banco de dados da classe pai "Conn".
-     * Prepara uma instrução para execução e retorna um objeto de instrução.
+     * Obtains the connection to the parent class database "Conn".
+     * Prepares an instruction for execution and returns an instruction object.
      * 
      * @return void
      */
@@ -104,7 +103,7 @@ class AdmsRead extends AdmsConn
     }
 
     /**
-     * Substitui os link da QUERY pelo valores utilizando o bindValue
+     * Replaces QUERY links with values using bindValue.
      * 
      * @return void
      */

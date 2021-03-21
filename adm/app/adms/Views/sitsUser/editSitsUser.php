@@ -4,12 +4,12 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
-if (isset($this->dados['form'])) {
-    $valorForm = $this->dados['form'];
+if (isset($this->data['form'])) {
+    $formValue = $this->data['form'];
 }
 
-if (isset($this->dados['form'][0])) {
-    $valorForm = $this->dados['form'][0];
+if (isset($this->data['form'][0])) {
+    $formValue = $this->data['form'][0];
 }
 ?>
 <div class="content p-1">
@@ -19,8 +19,8 @@ if (isset($this->dados['form'][0])) {
                 <h2 class="display-4 title">Editar Situação para Usuário</h2>
             </div>
             <?php
-            if (!empty($valorForm)) {
-                extract($valorForm);
+            if (!empty($formValue)) {
+                extract($formValue);
                 ?>
                 <div class="p-2">
                     <span class="d-none d-lg-block">
@@ -52,16 +52,16 @@ if (isset($this->dados['form'][0])) {
         ?>
         <form id="sits_user" method="POST" action="">
             <input name="id" type="hidden" id="id" value="<?php
-        if (isset($valorForm['id'])) {
-            echo $valorForm['id'];
+        if (isset($formValue['id'])) {
+            echo $formValue['id'];
         }
         ?>">
 
             <div class="form-group">
                 <label for="name"><span class="text-danger">*</span> Nome:</label>
                 <input name="name" type="text" class="form-control" id="name" placeholder="Nome da situação para usuário"  value="<?php
-            if (isset($valorForm['name'])) {
-                echo $valorForm['name'];
+            if (isset($formValue['name'])) {
+                echo $formValue['name'];
             }
         ?>" required autofocus>
             </div>
@@ -71,9 +71,9 @@ if (isset($this->dados['form'][0])) {
                 <select name="adms_color_id" id="adms_color_id" class="form-control">
                     <option value="">Selecione</option>
                     <?php
-                    foreach ($this->dados['select']['cor'] as $cor) {
+                    foreach ($this->data['select']['cor'] as $cor) {
                         extract($cor);
-                        if ((isset($valorForm['adms_color_id'])) AND $valorForm['adms_color_id'] == $id_cor) {
+                        if ((isset($formValue['adms_color_id'])) AND $formValue['adms_color_id'] == $id_cor) {
                             echo "<option value='$id_cor' selected>$name_cor</option>";
                         } else {
                             echo "<option value='$id_cor'>$name_cor</option>";

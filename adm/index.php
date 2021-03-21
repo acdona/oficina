@@ -1,25 +1,22 @@
 <?php
-
-    //Inicia uma nova sessão
+    //Start a new session.
     session_start();
-    
-    // Inicializa o buffer e bloqueia qualquer saída para o navegador
+
+    //Clear the buffer and block any output to the browser.
     ob_start();
-    
-    //Define uma chave de segurança para todas as páginas do projeto
+
+    // Defines a security key for all pages of the project.
     define('R4F5CC', true);
 
-    //carrega o autoload
+    //Loads the autoload.
     require './vendor/autoload.php';
-    
-    //Atribui um apelelido para rota da classe
-    
+
+    //Assign a nickname to then class route.
     use Core\ConfigController as Login;
     
-    //Instancia a classe ConfigController
+    //Instantiates then ConfigController class.
     $url = new Login();
     
-    //Instanciar o método
-    $url->carregar();
-
+    //Instantiate the method.
+    $url->load();
 ?>

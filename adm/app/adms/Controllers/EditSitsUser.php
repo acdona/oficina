@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Control EditSitsUser responsável por 
+ * EditSitsUser Controlles. Responsible for editing the user's situation.
  *
  * @version 1.0
  *
@@ -18,23 +18,23 @@ if (!defined('R4F5CC')) {
 */
 class EditSitsUser
 {
-    private $dados;
-    private $dadosForm;
+    private $data;
+    private $formData;
     private $id;
 
     public function index($id) {
         $this->id = (int) $id;
         
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->id) AND (empty($this->dadosForm['EditSitsUser']))) {
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($this->id) AND (empty($this->formData['EditSitsUser']))) {
             $viewSitsUser = new \App\adms\Models\AdmsEditSitsUser();
             $viewSitsUser->viewSitsUser($this->id);
-            if ($viewSitsUser->getResultado()) {
-                $this->dados['form'] = $viewSitsUser->getResultadoBd();
+            if ($viewSitsUser->getResult()) {
+                $this->data['form'] = $viewSitsUser->getDatabaseResult();
                 $this->viewEditSitsUser();
             } else {
-                $urlDestino = URLADM . "list-sits-user/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-sits-users/index";
+                header("Location: $urlDestiny");
             }
         } else {
             $this->editSitsUser();
@@ -44,29 +44,32 @@ class EditSitsUser
     private function viewEditSitsUser() {        
         
         $listSelect = new \App\adms\Models\AdmsEditSitsUser();
-        $this->dados['select'] = $listSelect->listSelect();        
+        $this->data['select'] = $listSelect->listSelect();       
         
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/editSitsUser", $this->dados);
-        $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-sits-users";
+        
+        $carregarView = new \Core\ConfigView("adms/Views/sitsUser/editSitsUser", $this->data);
+        $carregarView->render();
     }
 
     private function editSitsUser() {
         
-        if (!empty($this->dadosForm['EditSitsUser'])) {
-            unset($this->dadosForm['EditSitsUser']);
+        if (!empty($this->formData['EditSitsUser'])) {
+            unset($this->formData['EditSitsUser']);
             $editSitsUser = new \App\adms\Models\AdmsEditSitsUser();
-            $editSitsUser->update($this->dadosForm);
-            if ($editSitsUser->getResultado()) {
-                $urlDestino = URLADM . "list-sits-users/index";
-                header("Location: $urlDestino");
+            $editSitsUser->update($this->formData);
+            if ($editSitsUser->getResult()) {
+                $urlDestiny = URLADM . "list-sits-users/index";
+                header("Location: $urlDestiny");
             } else {
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewEditSitsUser();
             }
         } else {
-            $_SESSION['msg'] = "Situação para usuário não encontrado!<br>";
-            $urlDestino = URLADM . "list-sits-user/index";
-            header("Location: $urlDestino");
+       
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Situação para usuário não encontrada!</div>";
+            $urlDestiny = URLADM . "list-sits-users/index";
+            header("Location: $urlDestiny");
         }
     }
 

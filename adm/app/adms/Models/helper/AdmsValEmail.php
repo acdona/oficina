@@ -1,13 +1,13 @@
 <?php
 namespace App\adms\Models\helper;
 
-if(!defined('R4F5CC')){
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Helper AdmsValEmail responsável por validar o email.
+ * AdmsValEmail Helper. Responsible for validating the email.
  *
  * @version 1.0
  *
@@ -20,20 +20,21 @@ class AdmsValEmail
 {
 
     private string $email;
-    private bool $resultado;
+    private bool $result;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
     
-    public function validarEmail($email) {
+    public function validateEmail($email) {
         $this->email = $email;
         
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL)){
-            $this->resultado = true;
+            $this->result = true;
         }else{
-            $_SESSION['msg'] = "Erro: E-mail inválido!";
-            $this->resultado = false;            
+            
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: E-mail inválido!</div>";
+            $this->result = false;            
         }
     }
 

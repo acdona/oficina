@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe DeleteUser responsável por 
+ * DeleteUser Control. Responsible for deleting the user. 
  *
  * @version 1.0
  *
@@ -28,11 +28,12 @@ class DeleteUser
             $deleteUser = new \App\adms\Models\AdmsDeleteUser();
             $deleteUser->deleteUser($this->id);
         }else{
-            $_SESSION['msg'] = "Erro: Necessário selecionar um usuário!";
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Necessário selecionar um usuário!</div>";
+            
         }
         
-        $urlDestino = URLADM . "list-users/index";
-        header("Location: $urlDestino");
+        $urlDestiny = URLADM . "list-users/index";
+        header("Location: $urlDestiny");
     }
 
 

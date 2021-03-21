@@ -3,8 +3,8 @@ if (!defined('R4F5CC')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
-if (isset($this->dados['form'])) {
-    $valorForm = $this->dados['form'];
+if (isset($this->data['form'])) {
+    $formData = $this->data['form'];
 }
 ?>
 
@@ -27,11 +27,12 @@ if (isset($this->dados['form'])) {
         }
         ?>
         <form id="sits_user" method="POST" action="">
+        
             <div class="form-group">
                 <label for="name"><span class="text-danger">*</span> Nome:</label>
                 <input name="name" type="text" class="form-control" id="name" placeholder="Nome da situação para usuário"  value="<?php
-                if (isset($valorForm['name'])) {
-                    echo $valorForm['name'];
+                if (isset($formData['name'])) {
+                    echo $formData['name'];
                 }
                 ?>" required autofocus>
             </div>
@@ -41,9 +42,9 @@ if (isset($this->dados['form'])) {
                 <select name="adms_color_id" id="adms_color_id" class="form-control">
                     <option value="">Selecione</option>
                     <?php
-                    foreach ($this->dados['select']['cor'] as $cor) {
+                    foreach ($this->data['select']['cor'] as $cor) {
                         extract($cor);
-                        if ((isset($valorForm['adms_color_id'])) AND $valorForm['adms_color_id'] == $id_cor) {
+                        if ((isset($formData['adms_color_id'])) AND $formData['adms_color_id'] == $id_cor) {
                             echo "<option value='$id_cor' selected>$name_cor</option>";
                         } else {
                             echo "<option value='$id_cor'>$name_cor</option>";

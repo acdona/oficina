@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * DeleteColor Controller responsible for deleting a color.
+ * DeleteColor Controller. Responsible for deleting a color.
  *
  * @version 1.0
  *
@@ -18,7 +18,7 @@ if (!defined('R4F5CC')) {
 */
 class DeleteColor
 {
-    /** @var int $id Recebe um inteiro referente ao  ID da categoria. */
+    /** @var int $id Receive an integer reffering the color ID. */
     private int $id;
 
     public function index($id = null) {
@@ -31,8 +31,8 @@ class DeleteColor
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar uma cor!</div>";
         }
         
-        $urlDestino = URL . "list-colors/index";
-        header("Location: $urlDestino");
+        $urlDestiny = URLADM . "list-colors/index";
+        header("Location: $urlDestiny");
     }
 
 }

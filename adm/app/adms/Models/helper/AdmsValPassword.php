@@ -1,13 +1,13 @@
 <?php
 namespace App\adms\Models\helper;
 
-if(!defined('R4F5CC')){
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Classe AdmsValPassword responsável por 
+ * AdmsValPassword Helper. Responsible for validating the password. 
  *
  * @version 1.0
  *
@@ -20,22 +20,22 @@ class AdmsValPassword
 {
 
     private string $password;
-    private bool $resultado;
+    private bool $result;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    public function validarPassword($password) {
+    public function validatePassword($password) {
         $this->password = (string) $password;
 
         if (stristr($this->password, "'")) {
-            $_SESSION['msg'] = "Erro: Caracter ( ' ) utilizado na senha inválido!";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Caracter ( ' ) utilizado na senha inválido!</div>";
+            $this->result = false;
         } else {
             if (stristr($this->password, " ")) {
-                $_SESSION['msg'] = "Erro: Proibido utilizar espaço em branco no campo senha!";
-                $this->resultado = false;
+                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Proibido utilizar espaço em branco no campo senha!</div>";
+                $this->result = false;
             } else {
                 $this->valExtensPassword();
             }
@@ -44,8 +44,8 @@ class AdmsValPassword
 
     private function valExtensPassword() {
         if ((strlen($this->password) < 6)) {
-            $_SESSION['msg'] = "Erro: A senha deve ter no mínimo 6 caracteres!";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: A senha deve ter no mínimo 6 caracteres!</div>";
+            $this->result = false;
         } else {
             $this->valValuePassword();
         }
@@ -53,13 +53,12 @@ class AdmsValPassword
 
     private function valValuePassword() {
         if (preg_match('/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/', $this->password)) {
-            $this->resultado = true;
+            $this->result = true;
         } else {
-            $_SESSION['msg'] = "Erro: A senha deve ter letras e números!";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: A senha deve ter letras e números!</div>";
+            $this->result = false;
         }
     }
-
 
 }
 

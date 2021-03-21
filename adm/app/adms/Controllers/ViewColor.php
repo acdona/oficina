@@ -18,11 +18,11 @@ if (!defined('R4F5CC')) {
 */
 class ViewColor
 {
-    /** @var int $id Recebe um inteiro referente ao ID da cetagoria */
+    /** @var int $id Receives an integer referring to the color id. */
     private int $id;
     
-    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private $dados;
+    /** @var array $data Receives data that must be sent to VIEW. */
+    private $data;
 
     public function index($id) {
         $this->id = $id;
@@ -32,24 +32,25 @@ class ViewColor
             $viewColor = new \App\adms\Models\AdmsViewColor();
             $viewColor->viewColor($this->id);
        
-            if ($viewColor->getResultado()) {
-                $this->dados['viewColor'] = $viewColor->getResultadoBd();
+            if ($viewColor->getResult()) {
+                $this->data['viewColor'] = $viewColor->getDatabaseResult();
                 $this->viewColor();
             } else {
-                $urlDestino = URL . "list-colors/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-colors/index";
+                header("Location: $urlDestiny");
             }
         } else {
-            $_SESSION['msg'] = "Cor não encontrada!<br>";
-            $urlDestino = URL . "list-colors/index";
-            header("Location: $urlDestino");
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Cor não encontrada!</div>";
+            
+            $urlDestiny = URLADM . "list-colors/index";
+            header("Location: $urlDestiny");
         }
     }
     
     private function viewColor() {
-       
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/viewColor", $this->dados);
-        $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-colors";
+        $loadView = new \Core\ConfigView("adms/Views/colors/viewColor", $this->data);
+        $loadView->render();
     }
 
 }

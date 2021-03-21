@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller ViewUser responsável por vizualizar usuario
+ * ViewUser . Responsible for viewing the user.
  *
  * @version 1.0
  *
@@ -20,7 +20,7 @@ class ViewUser
 {
 
     private int $id;
-    private $dados;
+    private $data;
 
     public function index($id) {
         
@@ -28,23 +28,25 @@ class ViewUser
         if (!empty($this->id)) {
             $viewUser = new \App\adms\Models\AdmsViewUser();
             $viewUser->viewUser($this->id);
-            if ($viewUser->getResultado()) {
-                $this->dados['viewUser'] = $viewUser->getResultadoBd();
+            if ($viewUser->getResult()) {
+                $this->data['viewUser'] = $viewUser->getDatabaseResult();
                 $this->viewUser();
             } else {
-                $urlDestino = URLADM . "list-users/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-users/index";
+                header("Location: $urlDestiny");
             }
         } else {
-            $_SESSION['msg'] = "Usuário não encontrado<br>";
-            $urlDestino = URLADM . "list-users/index";
-            header("Location: $urlDestino");
+           
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado</div>";
+            $urlDestiny = URLADM . "list-users/index";
+            header("Location: $urlDestiny");
         }
     }
     
     private function viewUser() {
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/viewUser", $this->dados);
-        $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-users";
+        $loadView = new \Core\ConfigView("adms/Views/users/viewUser", $this->data);
+        $loadView->render();
     }
 
 }

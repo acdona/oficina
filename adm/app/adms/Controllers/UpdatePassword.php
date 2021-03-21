@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
 
 
 /**
- * Classe UpdatePassword responsável por 
+ * UpdatePassword Controller. Responsible por receiving the password link.
  *
  * @version 1.0
  *
@@ -20,56 +20,56 @@ if (!defined('R4F5CC')) {
 class UpdatePassword
 {
 
-      private $chave;
-    private $dadosForm;
+    private $key;
+    private $formData;
    
 
     public function index() {
      
-        $this->chave = filter_input(INPUT_GET, "chave", FILTER_DEFAULT);
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if(!empty($this->chave) AND empty($this->dadosForm['UpPassword'])) {
-            $this->validarChave();
+        $this->key = filter_input(INPUT_GET, "key", FILTER_DEFAULT);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(!empty($this->key) AND empty($this->formData['UpPassword'])) {
+            $this->validateKey();
         } else {
             $this->updatePassword();
         }
     }
 
-    private function validarChave() {
-        $valChave = new \App\adms\Models\AdmsUpdatePassword();
-        $valChave->validarChave($this->chave);
+    private function validateKey() {
+        $valkey = new \App\adms\Models\AdmsUpdatePassword();
+        $valkey->validateKey($this->key);
 
-        if($valChave->getResultado()) {
+        if($valkey->getResult()) {
           $this->viewUpdatePassword();
         } else {
-            $urlDestino = URLADM . "login/index";
-            header("Location: $urlDestino");
+            $urlDestiny = URLADM . "login/index";
+            header("Location: $urlDestiny");
         }
     }
 
     private function updatePassword(){
-        if(!empty($this->dadosForm['UpPassword'])){
-            unset($this->dadosForm['UpPassword']);
-            $this->dadosForm['chave'] = $this->chave;
+        if(!empty($this->formData['UpPassword'])){
+            unset($this->formData['UpPassword']);
+            $this->formData['key'] = $this->key;
             $upPassword = new \App\adms\Models\AdmsUpdatePassword();
-            $upPassword->editPassword($this->dadosForm);
-            if($upPassword->getResultado()){
-                $urlDestino = URLADM . "login/index";
-                header("Location: $urlDestino");
+            $upPassword->editPassword($this->formData);
+            if($upPassword->getResult()){
+                $urlDestiny = URLADM . "login/index";
+                header("Location: $urlDestiny");
             }else {
                 $this->viewUpdatePassword();
             }
 
         }else {
-            $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!<br>";
-            $urlDestino = URLADM . "login/index";
-            header("Location: $urlDestino");
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</div>";
+            $urlDestiny = URLADM . "login/index";
+            header("Location: $urlDestiny");
         }
     }
 
     private function viewUpdatePassword() {
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/updatePassword");
-        $carregarView->renderizarLogin();
+        $loadView = new \Core\ConfigView("adms/Views/login/updatePassword");
+        $loadView->renderLogin();
     }
 
 }

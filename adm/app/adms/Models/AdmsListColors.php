@@ -18,26 +18,26 @@ if (!defined('R4F5CC')) {
 */
 class AdmsListColors
 {
-      /** variáveis a cadastrar que trazem a paginação
+    /**
+     *  Variables to register that bring the pagnation
      * 
      */
-    
     private $pag;    
     private $limitResult = 5;
     private $resultPg;
 
-    /** @var array $resultadoBd Recebe o resultado do banco de dados */
-    private array $resultadoBb;
+    /** @var array $databaseResult Receive the result from the database. */
+    private array $databaseResult;
 
-    /** @var bool $resultado Retorna se consulta ao banco de dados funcionou */
-    private bool $resultado;
+    /** @var bool $result Checks whetter the database query worked.. */
+    private bool $result;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     function getResultPg() {
@@ -47,25 +47,26 @@ class AdmsListColors
     public function ListColors($pag = null) {
 
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-colors/index');
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-colors/index');
 
-        $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(cor.id) AS num_result FROM adms_colors cor");
-        $this->resultPg =$paginacao->getResult();
+        $pagination->condition($this->pag, $this->limitResult);
+        $pagination->pagination("SELECT COUNT(cor.id) AS num_result FROM adms_colors cor");
+        $this->resultPg =$pagination->getResult();
 
 
         $ListColors  = new \App\adms\Models\helper\AdmsRead();
         $ListColors->fullRead("SELECT id, name, color 
                                FROM adms_colors
-                               LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}
+                               LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$pagination->getOffset()}
                                ");
 
-        $this->resultadoBd = $ListColors->getResult();
-        if($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $ListColors->getReadingResult();
+        if($this->databaseResult) {
+            $this->result = true;
         }else{
-            $_SESSION['msg'] = "Nenhuma cor encontrada!<br>";
-            $this->resultado = false;
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Nenhuma cor encontrada!</div>";
+            $this->result = false;
         }    
     }
 

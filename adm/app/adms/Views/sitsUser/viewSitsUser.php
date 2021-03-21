@@ -12,8 +12,8 @@ if (!defined('R4F5CC')) {
                 <h2 class="display-4 title">Detalhes da Situação para Usuário</h2>
             </div>
             <?php
-            if (!empty($this->dados['viewSitsUser'])) {
-                extract($this->dados['viewSitsUser'][0]);
+            if (!empty($this->data['viewSitsUser'])) {
+                extract($this->data['viewSitsUser'][0]);
                 ?>
                 <div class="p-2">
                     <span class="d-none d-lg-block">
@@ -41,7 +41,7 @@ if (!defined('R4F5CC')) {
             unset($_SESSION['msg']);
         }
 
-        if (!empty($this->dados['viewSitsUser'])) {
+        if (!empty($this->data['viewSitsUser'])) {
             ?>
             <dl class="row">                
 

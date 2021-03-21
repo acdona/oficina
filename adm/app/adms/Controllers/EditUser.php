@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Controller EditUser responsável por editar o usuário
+ * EditUser Controller. Responsible for editing the user.
  *
  * @version 1.0
  *
@@ -18,23 +18,23 @@ if (!defined('R4F5CC')) {
 */
 class EditUser
 {
-    private $dados;
-    private $dadosForm;
+    private $data;
+    private $dataForm;
     private $id;
 
     public function index($id) {
         $this->id = (int) $id;
         
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->id) AND (empty($this->dadosForm['EditUser']))) {
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($this->id) AND (empty($this->dataForm['EditUser']))) {
             $viewUser = new \App\adms\Models\AdmsEditUser();
             $viewUser->viewUser($this->id);
-            if ($viewUser->getResultado()) {
-                $this->dados['form'] = $viewUser->getResultadoBd();
+            if ($viewUser->getResult()) {
+                $this->data['form'] = $viewUser->getDatabaseResult();
                 $this->viewEditUser();
             } else {
-                $urlDestino = URLADM . "list-users/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-users/index";
+                header("Location: $urlDestiny");
             }
         } else {
             $this->editUser();
@@ -44,28 +44,31 @@ class EditUser
     private function viewEditUser() {
           
         $listSelect = new \App\adms\Models\AdmsEditUser();
-        $this->dados['select'] = $listSelect->listSelect();        
+        $this->data['select'] = $listSelect->listSelect();        
+
+        $this->data['sidebarActive'] = "list-users";
         
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/user/editUser", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \Core\ConfigView("adms/Views/users/editUser", $this->data);
+        $carregarView->render();
     }
 
     private function editUser() {
-        if (!empty($this->dadosForm['EditUser'])) {
-            unset($this->dadosForm['EditUser']);
+        if (!empty($this->dataForm['EditUser'])) {
+            unset($this->dataForm['EditUser']);
             $editUser = new \App\adms\Models\AdmsEditUser();
-            $editUser->update($this->dadosForm);
-            if ($editUser->getResultado()) {
-                $urlDestino = URLADM . "list-users/index";
-                header("Location: $urlDestino");
+            $editUser->update($this->dataForm);
+            if ($editUser->getResult()) {
+                $urlDestiny = URLADM . "list-users/index";
+                header("Location: $urlDestiny");
             } else {
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->dataForm;
                 $this->viewEditUser();
             }
         } else {
-            $_SESSION['msg'] = "Usuário não encontrado!<br>";
-            $urlDestino = URLADM . "list-users/index";
-            header("Location: $urlDestino");
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado!</div>";
+            $urlDestiny = URLADM . "list-users/index";
+            header("Location: $urlDestiny");
         }
     }
     

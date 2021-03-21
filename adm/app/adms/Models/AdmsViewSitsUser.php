@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsViewSitsUser responsável por 
+ * AdmsViewSitsUser Model. Responsible for viewing the user's situation.
  *
  * @version 1.0
  *
@@ -19,16 +19,16 @@ if (!defined('R4F5CC')) {
 class AdmsViewSitsUser
 {
 
-    private $resultadoBd;
-    private bool $resultado;
+    private $dtabaseResult;
+    private bool $result;
     private int $id;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
     
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewSitsUser($id) {
@@ -41,12 +41,12 @@ class AdmsViewSitsUser
                 WHERE sit.id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
                 
-        $this->resultadoBd = $viewSitsUser->getResult();
-        if($this->resultadoBd){
-            $this->resultado = true;
+        $this->databaseResult = $viewSitsUser->getReadingResult();
+        if($this->databaseResult){
+            $this->result = true;
         }else{
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não encontrado!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

@@ -1,13 +1,13 @@
 <?php
 namespace App\adms\Models\helper;
 
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Helper AdmsValUserSingleLogin responsável por validar o usuário
+ * AdmsValUserSingleLogin Helper . Responsible for validating the user.
  *
  * @version 1.0
  *
@@ -18,26 +18,26 @@ if (!defined('R4F5CC')) {
 */
 class AdmsValUserSingleLogin
 {
-    /** @var string $userName Recebe o username  */
+    /** @var string $userName Receives the username. */
     private string $userName;
 
     /** @var  $edit */
     private $edit;
 
-    /** @var  int $id Recebe o ID do isuário */
+    /** @var  int $id Receives the user ID. */
     private $id;
 
-    /** @var  bool $resultado Recebe verdadeiro ou falso na pesquisa do banco de dados */
-    private bool $resultado;
+    /** @var  bool $result Receives true or false when searching the database. */
+    private bool $result;
 
-    /** @var  array $resultadoBd Recebe os dados do banco de dados */
-    private array  $resultadoBd;
+    /** @var  array $databaseResult Receives user data from the database */
+    private array  $databaseResult;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    public function validarUserSingleLogin($username, $edit = null, $id = null) {
+    public function validateUserSingleLogin($username, $edit = null, $id = null) {
       
         $this->userName = $username;
         
@@ -60,15 +60,15 @@ class AdmsValUserSingleLogin
             $valUserSingleLogin->fullRead("SELECT id FROM adms_users WHERE username =:username LIMIT :limit", "username={$this->userName}&limit=1");
         }
 
-        $this->resultadoBd = $valUserSingleLogin->getResult();
+        $this->databaseResult = $valUserSingleLogin->getReadingResult();
         
 
-        if (!$this->resultadoBd) {
-            $this->resultado = true;
+        if (!$this->databaseResult) {
+            $this->result = true;
         } else {
             
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este e-mail já está cadastrado!</div>";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Este usuário já está cadastrado!</div>";
+            $this->result = false;
         }
     }
 

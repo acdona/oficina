@@ -19,7 +19,7 @@ class AdmsPagination
     private $offset;
     private $query;
     private $parseString;
-    private $resultBd;
+    private $databaseResult;
     private $result;
     private $totalPages;
     private $maxLinks = 2;
@@ -50,12 +50,12 @@ class AdmsPagination
         $this->parseString = (string) $parseString;
         $count = new \App\adms\Models\helper\AdmsRead();
         $count->fullRead($this->query, $this->parseString);
-        $this->resultBd = $count->getResult();
+        $this->databaseResult = $count->getReadingResult();
         $this->pagInstruction();
     }
 
     private function pagInstruction() {
-        $this->totalPages = ceil($this->resultBd[0]['num_result'] / $this->limitResult);
+        $this->totalPages = ceil($this->databaseResult[0]['num_result'] / $this->limitResult);
      
         if ($this->totalPages >= $this->pag) {
             $this->layoutPagination();

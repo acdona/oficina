@@ -4,16 +4,16 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
-if (isset($this->dados['form'])) {
-    $valorForm = $this->dados['form'];
+if (isset($this->data['form'])) {
+    $formData = $this->data['form'];
 }
 
-if (isset($this->dados['form'][0])) {
-    $valorForm = $this->dados['form'][0];
+if (isset($this->data['form'][0])) {
+    $formData = $this->data['form'][0];
 }
 
-if (isset($valorForm['id'])) {
-    $id = $valorForm['id'];
+if (isset($formData['id'])) {
+    $id = $formData['id'];
 }
 ?>
 
@@ -26,9 +26,9 @@ if (isset($valorForm['id'])) {
                 <div class="p-2">
                 <span class="d-none d-lg-block">
 
-                    <a href="<?php echo URL ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URLADM ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
                     
-                    <a href="<?php echo URL . 'delete-color/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
+                    <a href="<?php echo URLADM . 'delete-color/index/' . $id; ?>" class="btn btn-outline-danger btn-sm" data-confirm="Excluir">Apagar</a> 
                 </span>
                 </div>
 
@@ -37,8 +37,8 @@ if (isset($valorForm['id'])) {
                                     Ações
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
-                                    <a class="dropdown-item" href="<?php echo URL ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
-                                    <a class="dropdown-item" href="<?php echo URL . 'delete-color/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
+                                    <a class="dropdown-item" href="<?php echo URLADM ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
+                                    <a class="dropdown-item" href="<?php echo URLADM . 'delete-color/index/' . $id; ?>" data-confirm="Excluir">Apagar</a>
                                 </div>
                             </div>
 
@@ -55,22 +55,22 @@ if (isset($valorForm['id'])) {
 
         <form id="form_color" method="POST" action="">
             <input name="id" type="hidden" id="id" value="<?php
-            if (isset($valorForm['id'])) {
-                echo $valorForm['id'];
+            if (isset($formData['id'])) {
+                echo $formData['id'];
             }
             ?>">
 
             <label for="name"><span class="text-danger">*</span> Nome</label>
             <input name="name" type="text"  class="form-control" id="name" placeholder="Nome da cor" value="<?php
-            if (isset($valorForm['name'])) {
-                echo $valorForm['name'];
+            if (isset($formData['name'])) {
+                echo $formData['name'];
             }
             ?>" autofocus required><br><br>
 
             <label for="color"><span class="text-danger">*</span> Cor</label>
             <input name="color" type="text"  class="form-control" id="color" placeholder="Cor" value="<?php
-            if (isset($valorForm['color'])) {
-                echo $valorForm['color'];
+            if (isset($formData['color'])) {
+                echo $formData['color'];
             }
             ?>" autofocus required><br><br>
 

@@ -1,13 +1,13 @@
 <?php
 namespace App\adms\Controllers;
 
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Classe NewUser responsável por 
+ * NewUser controller Responsible for registering new user.
  *
  * @version 1.0
  *
@@ -18,22 +18,28 @@ if (!defined('R4F5CC')) {
 */
 class NewUser
 {
+    /** @var array $data Receives the data that must be sent to VIEW*/
+    private $data;
+    /** @var array $formData Receives the data send by the form. */
+    private $formData;
 
-    private $dados;
-    private $dadosForm;
-
+    /**
+     * Index method responsible for starting a new user registration.
+     *  
+     * @return void
+     */
     public function index() {
         
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if(!empty($this->dadosForm['SendNewUser'])){
-            unset($this->dadosForm['SendNewUser']);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(!empty($this->formData['SendNewUser'])){
+            unset($this->formData['SendNewUser']);
             $createNewUser = new \App\adms\Models\AdmsNewUser();
-            $createNewUser->create($this->dadosForm);
-            if($createNewUser->getResultado()){
-                $urlDestino = URLADM . "login/index";
-                header("Location: $urlDestino");
+            $createNewUser->create($this->formData);
+            if($createNewUser->getResult()){
+                $urlDestiny = URLADM . "login/index";
+                header("Location: $urlDestiny");
             }else{
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewNewUser();
             }            
         }else{
@@ -42,8 +48,8 @@ class NewUser
     }
     
     private function viewNewUser() {
-        $carregarView = new \Core\ConfigView("adms/Views/login/newUser", $this->dados);
-        $carregarView->renderizar();
+        $loadView = new \Core\ConfigView("adms/Views/login/newUser", $this->data);
+        $loadView->renderLogin();
     }
 
 

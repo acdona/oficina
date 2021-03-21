@@ -1,11 +1,10 @@
 <?php
- 
- if (!defined('R4F5CC')) {
-    header("Location: /");
-    die("Erro: Página não encontrada!");
-}
- 
+    if (!defined('R4F5CC')) { 
+        header("Location: /");
+        die("Erro: Página não encontrada!");
+    }
 ?>
+
         <!--Caminho do jquery -------------------------------------------------------------------------------------------------->
         <script src=   "<?php echo URLADM ; ?>app/adsm/assets/js/jquery-3.5.1.min"></script>
         <!-- JavaScript Botstrap -->

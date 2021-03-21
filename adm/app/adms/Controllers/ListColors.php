@@ -18,10 +18,10 @@ if (!defined('R4F5CC')) {
 */
 class ListColors
 {
-    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private array $dados=[];
+    /** @var array $data Receives the data that must be sent to VIEW */
+    private array $data=[];
 
-    /** @var int $pag um número inteiro referente a página */
+    /** @var int $pag Receives an integer referring to the page */
     private $pag;
 
     public function index($pag = null) {
@@ -31,12 +31,12 @@ class ListColors
         $listColors = new \App\adms\Models\AdmsListColors();
         $listColors->listColors($this->pag);
     
-        $this->dados['listColors']   = $listColors->getResultBd();
-        $this->dados['pagination'] = $listColors->getResultPg();
+        $this->data['listColors']   = $listColors->getDatabaseResult();
+        $this->data['pagination'] = $listColors->getResultPg();
 
-     
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/listColors" , $this->dados);
-        $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-colors";
+        $loadView = new \Core\ConfigView("adms/Views/colors/listColors" , $this->data);
+        $loadView->render();
     }
 
 }

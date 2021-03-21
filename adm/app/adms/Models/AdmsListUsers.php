@@ -18,26 +18,25 @@ if (!defined('R4F5CC')) {
 */
 class AdmsListUsers
 {
-      /** variáveis a cadastrar que trazem a paginação
+     /** Registration varoables, which bring the pagination.
      * 
      */
-      
     private int $pag;    
     private int $limitResult = 5;
     private string $resultPg;
 
-    /** @var array $resultadoBd Recebe o resultado do banco de dados */
-    private array $resultadoBd;
+    /** @var array $databaseResult Receives the result form the database. */
+    private array $databaseResult;
 
-    /** @var bool $resultado Retorna se consulta ao banco de dados funcionou */
-    private bool $resultado;
+    /** @var bool $result Checks whether the database query worked. */
+    private bool $result;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     function getResultPg() {
@@ -47,31 +46,36 @@ class AdmsListUsers
     public function listUsers($pag = null) {
         
         $this->pag = (int) $pag;
-        $paginacao = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index');
+        $pagination = new \App\adms\Models\helper\AdmsPagination(URLADM . 'list-users/index');
 
-        $paginacao->condition($this->pag, $this->limitResult);
-        $paginacao->pagination("SELECT COUNT(usu.id) AS num_result 
+        $pagination->condition($this->pag, $this->limitResult);
+        $pagination->pagination("SELECT COUNT(usu.id) AS num_result 
                                 FROM adms_users usu
-                                ");
-        $this->resultPg =$paginacao->getResult();
+                                INNER JOIN adms_access_levels As lev ON lev.id=usu.adms_access_level_id
+                                WHERE lev.order_levels >:order_levels", "order_levels=". $_SESSION['order_levels']);
+        $this->resultPg =$pagination->getResult();
 
 
         $ListUsers  = new \App\adms\Models\helper\AdmsRead();
         $ListUsers->fullRead("SELECT usu.id, usu.name, usu.email,
                               sit.name name_sit,
-                              cor.color
-                               FROM adms_users usu
-                               LEFT JOIN adms_sits_users AS sit ON sit.id=usu.adms_sits_user_id
-                               LEFT JOIN adms_colors AS cor ON cor.id = sit.adms_color_id
-                               LIMIT :limit OFFSET :offset", "limit={$this->limitResult}&offset={$paginacao->getOffset()}
+                              cor.color,
+                              lev.name name_lev
+                              FROM adms_users usu
+                              LEFT JOIN adms_sits_users AS sit ON sit.id=usu.adms_sits_user_id
+                              LEFT JOIN adms_colors AS cor ON cor.id = sit.adms_color_id
+                              INNER JOIN adms_access_levels As lev ON lev.id=usu.adms_access_level_id
+                              WHERE lev.order_levels >:order_levels
+                              LIMIT :limit OFFSET :offset", "order_levels=". $_SESSION['order_levels'] . "&limit={$this->limitResult}&offset={$pagination->getOffset()}
                                ");
         
-        $this->resultadoBd = $ListUsers->getResult();
-        if($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $ListUsers->getReadingResult();
+        if($this->databaseResult) {
+            $this->result = true;
         }else{
-            $_SESSION['msg'] = "Nenhum usuário encontrado!<br>";
-            $this->resultado = false;
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Nenhum usuário encontrado!</div>";
+            $this->result = false;
         }    
     }
 

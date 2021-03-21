@@ -18,61 +18,62 @@ if (!defined('R4F5CC')) {
 */
 class EditColor
 {
-    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private array $dados=[];
+    /** @var array $data Receives the data that must be sent to VIEW. */
+    private array $data=[];
 
-    /** @var array $dadosForm Recebe os dados do formulário */
-    private $dadosForm;
+    /** @var array $formData Receives the form data. */
+    private $formData;
 
-    /** @var int $id Recebe um inteiro referente ao  ID da categoria. */
+    /** @var int $id Receives an integer referring to the color ID. */
     private $id;
 
-    /** Função index que recebe  id da cor */
+    /** Index function that receives the color ID. */
     public function index($id) {
         $this->id = (int) $id;
 
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        /** Se o id não for vazio e os dados do formulário estiverem vazios */
-        if (!empty($this->id) AND (empty($this->dadosForm['EditColor']))) {
-            /** Instancia a model */
+        /** If the id is not empty and the form data is empty */
+        if (!empty($this->id) AND (empty($this->formData['EditColor']))) {
+            /** Instantiate the model. */
             $viewColor = new \App\adms\Models\AdmsEditColor();
-            /** Carrega viewColor da Model */
+            /** Loads the model's viewColor. */
             $viewColor->viewColor($this->id);
-            if ($viewColor->getResultado()) {
-                $this->dados['form'] = $viewColor->getResultadoBd();
-                $this->viewColor();
+            if ($viewColor->getResult()) {
+                $this->data['form'] = $viewColor->getDatabaseResult();
+                $this->viewEditColor();
             } else {
-                $urlDestino = URL . "list-colors/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-colors/index";
+                header("Location: $urlDestiny");
             }
         } else {
             $this->editColor();
         }
     }
 
-    private function viewColor() {       
-   
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/editColor", $this->dados);
-        $carregarView->renderizar();
+    private function viewEditColor() {       
+        $this->data['sidebarActive'] = "list-colors";
+        $loadView = new \Core\ConfigView("adms/Views/colors/editColor", $this->data);
+        $loadView->render();
     }
 
     private function editColor() {
-        if (!empty($this->dadosForm['EditColor'])) {
-            unset($this->dadosForm['EditColor']);
+        if (!empty($this->formData['EditColor'])) {
+            unset($this->formData['EditColor']);
             $editColor = new \App\adms\Models\AdmsEditColor();
-            $editColor->update($this->dadosForm);
-            if ($editColor->getResultado()) {
-                $urlDestino = URL . "list-colors/index";
-                header("Location: $urlDestino");
+            $editColor->update($this->formData);
+            if ($editColor->getResult()) {
+                $urlDestiny = URLADM . "list-colors/index";
+                header("Location: $urlDestiny");
             } else {
-                $this->dados['form'] = $this->dadosForm;
-                $this->viewColor();
+                $this->data['form'] = $this->formData;
+                $this->viewEditColor();
             }
         } else {
-            $_SESSION['msg'] = "Cor não encontrada!<br>";
-            $urlDestino = URL . "list-colors/index";
-            header("Location: $urlDestino");
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Cor não encontrada!</div>";
+            $urlDestiny = URLADM . "list-colors/index";
+            header("Location: $urlDestiny");
         }
     }
 

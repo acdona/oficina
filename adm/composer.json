@@ -1,6 +1,6 @@
 {
-    "description": "ACD Projeto Oficina",
-    "name": "adm/adms",
+    "description": "AMACD Login Project",
+    "name": "app/adms",
     "authors": [
         {
             "name": "Antonio Carlos Dona",
@@ -15,6 +15,7 @@
         }
     },
     "require": {
-        "phpmailer/phpmailer": "^6.3"
+        "phpmailer/phpmailer": "^6.3",
+        "dompdf/dompdf": "^1.0"
     }
 }

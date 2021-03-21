@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Model AdmsEditSitsUser responsável por 
+ * AdmsEditSitsUser Model. Responsible for editing the user's situation. 
  *
  * @version 1.0
  *
@@ -19,18 +19,18 @@ if (!defined('R4F5CC')) {
 class AdmsEditSitsUser
 {
 
-    private $resultadoBd;
-    private bool $resultado;
+    private $databaseResult;
+    private bool $result;
     private int $id;
-    private array $dados;
+    private array $data;
     private $listRegistryEdit;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getdatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewSitsUser($id) {
@@ -41,46 +41,46 @@ class AdmsEditSitsUser
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
 
-        $this->resultadoBd = $viewSitsUser->getResult();
-        if ($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $viewSitsUser->getReadingResult();
+        if ($this->databaseResult) {
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação de usuário não encontrado!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
-    public function update(array $dados) {
-        $this->dados = $dados;
+    public function update(array $data) {
+        $this->data = $data;
 
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if ($valCampoVazio->getResultado()) {
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if ($valEmptyField->getResult()) {
             $this->edit();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function edit() {
-        $this->dados['modified'] = date("Y-m-d H:i:s");
+        $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_sits_users", $this->dados, "WHERE id =:id", "id={$this->dados['id']}");
+        $upUser->exeUpdate("adms_sits_users", $this->data, "WHERE id =:id", "id={$this->data['id']}");
 
         if ($upUser->getResult()) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Situação para usuário editado com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Situação para usuário não editado com sucesso!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
     
     public function listSelect() {
         $list = new \App\adms\Models\helper\AdmsRead();
         $list->fullRead("SELECT id id_cor, name name_cor FROM adms_colors ORDER BY name ASC");
-        $registry['cor'] = $list->getResult();
+        $registry['cor'] = $list->getReadingResult();
         
         $this->listRegistryEdit = ['cor' => $registry['cor']];
         

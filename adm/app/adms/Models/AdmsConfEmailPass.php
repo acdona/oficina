@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsConfEmailPass responsável por 
+ * AdmsConfEmailPass Model. Responsible for setting the email password.
  *
  * @version 1.0
  *

@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
 
 
 /**
- * Classe AdmsEditUsersPassword responsável por 
+ * AdmsEditUsersPassword Model. Responsible for editing the user's password.
  *
  * @version 1.0
  *
@@ -20,73 +20,76 @@ if (!defined('R4F5CC')) {
 class AdmsEditUsersPassword
 {
 
-    private $resultadoBd;
-    private bool $resultado;
+    private $databaseResult;
+    private bool $result;
     private int $id;
-    private array $dados;
+    private array $data;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewUser($id) {
         $this->id = (int) $id;
         $viewUser = new \App\adms\Models\helper\AdmsRead();
-        $viewUser->fullRead("SELECT id 
-                FROM adms_users
-                WHERE id=:id
-                LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUser->fullRead("SELECT usu.id 
 
-        $this->resultadoBd = $viewUser->getResult();
-        if ($this->resultadoBd) {
-            $this->resultado = true;
+                FROM adms_users usu
+                INNER JOIN adms_access_levels As lev ON lev.id=usu.adms_access_level_id
+                WHERE usu.id=:id AND lev.order_levels >:order_levels
+                LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
+
+        $this->databaseResult = $viewUser->getReadingResult();
+        if ($this->databaseResult) {
+            $this->result = true;
         } else {
-            $_SESSION['msg'] = "Usuário não encontrado!<br>";
-            $this->resultado = false;
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Usuário não encontrado!</div>";
+            $this->result = false;
         }
     }
 
-    public function update(array $dados) {
-        $this->dados = $dados;
+    public function update(array $data) {
+        $this->data = $data;
    
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if ($valCampoVazio->getResultado()) {
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if ($valEmptyField->getResult()) {
             $this->valInput();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function valInput() {
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
-        $valPassword->validarPassword($this->dados['password']);
+        $valPassword->validatePassword($this->data['password']);
 
-        if ($valPassword->getResultado() ) {
+        if ($valPassword->getResult() ) {
             $this->edit();
            
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function edit() {
-        $this->dados['password'] = password_hash($this->dados['password'], PASSWORD_DEFAULT);
-        $this->dados['modified'] = date("Y-m-d H:i:s");
+        $this->data['password'] = password_hash($this->data['password'], PASSWORD_DEFAULT);
+        $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_users", $this->dados, "WHERE id =:id", "id={$this->dados['id']}");
+        $upUser->exeUpdate("adms_users", $this->data, "WHERE id =:id", "id={$this->data['id']}");
 
         if ($upUser->getResult()) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Senha do usuário cadastrada com sucesso!</div>";;
-            $this->resultado = true;
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Senha do usuário não cadastrada!!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

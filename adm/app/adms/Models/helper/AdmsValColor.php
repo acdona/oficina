@@ -6,7 +6,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Classe AdmsValColor responsável por validar se a cor existe
+ * AdmsValColor responsável por validar se a cor existe
  *
  * @version 1.0
  *
@@ -21,11 +21,11 @@ class AdmsValColor
     private string $colorName;
     private $edit;
     private $id;
-    private bool $resultado;
-    private $resultadoBd;
+    private bool $result;
+    private $databaseResult;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
     public function valColor($colorname, $edit = null, $id = null) {
@@ -49,14 +49,14 @@ class AdmsValColor
             
         }
 
-        $this->resultadoBd = $valColor->getResult();
+        $this->databaseResult = $valColor->getReadingResult();
 
-        if (!$this->resultadoBd) {
-            $this->resultado = true;
+        if (!$this->databaseResult) {
+            $this->result = true;
         } else {
             
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Esta cor já está cadastrada!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

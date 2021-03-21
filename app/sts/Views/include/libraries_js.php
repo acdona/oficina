@@ -18,6 +18,7 @@
     <script src=   "<?php echo URL; ?>app/sts/assets/js/bootstrap.min.js"></script>
     <!-- Caminho do css personalizado --------------------------------------------------------------------------------------- -->
     <script src=   "<?php echo URL; ?>app/sts/assets/js/style_sts.js"></script>
+	<script src=   "<?php echo URL; ?>app/sts/assets/js/all.js"></script>
 <!--------------------------------  Fim do BODY, onde encerra o corpo do site ----------------------------------------------- -->
 </body>
 </html>

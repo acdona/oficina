@@ -1,72 +1,95 @@
 <?php
 namespace Core;
 
-if (!defined('R4F5CC')) {
+use Dompdf\Dompdf;
+
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Classe para carregar as Views
- * 
- * @author ACD
- */
+ * ConfigView class Responsible for loading the Views.
+ *
+ * @version 1.0
+ *
+ * @author Antonio Carlos Doná
+ *
+ * @access public 
+ *
+*/
 class ConfigView
 {
- 
-    /** @var string $nome Recebe o endereço da VIEW que deve ser carregada */
-    private string $nome;
-    /** @var array $dados Recebe os dados que a VIEW deve receber */
-    private $dados;
 
-     /**
-     * Receber o endereço da VIEW e os dados.
-     * @param string $nome Endereço da VIEW que deve ser carregada
-     * @param array $dados Dados que a VIEW deve receber.
-     */
-    public function __construct($nome, array $dados = null)
+       /** @var string $name Receives the VIEW address that should be loaded */
+       private string $name;
+       /** @var array $data Receive data to send VIEW */
+       private $data;
+   
+        /**
+        * Receive the VIEW address and data.
+        * @param string $name View addres that should be loaded
+        * @param array $data Data that VIEW should receive.
+        */
+       public function __construct($name, array $data = null)
+       {
+           $this->name = $name; 
+           $this->data = $data;
+         
+       }
+   
+        /**
+        * Load the VIEW.
+        * Check that the file exists. If it exists, charge it, if it doesn't stop charging.
+        * 
+        * @return void
+        */
+       public function render() {
+           if(file_exists('app/' . $this->name . '.php')){
+            include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/header.php';
+            include 'app/adms/Views/include/start_content.php';
+            include 'app/adms/Views/include/sidebar.php';
+            include 'app/' . $this->name . '.php';
+            include 'app/adms/Views/include/end_content.php';
+            include 'app/adms/Views/include/footer.php';
+          
+           } else {
+               // die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
+              echo "Erro ao carregar a view: {$this->name}";
+              // when finished delete the lines above -> only  development version  
+              // $urlDestiny = URLADM . "error/index";
+              // header("Location: $urlDestiny");
+           }
+       }
+
+
+       public function renderLogin() {
+            if(file_exists('app/' . $this->name . '.php')){
+                include 'app/adms/Views/include/header_login.php';
+                include 'app/' . $this->name . '.php';
+                include 'app/adms/Views/include/footer_login.php';
+                //     include 'app/adms/Views/include/libraries_js.php';
+            } else {
+                // die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
+            echo "Erro ao carregar a view: {$this->name}";
+            // when finished delete the lines above -> only  development version
+            // $urlDestiny = URLADM . "error/index";
+            // header("Location: $urlDestiny");
+            }
+         }
+
+
+    public function generatePdf()
     {
-        $this->nome = $nome; 
-        $this->dados = $dados;
-      
-    }
-
-     /**
-     * Carregar a VIEW.
-     * Verificar se o arquivo existe e carrega caso exista, não existindo, para o carregamento
-     * 
-     * @return void
-     */
-    public function renderizar() {
-        if(file_exists('app/' . $this->nome . '.php')){
-            include 'app/adms/Views/include/head.php';
-            include 'app/adms/Views/include/menu.php';
-            include 'app/' . $this->nome . '.php';
-            include 'app/adms/Views/include/footer.php';
-           // include 'app/adms/Views/include/libraries_js.php';
-        } else {
-            //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
-            echo "Erro ao carregar a view: {$this->nome}";
-           
-         //  $urlDestino = URL . "error/index";
-         //  header("Location: $urlDestino");
+        if (file_exists('app/' . $this->name . '.php')) {
+            $domPdf = new Dompdf();
+            include 'app/' . $this->name . '.php';
+        }else{
+            echo "Erro ao carregar a Página: {$this->name}";
         }
     }
 
-    public function renderizarLogin() {
-        if(file_exists('app/' . $this->nome . '.php')){
-            include 'app/adms/Views/include/head.php';
-            include 'app/' . $this->nome . '.php';
-            include 'app/adms/Views/include/footer.php';
-        } else {
-            //die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o administrador " . EMAILADM . "<br>");
-            
-            $urlDestino = URL . "error/index";
-            header("Location: $urlDestino");
-            //echo "Erro ao carregar a view: {$this->nome}";
-        }
-    }
- 
 }
- 
+
 ?>

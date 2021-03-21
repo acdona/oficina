@@ -1,141 +1,151 @@
 <?php
 namespace Core;
 
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Recebe a URL e manipula 
- * 
- * @author ACD
- */
-class ConfigController extends Config {
+ * ConfigController responsible for receiving and handling the url. 
+ *
+ * @version 1.0
+ *
+ * @author Antonio Carlos Doná
+ *
+ * @access public
+ *
+*/
+class ConfigController extends Config
+{
 
-    /** @var string $url Recebe a URL do htaccess */
+    /** @var string $url Receives the URL from .htaccess. */
     private string $url;
     
-    /** @var array $urlConjunto Recebe a URL convertida para um array */
-    private array $urlConjunto;
+    /** @var array $urlSet Receives the URL converted to an array. */
+    private array $urlSet;
 
-    /** @var string $urlController Recebe da URL o nome da controller */
+    /** @var string $urlController Receives the controller name from the URL. */
     private string $urlController;
 
-    /** @var string $urlMetodo Recebe da URL o método */
-    private string $urlMetodo;
+     /** @var string $urlMethod Receives the method name from de URL. */
+     private string $urlMethod;
 
-    /** @var string $urlParametro Recebe da URL o parâmetro */
-    private string $urlParametro;
+     /** @var string $urlParameter Receives the parameter name form de URL. */
+     private string $urlParameter;
 
-    /** @var string $slugController Recebe a controller convertida para o formato do nome da classe */
+     /** @var string $slugController Receives the controller name converted by slug. */
     private string $slugController;
 
-    /** @var array $slugMetodo Metodo */
-    private string $slugMetodo;
+    /** @var array $slugMethod Receives method name converted by slug.   */
+    private string $slugMethod;
 
-    /** @var array $urlimpa Limpa */
-    private string $urlLimpa;
+     /** @var array $clearUrl Clear special characters from url. */
+     private string $clearUrl;
 
-    /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
+    /** @var array $format Receives the array of special characters that must be replaced.  */
     private array $format;
-    
-    public function __construct()
-    {
-        //Instancia o Config para as Constantes
+
+    /**  Executes when it is instantiated. */
+    public function __construct() {
+        
+        /**Instance the config for Global Constants. */
         $this->configAdms();
         if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
             $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);            
     
-            $this->url = $this->limparUrl($this->url);     
+            $this->url = $this->clearUrl($this->url);     
     
             
-            $this->urlConjunto = explode("/", $this->url);
+            $this->urlSet = explode("/", $this->url);
 
 
-            if (isset($this->urlConjunto[0])) {
-                $this->urlController = $this->slugController($this->urlConjunto[0]);
+            if (isset($this->urlSet[0])) {
+                $this->urlController = $this->slugController($this->urlSet[0]);
     
             } else {
                 $this->urlController = $this->slugController(CONTROLLER);
             }
 
-            if (isset($this->urlConjunto[1])) {
-                $this->urlMetodo = $this->slugMetodo($this->urlConjunto[1]);
+            if (isset($this->urlSet[1])) {
+                $this->urlMethod = $this->slugMethod($this->urlSet[1]);
     
             } else {
                 $this->urlController = $this->slugController(CONTROLLER);
-                $this->urlMetodo = $this->slugMetodo(METODO);
+                $this->urlMethod = $this->slugMethod(METHOD);
             }
 
-            if (isset($this->urlConjunto[2])) {
-                $this->urlParametro = $this->urlConjunto[2];
+            if (isset($this->urlSet[2])) {
+                $this->urlParameter = $this->urlSet[2];
     
             } else {
-                $this->urlParametro = "";
+                $this->urlParameter = "";
     
             }
         } else {
 
             $this->urlController = $this->slugController(CONTROLLER);
   
-            $this->urlMetodo = $this->slugMetodo(METODO);
+            $this->urlMethod = $this->slugMethod(METHOD);
   
-            $this->urlParametro = "";
-  
-            
+            $this->urlParameter = "";
+     
         }
-    }
 
-/**
-     * Converter o valor obtido da URL "sobre-empresa" e converter no formato da classe "SobreEmpresa".
-     * Utilizado as funções para converter tudo para minúsculo, converter o traço pelo espaço, converter cada letra da primeira palavra para maiúsculo, retirar os espaços em branco
-     * @param string $slugController Nome da classe
-     * @return string Retorna a controller "sobre-empresa" convertido para o nome da Classe "SobreEmpresa"
-     */
+    }
+   
     private function slugController($slugController) {
-        //Converter para minusculo
+        // Convert to lowercase
         $this->slugController = strtolower($slugController);
-        //Converter o traço para espaço em braco
+        // Convert to hyphen the blanck space
         $this->slugController = str_replace("-", " ", $this->slugController);
-        //Converter a primeira letra de cada palavra para maiusculo
+        // Convert the first letter of each word to uppercase
         $this->slugController = ucwords($this->slugController);
-        //Retirar o espaço em braco
+        // remove white space
         $this->slugController = str_replace(" ", "", $this->slugController);
 
         return $this->slugController;
     }
 
-    private function slugMetodo($slugMetodo) {
-        $this->slugMetodo = $this->slugController($slugMetodo);
-        //Converter para minusculo a primeira letra
-        $this->slugMetodo = lcfirst($this->slugMetodo);
+    private function slugMethod($slugMethod) {
+        $this->slugMethod = $this->slugController($slugMethod);
+        //Convert the first letter to lowercase
+        $this->slugMethod = lcfirst($this->slugMethod);
 
-        return $this->slugMetodo;
+        return $this->slugMethod;
     }
 
-    private function limparUrl($url) {
-        //Eliminar as tags
-        $this->urlLimpa = strip_tags($url);
-        //Eliminar espaços em branco
-        $this->urlLimpa = trim($this->urlLimpa);
-        //Eliminar a barra no final da URL
-        $this->urlLimpa = rtrim($this->urlLimpa, "/");
+    private function clearUrl($url) {
+        // Remove all HTML and PHP tags.
+        $this->clearUrl = strip_tags($url);
+        // Remove white spaces
+        $this->clearUrl = trim($this->clearUrl);
+        // Remove slash at the end of the URL
+        $this->clearUrl = rtrim($this->clearUrl, "/");
+        // Replacement blocks
         $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª´`¨|^ ';
         $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr--------------------------------------';
-        $this->urlLimpa = strtr(utf8_decode($this->urlLimpa), utf8_decode($this->format['a']), $this->format['b']);
+        $this->clearUrl = strtr(utf8_decode($this->clearUrl), utf8_decode($this->format['a']), $this->format['b']);
 
-        return $this->urlLimpa;
+        return $this->clearUrl;
     }
 
-     /**
-     * @method carregar Instanciar a classe e o método responsável em validar e carregar as páginas.
+    /**
+     * Loading Controllers.
+     * Instantiate the controller classes and load the index method
+     * 
+     * @return void
      */
-    public function carregar(){
- 
-        $carregarPgAdm= new \Core\CarregarPgAdm();
-        $carregarPgAdm->carregarPg($this->urlController, $this->urlMetodo, $this->urlParametro);
-         
+    public function load(): void {
+       
+        $loadAdmPage = new \Core\LoadAdmPageLevel();
+       // $loadAdmPage = new \Core\LoadAdmPage();
+        $loadAdmPage->loadPage($this->urlController, $this->urlMethod, $this->urlParameter); 
+          
+        
     }
-}
+
+     
+}   
+
 ?>

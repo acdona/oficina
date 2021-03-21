@@ -19,49 +19,49 @@ if (!defined('R4F5CC')) {
 class AdmsAddColor
 {
 
-    private array $dados;
-    private bool $resultado;
+    private array $data;
+    private bool $result;
 
-    function getResultado() {
-        return $this->resultado;
+    function getResult() {
+        return $this->result;
     }
 
-    public function create(array $dados = null) {
-        $this->dados = $dados;
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
+    public function create(array $data = null) {
+        $this->data = $data;
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
 
-        if ($valCampoVazio->getResultado()) {
+        if ($valEmptyField->getResult()) {
             $this->valInput();
         } else {
-            $this->resultado = true;
+            $this->result = false;
         }
     }
 
     private function valInput() {
         $valColor = new \App\adms\Models\helper\AdmsValColor();
-        $valColor->valColor($this->dados['name']);
+        $valColor->valColor($this->data['name']);
       
-        if ($valColor->getResultado()) {
+        if ($valColor->getResult()) {
             $this->add();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function add() {
-        $this->dados['name'] = $this->dados['name'];
-        $this->dados['color'] = $this->dados['color'];
-        $this->dados['created'] = date("Y-m-d H:i:s");
+        $this->data['name'] = $this->data['name'];
+        $this->data['color'] = $this->data['color'];
+        $this->data['created'] = date("Y-m-d H:i:s");
         $createColor = new \App\adms\Models\helper\AdmsCreate();
-        $createColor->exeCreate("adms_colors", $this->dados);
+        $createColor->exeCreate("adms_colors", $this->data);
 
-        if ($createColor->getResult()) {
+        if ($createColor->getCreateResult()) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Cor cadastrada com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         }else {
             $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Cor não cadastrada</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
 
     }

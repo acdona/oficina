@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsNewConfEmail responsável por 
+ * AdmsNewConfEmail Model. Responsible for sending a new email confirmation.
  *
  * @version 1.0
  *
@@ -19,25 +19,25 @@ if (!defined('R4F5CC')) {
 class AdmsNewConfEmail
 {
 
-    private array $dados;
-    private $resultadoBd;
-    private bool $resultado;
+    private array $data;
+    private $databaseResult;
+    private bool $result;
     private string $firstName;
     private array $emailData;
 
-    function getResultado() {
-        return $this->resultado;
+    function getResult() {
+        return $this->result;
     }
 
-    public function newConfEmail(array $dados = null) {
-        $this->dados = $dados;
+    public function newConfEmail(array $data = null) {
+        $this->data = $data;
 
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if($valCampoVazio->getResultado()){
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if($valEmptyField->getResult()){
             $this->valUser();
         }else{
-            $this->resultado = false;
+            $this->result = false;
         }
         
     }
@@ -48,33 +48,35 @@ class AdmsNewConfEmail
                 FROM adms_users
                 WHERE email =:email
                 LIMIT :limit",
-                "email={$this->dados['email']}&limit=1");
+                "email={$this->data['email']}&limit=1");
 
-        $this->resultadoBd = $newConfEmail->getResult();
-        if ($this->resultadoBd) {
+        $this->databaseResult = $newConfEmail->getReadingResult();
+        if ($this->databaseResult) {
             if ($this->valConfEmail()) {
                 $this->sendEmail();
             } else {
-                $_SESSION['msg'] = "Erro: Link não enviado, tente novamente!<br>";
-                $this->resultado = false;
+                
+                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link não enviado, tente novamente!</div>";
+                $this->result = false;
             }
         } else {
-            $_SESSION['msg'] = "Erro: E-mail não cadastrado!<br>";
-            $this->resultado = false;
+            
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: E-mail não cadastrado!</div>";
+            $this->result = false;
         } 
     }
 
     private function valConfEmail() {
-        if (empty($this->resultadoBd[0]['conf_email']) OR $this->resultadoBd[0]['conf_email'] == NULL) {
+        if (empty($this->databaseResult[0]['conf_email']) OR $this->databaseResult[0]['conf_email'] == NULL) {
 
             $this->saveData['conf_email'] = password_hash(date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
             $this->saveData['modified'] = date("Y-m-d H:i:s");
 
             $up_conf_email = new \App\adms\Models\helper\AdmsUpdate();
-            $up_conf_email->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->resultadoBd[0]['id']}");
+            $up_conf_email->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->databaseResult[0]['id']}");
 
             if ($up_conf_email->getResult()) {
-                $this->resultadoBd[0]['conf_email'] = $this->saveData['conf_email'];
+                $this->databaseResult[0]['conf_email'] = $this->saveData['conf_email'];
                 return true;
             } else {
                 return false;
@@ -93,24 +95,26 @@ class AdmsNewConfEmail
         $this->emailHtml();
         $this->emailText();
         $sendEmail->sendEmail($this->emailData, 2);
-        if ($sendEmail->getResultado()) {
-            $_SESSION['msg'] = "Novo link enviado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!";
-            $this->resultado = true;
+        if ($sendEmail->getResult()) {
+            $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Novo link enviado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</div>";
+            
+            $this->result = true;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "Erro: Link não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</div>";
+            
+            $this->result = false;
         }
     }
 
     private function emailHtml() {
-        $name = explode(" ", $this->resultadoBd[0]['name']);
+        $name = explode(" ", $this->databaseResult[0]['name']);
         $this->firstName = $name[0];
 
-        $this->emailData['toEmail'] = $this->resultadoBd[0]['email'];
+        $this->emailData['toEmail'] = $this->databaseResult[0]['email'];
         $this->emailData['toName'] = $this->firstName;
         $this->emailData['subject'] = "Confirmar sua conta";
-        $url = URLADM . "conf-email/index?chave=" . $this->resultadoBd[0]['conf_email'];
+        $url = URLADM . "conf-email/index?key=" . $this->databaseResult[0]['conf_email'];
 
         $this->emailData['contentHtml'] = "Prezado(a) {$this->firstName}<br><br>";
         $this->emailData['contentHtml'] .= "Agradecemos a sua solicitação de cadastramento em nosso site!<br><br>";
@@ -120,7 +124,7 @@ class AdmsNewConfEmail
     }
 
     private function emailText() {
-        $url = URLADM . "conf-email/index?chave=" . $this->resultadoBd[0]['conf_email'];
+        $url = URLADM . "conf-email/index?key=" . $this->databaseResult[0]['conf_email'];
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";
         $this->emailData['contentText'] .= "Agradecemos a sua solicitação de cadastramento em nosso site!\n\n";
         $this->emailData['contentText'] .= "Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo ou cole o link no navegador: \n\n";

@@ -28,5 +28,5 @@ config.php
 # pasta de testes
 testes/**/*
 documents/**/*
-
+database/**/*
 *empty

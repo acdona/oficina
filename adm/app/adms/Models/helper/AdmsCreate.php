@@ -1,15 +1,15 @@
 <?php
 namespace App\adms\Models\helper;
 
-use Exception;
-
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
+use Exception;
+
 /**
- * Classe AdmsCreate gernérica para cadastrar registro no banco de dados
+ * AdmsCreate Helper. Responsible for registering records in the database.
  *
  * @author ACD
  */
@@ -17,32 +17,33 @@ if (!defined('R4F5CC')) {
 class AdmsCreate extends AdmsConn
 {
 
-    /** @var string $table Recebe o nome da tabela */
+    /** @var string $table Receives the table name */
     private string $table;
-    /** @var array $data Recebe os dados que devem ser inseridos no BD */
+    /** @var array $data Receives the data that must be inserted in the database. */
     private array $data;
-    /** @var string $result Retorna o status do cadastro */
+    /** @var string $result Return registration status. */
     private string $result;
-    /** @var object $insert Recebe a QUERY preparada */
+    /** @var object $insert Receives the QUERY ready. */
     private object $insert;
-    /** @var string $query Recebe a QUERY */
+    /** @var string $query Receives the QUERY */
     private string $query;
-    /** @var object $conn Recebe a conexão com o BD */
+    /** @var object $conn Receives the database connection. */
     private object $conn;
 
     /**
-     * Retornar o status do cadastro, retorna o último id quando cadatrar com sucesso e null quando houver erro
-     * @return string Retorna o último id inserido
+     * Return the status of the record, returns the last id when successfully registered and null when an error occurs.
+     * 
+     * @return string Return the last registered id.
      */
-    function getResult(): string {
+    function getCreateResult(): string {
         return $this->result;
     }
 
     /**
-     * Cadastrar no banco de dados
+     * Register in the database.
      * 
-     * @param string $table Recebe o nome da tabela
-     * @param array $data Recebe os dados do formulário
+     * @param string $table Receives the table name
+     * @param array $data Receives form data.
      * @return void
      */
     public function exeCreate($table, array $data): void {
@@ -53,7 +54,7 @@ class AdmsCreate extends AdmsConn
     }
 
     /**
-     * Cria a QUERY e os links da QUERY
+     * Create QUERY and QUERY links
      * 
      * @return void
      */
@@ -64,8 +65,8 @@ class AdmsCreate extends AdmsConn
     }
 
     /**
-     * Executa a QUERY. 
-     * Quando executa a query com sucesso retorna o último id inserido, senão retorna null.
+     * Run the QUERY. 
+     * When you run the query successfully, it returns the last id entered, otherwise it returns null.
      * 
      * @return void
      */
@@ -80,8 +81,8 @@ class AdmsCreate extends AdmsConn
     }
 
     /**
-     * Obtem a conexão com o banco de dados da classe pai "Conn".
-     * Prepara uma instrução para execução e retorna um objeto de instrução.
+     * Gets the connection to the parent class database "Conn".
+     * Prepares an instruction for execution and returns an instruction object.
      * 
      * @return void
      */

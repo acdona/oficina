@@ -4,8 +4,8 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 
-if (isset($this->dados['form'])) {
-    $valorForm = $this->dados['form'];
+if (isset($this->data['form'])) {
+    $formData = $this->data['form'];
 }
 ?>
 
@@ -16,7 +16,7 @@ if (isset($this->dados['form'])) {
                     <h2 class="display-4 title">Cadastrar Cor</h2>
                 </div>
                 <div class="p-2">
-                    <a href="<?php echo URL ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
+                    <a href="<?php echo URLADM ?>list-colors/index" class="btn btn-outline-info btn-sm">Listar</a>
                 </div>
         </div>  
         <hr class="hr-title">
@@ -36,16 +36,16 @@ if (isset($this->dados['form'])) {
                     <label for="name"><span class="text-danger">*</span> Nome</label>
                     <input name="name" type="text" class="form-control" id="name" placeholder="Nome da cor" autofocus required value="<?php
 
-                if (isset($valorForm['name'])) {
-                    echo $valorForm['name'];
+                if (isset($formData['name'])) {
+                    echo $formData['name'];
                 }
                 
                 ?>">
 
                   <label for="color"><span class="text-danger">*</span> Cor</label>
-                    <input name="color" type="text" class="form-control" id="color" placeholder="Código da cor" autofocus required value="<?php
-                if (isset($valorForm['color'])) {
-                    echo $valorForm['color'];
+                    <input name="color" type="text" class="form-control" id="color" placeholder="Código da cor" required value="<?php
+                if (isset($formData['color'])) {
+                    echo $formData['color'];
                 }
                 
                 ?>">

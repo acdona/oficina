@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * AddSitsUser Controller responsible for adding an user situation. 
+ * AddSitsUser Controller. Responsible for adding an user situation. 
  * 
  * @version 1.0
  *
@@ -18,22 +18,22 @@ if (!defined('R4F5CC')) {
 */
 class AddSitsUser
 {
-    private $dados;
-    private $dadosForm;
+    private $data;
+    private $formData;
 
     public function index() {
 
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->dadosForm['AddSitsUser'])) {
-            unset($this->dadosForm['AddSitsUser']);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($this->formData['AddSitsUser'])) {
+            unset($this->formData['AddSitsUser']);
 
             $addSitsUser = new \App\adms\Models\AdmsAddSitsUser();
-            $addSitsUser->create($this->dadosForm);
-            if ($addSitsUser->getResultado()) {
-                $urlDestino = URLADM . "list-sits-users/index";
-                header("Location: $urlDestino");
+            $addSitsUser->create($this->formData);
+            if ($addSitsUser->getResult()) {
+                $urlDestiny = URLADM . "list-sits-users/index";
+                header("Location: $urlDestiny");
             } else {
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewAddSitsUser();
             }
         } else {
@@ -43,12 +43,12 @@ class AddSitsUser
 
     private function viewAddSitsUser() {
         $listSelect = new \App\adms\Models\AdmsAddSitsUser();
-        $this->dados['select'] = $listSelect->listSelect();
+        $this->data['select'] = $listSelect->listSelect();
         
-        $this->dados['sidebarActive'] = "list-sits-users";
+        $this->data['sidebarActive'] = "list-sits-users";
 
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/addSitsUser", $this->dados);
-        $carregarView->renderizar();
+        $carregarView = new \Core\ConfigView("adms/Views/sitsUser/addSitsUser", $this->data);
+        $carregarView->render();
     }
 
 }

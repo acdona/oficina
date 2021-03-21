@@ -12,8 +12,8 @@ if (!defined('R4F5CC')) {
             </div>
             <?php
             
-            if (!empty($this->dados['viewColor'])) {
-                extract($this->dados['viewColor'][0]);
+            if (!empty($this->data['viewColor'])) {
+                extract($this->data['viewColor'][0]);
                 ?>
                 <div class="p-2">
                     <span class="d-none d-lg-block">
@@ -41,7 +41,7 @@ if (!defined('R4F5CC')) {
             unset($_SESSION['msg']);
         }
         
-        if (!empty($this->dados['viewColor'])) {
+        if (!empty($this->data['viewColor'])) {
             ?>
             <dl class="row">
 

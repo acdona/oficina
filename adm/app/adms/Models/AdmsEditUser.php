@@ -19,93 +19,102 @@ if (!defined('R4F5CC')) {
 class AdmsEditUser
 {
 
-    private $resultadoBd;
-    private bool $resultado;
+    private $databaseResult;
+    private bool $result;
     private int $id;
-    private array $dados;
-    private array $dadosExitVal;
+    private array $data;
+    private array $dataExitVal;
     private $listRegistryEdit;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewUser($id) {
         $this->id = (int) $id;
         $viewUser = new \App\adms\Models\helper\AdmsRead();
-        $viewUser->fullRead("SELECT id, name, nickname, email, username, adms_sits_user_id
-                FROM adms_users
-                WHERE id=:id
-                LIMIT :limit", "id={$this->id}&limit=1");
+        $viewUser->fullRead("SELECT usu.id, usu.name, usu.nickname, usu.email, usu.username, usu.adms_sits_user_id, usu.adms_access_level_id
+                FROM adms_users usu
+                INNER JOIN adms_access_levels As lev ON lev.id=usu.adms_access_level_id
+                WHERE usu.id=:id AND lev.order_levels >:order_levels
+                LIMIT :limit", "id={$this->id}&order_levels=".$_SESSION['order_levels']."&limit=1");
 
-        $this->resultadoBd = $viewUser->getResult();
-        if ($this->resultadoBd) {
-            $this->resultado = true;
+        $this->databaseResult = $viewUser->getReadingResult();
+        if ($this->databaseResult) {
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Usuário não encontrado!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
-    public function update(array $dados) {
-        $this->dados = $dados;
+    public function update(array $data) {
+        $this->data = $data;
 
-        $this->dadosExitVal['nickname'] = $this->dados['nickname'];
-        unset($this->dados['nickname']);
+        $this->dataExitVal['nickname'] = $this->data['nickname'];
+        unset($this->data['nickname']);
 
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
         
-        if ($valCampoVazio->getResultado()) {
+        if ($valEmptyField->getResult()) {
             $this->valInput();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function valInput() {
         $valEmail = new \App\adms\Models\helper\AdmsValEmail();
-        $valEmail->validarEmail($this->dados['email']);
+        $valEmail->validateEmail($this->data['email']);
 
         $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
-        $valEmailSingle->validarEmailSingle($this->dados['email'], true, $this->dados['id']);
+        $valEmailSingle->validateEmailSingle($this->data['email'], true, $this->data['id']);
 
         $valUserSingle = new \App\adms\Models\helper\AdmsValUserSingleLogin();
-        $valUserSingle->validarUserSingleLogin($this->dados['username'], true, $this->dados['id']);
+        $valUserSingle->validateUserSingleLogin($this->data['username'], true, $this->data['id']);
 
-        if ($valEmail->getResultado() AND $valEmailSingle->getResultado() AND $valUserSingle->getResultado()) {
+      
+        if ($valEmail->getResult() AND $valEmailSingle->getResult() AND $valUserSingle->getResult()) {
             $this->edit();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function edit() {
-        $this->dados['nickname'] = $this->dadosExitVal['nickname'];
-        $this->dados['modified'] = date("Y-m-d H:i:s");
+        $this->data['nickname'] = $this->dataExitVal['nickname'];
+        $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
-        $upUser->exeUpdate("adms_users", $this->dados, "WHERE id =:id", "id={$this->dados['id']}");
+        $upUser->exeUpdate("adms_users", $this->data, "WHERE id =:id", "id={$this->data['id']}");
 
         if ($upUser->getResult()) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Usuário editado com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Usuário não editado!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     public function listSelect() {
         $list = new \App\adms\Models\helper\AdmsRead();
         $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
-        $registry['sit'] = $list->getResult();
+        $registry['sit'] = $list->getReadingResult();
 
-        $this->listRegistryEdit = ['sit' => $registry['sit']];
+        $list->fullRead("SELECT id id_lev, name name_lev 
+        FROM adms_access_levels 
+        WHERE order_levels >:order_levels
+        ORDER by name ASC", "order_levels=" . $_SESSION['order_levels']);
+
+        $registry['lev'] = $list->getReadingResult();
+
+        $this->listRegistryEdit = ['sit' => $registry['sit'], 'lev' => $registry['lev']];
 
         return $this->listRegistryEdit;
     }

@@ -17,24 +17,24 @@ if (!defined('R4F5CC')) {
 */
 class AddColor
 {
-    /** @var array $dados Recebe os dados que devem ser enviados para VIEW */
-    private $dados;
+    /** @var array $data Receives the data that must be sent to VIEW. */
+    private $data;
 
-    /** @var array $dadosForm Recebe os dados do formulário */
-    private $dadosForm;
+    /** @var array $formData Receives form data. */
+    private $formData;
 
     public function index() {
 
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if(!empty($this->dadosForm['AddColor'])){
-            unset($this->dadosForm['AddColor']);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if(!empty($this->formData['AddColor'])){
+            unset($this->formData['AddColor']);
             $createNewColor = new \App\adms\Models\AdmsAddColor();
-            $createNewColor->create($this->dadosForm);
-            if($createNewColor->getResultado()) {
-                $urlDestino = URL . "add-color/index";
-                header("Location: $urlDestino");
+            $createNewColor->create($this->formData);
+            if($createNewColor->getResult()) {
+                $urlDestiny = URLADM . "list-colors/index";
+                header("Location: $urlDestiny");
             } else {
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewNewColor();
             }
         } else {
@@ -43,9 +43,9 @@ class AddColor
     }
 
        private function viewNewColor() {  
-
-            $carregarView = new \App\adms\core\ConfigView("adms/Views/colors/addColor", $this->dados);
-            $carregarView->renderizar();   
+            $this->data['sidebarActive'] = "list-colors";
+            $carregarView = new \Core\ConfigView("adms/Views/colors/addColor", $this->data);
+            $carregarView->render();   
        }
 
 }

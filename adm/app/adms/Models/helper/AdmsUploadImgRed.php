@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsUploadImgRed responsável por 
+ * AdmsUploadImgRed Helper. Responsible for uploading the reduced image. 
  *
  * @version 1.0
  *
@@ -20,40 +20,40 @@ class AdmsUploadImgRed
 {
 
     private array $imageData;
-    private string $diretorio;
+    private string $directory;
     private string $name;
-    private $largura;
-    private $altura;
+    private $width;
+    private $height;
     private $newImage;
-    private bool $resultado;
-    private $imgRedimens;
+    private bool $result;
+    private $resizedImage;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
-    public function upload(array $imageData, $diretorio, $name, $largura, $altura) {
+    public function upload(array $imageData, $directory, $name, $width, $height) {
         $this->imageData = $imageData;
-        $this->diretorio = $diretorio;
+        $this->directory = $directory;
         $this->name = (string) $name;
-        $this->largura = $largura;
-        $this->altura = $altura;
+        $this->width = $width;
+        $this->height = $height;
 
-        if ($this->valDiretorio()) {
+        if ($this->valdirectory()) {
             $this->uploadFile();
         } else {
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
-    private function valDiretorio() {
-        if (file_exists($this->diretorio) && (!is_dir($this->diretorio))) {
+    private function valdirectory() {
+        if (file_exists($this->directory) && (!is_dir($this->directory))) {
             if ($this->createDir()) {
                 return true;
             } else {
                 return false;
             }
-        } elseif (!file_exists($this->diretorio)) {
+        } elseif (!file_exists($this->directory)) {
             if ($this->createDir()) {
                 return true;
             } else {
@@ -65,9 +65,9 @@ class AdmsUploadImgRed
     }
 
     private function createDir() {
-        mkdir($this->diretorio, 0755);
-        if (!file_exists($this->diretorio)) {
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Upload da imagem não realizado com sucesso. Tente novamente!</div>";
+        mkdir($this->directory, 0755);
+        if (!file_exists($this->directory)) {
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Upload da imagem não realizado. Tente novamente!</div>";
             return false;
         } else {
             return true;
@@ -86,53 +86,53 @@ class AdmsUploadImgRed
                 break;
             default:
                 $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar imagem JPEG ou PNG!</div>";
-                $this->resultado = false;
+                $this->result = false;
         endswitch;
     }
 
     private function uploadFileJpeg() {
-        //Cria uma nova imagem a partir de um arquivo ou URL
+        //Creates a new image from a file or URL.
         $this->newImage = imagecreatefromjpeg($this->imageData['tmp_name']);
 
         $this->redImg();
 
-        //Enviar a imagem para servidor
-        if (imagejpeg($this->imgRedimens, $this->diretorio . $this->name, 100)) {
+        //Uploading the image to the server.
+        if (imagejpeg($this->resizedImage, $this->directory . $this->name, 100)) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Upload da imagem realizado com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         } else {
-            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Upload da imagem não realizado com sucesso. Tente novamente!</div>";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Upload da imagem não realizado. Tente novamente!</div>";
+            $this->result = false;
         }
     }
 
     private function uploadFilePng() {
-        //Cria uma nova imagem a partir de um arquivo ou URL
+        //Creates a new image from a file or URL.
         $this->newImage = imagecreatefrompng($this->imageData['tmp_name']);
 
         $this->redImg();
 
-        //Enviar a imagem para servidor
-        if (imagepng($this->imgRedimens, $this->diretorio . $this->name, 1)) {
+        //Uploading the image to the server.
+        if (imagepng($this->resizedImage, $this->directory . $this->name, 1)) {
             $_SESSION['msg'] = "<div class='alert alert-success' role='alert'>Upload da imagem realizado com sucesso!</div>";
-            $this->resultado = true;
+            $this->result = true;
         } else {
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Upload da imagem não realizado com sucesso. Tente novamente!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 
     private function redImg() {
-        //Obter a largura da imagem
-        $largura_original = imagesx($this->newImage);
-        //Obter a altura da imagem
-        $altura_original = imagesy($this->newImage);
+        //Get the image width.
+        $width_original = imagesx($this->newImage);
+        //Get the image height.
+        $height_original = imagesy($this->newImage);
 
-        //Criar uma imagem modelo com as dimensões definidas para nova imagem
-        $this->imgRedimens = imagecreatetruecolor($this->largura, $this->altura);
+        //Create a model image with the defined dimensions.
+        $this->resizedImage = imagecreatetruecolor($this->width, $this->height);
 
-        //Copiar e redimensionar parte da imagem enviada pelo usuário e interpola com a imagem tamanho modelo
-        imagecopyresampled($this->imgRedimens, $this->newImage, 0, 0, 0, 0, $this->largura, $this->altura, $largura_original, $altura_original);
+        //Copies and resizes part of the image upload by the user and interpolates with the model size image.
+        imagecopyresampled($this->resizedImage, $this->newImage, 0, 0, 0, 0, $this->width, $this->height, $width_original, $height_original);
     }
 
 }

@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe ViewSitsUser responsável por 
+ * ViewSitsUser Controller. Responsible for viewing the user's situation.
  *
  * @version 1.0
  *
@@ -21,30 +21,32 @@ class ViewSitsUser
 
     
     private int $id;
-    private $dados;
+    private $data;
 
     public function index($id) {
         $this->id = (int) $id;
         if (!empty($this->id)) {
             $viewSitsUser = new \App\adms\Models\AdmsViewSitsUser();
             $viewSitsUser->viewSitsUser($this->id);
-            if ($viewSitsUser->getResultado()) {
-                $this->dados['viewSitsUser'] = $viewSitsUser->getResultadoBd();
+            if ($viewSitsUser->getResult()) {
+                $this->data['viewSitsUser'] = $viewSitsUser->getDatabaseResult();
                 $this->viewSitsUser();
             } else {
-                $urlDestino = URLADM . "list-sits-users/index";
-                header("Location: $urlDestino");
+                $urlDestiny = URLADM . "list-sits-users/index";
+                header("Location: $urlDestiny");
             }
         } else {
-            $_SESSION['msg'] = "Situação para usuário não encontrado<br>";
-            $urlDestino = URLADM . "list-sits-users/index";
-            header("Location: $urlDestino");
+            
+            $_SESSION['msg'] = "<div class='alert alert-warning' role='alert'>Erro: Situação para usuário não encontrada</div>";
+            $urlDestiny = URLADM . "list-sits-users/index";
+            header("Location: $urlDestiny");
         }
     }
     
     private function viewSitsUser() {
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/sitsUser/viewSitsUser", $this->dados);
-        $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-sits-users";
+        $loadView = new \Core\ConfigView("adms/Views/sitsUser/viewSitsUser", $this->data);
+        $loadView->render();
     }
 
 }

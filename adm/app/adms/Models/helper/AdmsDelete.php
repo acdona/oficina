@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
     die("Erro: Página não encontrada!");
 }
 /**
- * Classe AdmsDelete genérica para deletar registros do bd
+ * AdmsDelete Helper. Responsible for deleting record form the database.
  *
  * @version 1.0
  *

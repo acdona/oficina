@@ -1,14 +1,13 @@
 <?php
 namespace App\adms\Controllers;
 
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
-
 /**
- * Classe Error responsável por 
+ * Error controller Responsible for displaying the error page 
  *
  * @version 1.0
  *
@@ -20,8 +19,18 @@ if (!defined('R4F5CC')) {
 class Error
 {
 
-    public function index() {
-        echo "Página erro<br>";
+    private array $data;
+
+    public function index()
+    {
+        
+        $this->data = [];
+        $viewError = new \App\adms\Models\AdmsError;
+        $viewError->view();
+        
+        /** Load View Home */
+        $loadView = new \Core\ConfigView("adms/Views/error/error", $this->data);
+        $loadView->render();
     }
 
 }

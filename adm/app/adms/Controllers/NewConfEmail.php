@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe NewConfEmail responsável por 
+ * NewConfEmail Controller. Responsible for sending a new email confirmation.
  *
  * @version 1.0
  *
@@ -19,21 +19,21 @@ if (!defined('R4F5CC')) {
 class NewConfEmail
 {
 
-    private $dados;
-    private $dadosForm;
+    private $data;
+    private $formData;
 
     public function index() {
 
-        $this->dadosForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if (!empty($this->dadosForm['NewConfEmail'])) {
-            unset($this->dadosForm['NewConfEmail']);
+        $this->formData = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (!empty($this->formData['NewConfEmail'])) {
+            unset($this->formData['NewConfEmail']);
             $newConfEmail= new \App\adms\Models\AdmsNewConfEmail();
-            $newConfEmail->newConfEmail($this->dadosForm);
-            if($newConfEmail->getResultado()){
-                $urlDestino = URLADM . "login/index";
-                header("Location: $urlDestino");
+            $newConfEmail->newConfEmail($this->formData);
+            if($newConfEmail->getResult()){
+                $urlDestiny = URLADM . "login/index";
+                header("Location: $urlDestiny");
             }else{
-                $this->dados['form'] = $this->dadosForm;
+                $this->data['form'] = $this->formData;
                 $this->viewNewConfEmail();
             }            
         }else{
@@ -42,8 +42,8 @@ class NewConfEmail
     }
     
     private function viewNewConfEmail() {
-        $carregarView = new \App\adms\core\ConfigView("adms/Views/login/newConfEmail", $this->dados);
-        $carregarView->renderizarLogin();
+        $loadView = new \Core\ConfigView("adms/Views/login/newConfEmail", $this->data);
+        $loadView->renderLogin();
     }
 
 

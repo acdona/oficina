@@ -7,7 +7,7 @@ if(!defined('R4F5CC')){
 }
 
 /**
- * Classe AdmsValExtImg responsável por 
+ * AdmsValExtImg Helper. Responsible for validating the image extension.
  *
  * @version 1.0
  *
@@ -19,10 +19,10 @@ if(!defined('R4F5CC')){
 class AdmsValExtImg
 {
     private string $mimeType;
-    private bool $resultado;
+    private bool $result;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
 
     public function valExtImg($mimeType) {
@@ -30,15 +30,15 @@ class AdmsValExtImg
         switch ($this->mimeType):
             case 'image/jpeg':
             case 'image/pjpeg':
-                $this->resultado = true;
+                $this->result = true;
                 break;
             case 'image/png':
             case 'image/x-png':
-                $this->resultado = true;
+                $this->result = true;
                 break;
             default:
                 $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Necessário selecionar imagem JPEG ou PNG!</div>";
-                $this->resultado = false;
+                $this->result = false;
         endswitch;
     }
     

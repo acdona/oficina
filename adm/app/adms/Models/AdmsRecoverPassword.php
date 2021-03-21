@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsRecoverPassword responsável por 
+ * AdmsRecoverPassword Model. Responsible for recovering user's password.
  *
  * @version 1.0
  *
@@ -19,26 +19,26 @@ if (!defined('R4F5CC')) {
 class AdmsRecoverPassword
 {
 
-    private array $dados;
-    private $resultadoBd;
-    private bool $resultado;
+    private array $data;
+    private $databaseResult;
+    private bool $result;
     private string $firstName;
     private array $emailData;
     private array $saveData;
 
-    function getResultado() {
-        return $this->resultado;
+    function getResult() {
+        return $this->result;
     }
 
-    public function recoverPassword(array $dados = null) {
-        $this->dados = $dados;
+    public function recoverPassword(array $data = null) {
+        $this->data = $data;
 
-        $valCampoVazio = new \App\adms\Models\helper\AdmsValCampoVazio();
-        $valCampoVazio->validarDados($this->dados);
-        if($valCampoVazio->getResultado()){
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->validateData($this->data);
+        if($valEmptyField->getResult()){
             $this->valUser();
         }else{
-            $this->resultado = false;
+            $this->result = false;
         }
         
     }
@@ -49,33 +49,33 @@ class AdmsRecoverPassword
                 FROM adms_users
                 WHERE email =:email
                 LIMIT :limit",
-                "email={$this->dados['email']}&limit=1");
+                "email={$this->data['email']}&limit=1");
 
-        $this->resultadoBd = $newRecoverPass->getResult();
-        if ($this->resultadoBd) {
+        $this->databaseResult = $newRecoverPass->getReadingResult();
+        if ($this->databaseResult) {
             if ($this->valKeyRecoverPass()) {
                 $this->sendEmail();
             } else {
-                $_SESSION['msg'] = "Erro: Link não enviado, tente novamente!<br>";
-                $this->resultado = false;
+                $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Link não enviado, tente novamente!<br></div>";
+                $this->result = false;
             }
         } else {
-            $_SESSION['msg'] = "Erro: E-mail não cadastrado!<br>";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: E-mail não cadastrado!</div>";
+            $this->result = false;
         } 
     }
 
     private function valKeyRecoverPass() {
-        if (empty($this->resultadoBd[0]['recover_password']) OR $this->resultadoBd[0]['recover_password'] == NULL) {
+        if (empty($this->databaseResult[0]['recover_password']) OR $this->databaseResult[0]['recover_password'] == NULL) {
 
             $this->saveData['recover_password'] = password_hash(date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
             $this->saveData['modified'] = date("Y-m-d H:i:s");
 
             $up_recover_pass = new \App\adms\Models\helper\AdmsUpdate();
-            $up_recover_pass->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->resultadoBd[0]['id']}");
+            $up_recover_pass->exeUpdate("adms_users", $this->saveData, "WHERE id=:id", "id={$this->databaseResult[0]['id']}");
 
             if ($up_recover_pass->getResult()) {
-                $this->resultadoBd[0]['recover_password'] = $this->saveData['recover_password'];
+                $this->databaseResult[0]['recover_password'] = $this->saveData['recover_password'];
                 return true;
             } else {
                 return false;
@@ -90,24 +90,24 @@ class AdmsRecoverPassword
         $this->emailHtml();
         $this->emailText();
         $sendEmail->sendEmail($this->emailData, 2);
-        if ($sendEmail->getResultado()) {
-            $_SESSION['msg'] = "Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!";
-            $this->resultado = true;
+        if ($sendEmail->getResult()) {
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!<br></div>";
+            $this->result = true;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "Erro: E-mail com as instruções para recuperar a senha não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!";
-            $this->resultado = false;
+            $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: E-mail com as instruções para recuperar a senha não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!<br></div>";
+            $this->result = false;
         }
     }
 
     private function emailHtml() {
-        $name = explode(" ", $this->resultadoBd[0]['name']);
+        $name = explode(" ", $this->databaseResult[0]['name']);
         $this->firstName = $name[0];
 
-        $this->emailData['toEmail'] = $this->resultadoBd[0]['email'];
+        $this->emailData['toEmail'] = $this->databaseResult[0]['email'];
         $this->emailData['toName'] = $this->firstName;
         $this->emailData['subject'] = "Recuperar senha";
-        $url = URLADM . "update-password/index?chave=" . $this->resultadoBd[0]['recover_password'];
+        $url = URLADM . "update-password/index?key=" . $this->databaseResult[0]['recover_password'];
 
         $this->emailData['contentHtml'] = "Prezado(a) {$this->firstName}<br><br>";
         $this->emailData['contentHtml'] .= "Você solicitou uma alteração de senha!<br><br>";
@@ -117,7 +117,7 @@ class AdmsRecoverPassword
     }
 
     private function emailText() {
-        $url = URLADM . "update-password/index?chave=" . $this->resultadoBd[0]['recover_password'];
+        $url = URLADM . "update-password/index?key=" . $this->databaseResult[0]['recover_password'];
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";
         $this->emailData['contentText'] .= "Você solicitou uma alteração de senha!\n\n";
         $this->emailData['contentText'] .= "Para continuar o processo de recuperação de seua senha, clique no link abaixo ou cole o endereço abaixo no seu navegador: \n\n";

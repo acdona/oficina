@@ -8,7 +8,7 @@ if (!defined('R4F5CC')) {
 
 
 /**
- * Classe ListConfEmails responsável por 
+ * ListConfEmails Controller. Responsible for email confirmation.
  *
  * @version 1.0
  *
@@ -20,20 +20,25 @@ if (!defined('R4F5CC')) {
 class ListConfEmails
 {
 
-    private $dados;
+    private $data;
+    private $pag;
     
-    public function index() {
+    public function index($pag = null) {
+        $this->pag = (int) $pag ? $pag : 1;
         
         $listConfEmails= new \App\adms\Models\AdmsListConfEmails();
         $listConfEmails->listConfEmails();
-        if($listConfEmails->getResultado()){
-            $this->dados['listConfEmails'] = $listConfEmails->getResultadoBd();
+        if($listConfEmails->getResult()){
+            $this->data['listConfEmails'] = $listConfEmails->getDatabaseResult();
+            $this->data['pagination'] = $listConfEmails->getResultPg();
         }else{
-            $this->dados['listConfEmails'] = [];
+            $this->data['listConfEmails'] = [];
+            $this->data['pagination'] = null;
         }
         
-       $carregarView = new \App\adms\core\ConfigView("adms/Views/confEmails/listConfEmails", $this->dados);
-       $carregarView->renderizar();
+        $this->data['sidebarActive'] = "list-conf-emails";
+        $loadView = new \Core\ConfigView("adms/Views/confEmails/listConfEmails", $this->data);
+        $loadView->render();
     }
 
 

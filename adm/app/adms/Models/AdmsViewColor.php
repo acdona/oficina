@@ -19,16 +19,16 @@ if (!defined('R4F5CC')) {
 class AdmsViewColor
 {
 
-    private array $resultadoBd;
-    private bool $resultado;
+    private array $databaseResult;
+    private bool $result;
     private int $id;
 
-    function getResultado(): bool {
-        return $this->resultado;
+    function getResult(): bool {
+        return $this->result;
     }
     
-    function getResultadoBd() {
-        return $this->resultadoBd;
+    function getDatabaseResult() {
+        return $this->databaseResult;
     }
 
     public function viewColor($id) {
@@ -39,13 +39,13 @@ class AdmsViewColor
                 WHERE id=:id
                 LIMIT :limit", "id={$this->id}&limit=1");
                 
-        $this->resultadoBd = $viewColor->getResult();
+        $this->databaseResult = $viewColor->getReadingResult();
  
-        if($this->resultadoBd){
-            $this->resultado = true;
+        if($this->databaseResult){
+            $this->result = true;
         }else{
             $_SESSION['msg'] = "<div class='alert alert-danger' role='alert'>Erro: Cor não encontrada!</div>";
-            $this->resultado = false;
+            $this->result = false;
         }
     }
 

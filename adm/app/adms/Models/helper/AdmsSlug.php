@@ -7,7 +7,7 @@ if (!defined('R4F5CC')) {
 }
 
 /**
- * Classe AdmsSlug responsável por 
+ * AdmsSlug Helper. Responsible for replacing special characters.
  *
  * @version 1.0
  *
@@ -18,20 +18,20 @@ if (!defined('R4F5CC')) {
 */
 class AdmsSlug
 {
-    private string $nome;
-    private array $formato;
+    private string $name;
+    private array $format;
 
-    public function slug($nome) {
-        $this->nome = (string) $nome;
+    public function slug($name) {
+        $this->name = (string) $name;
 
-        $this->formato['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:,\\\'<>°ºª';
-        $this->formato['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                ';
-        $this->nome = strtr(utf8_decode($this->nome), utf8_decode($this->formato['a']), $this->formato['b']);
-        $this->nome = str_replace(" ", "-", $this->nome);
-        $this->nome = str_replace(array('-----', '----', '---', '--'), '-', $this->nome);
-        $this->nome = strtolower($this->nome);
+        $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:,\\\'<>°ºª';
+        $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr                                ';
+        $this->name = strtr(utf8_decode($this->name), utf8_decode($this->format['a']), $this->format['b']);
+        $this->name = str_replace(" ", "-", $this->name);
+        $this->name = str_replace(array('-----', '----', '---', '--'), '-', $this->name);
+        $this->name = strtolower($this->name);
 
-        return $this->nome;
+        return $this->name;
     }
 
     

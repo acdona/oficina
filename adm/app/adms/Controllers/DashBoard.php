@@ -1,13 +1,13 @@
 <?php
 namespace App\adms\Controllers;
 
-if (!defined('R4F5CC')) {
+if (!defined('R4F5CC')) { 
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Classe DashBoard responsável por 
+ * Dashboard Controller. Responsible for loading the dashboard.
  *
  * @version 1.0
  *
@@ -16,14 +16,15 @@ if (!defined('R4F5CC')) {
  * @access public
  *
 */
-class DashBoard
+class Dashboard
 {
 
     public function index() {
-        $carregarView= new \Core\ConfigView("adms/Views/dashboard/home");
-        $carregarView->renderizar();
-    }
+        $this->data['sidebarActive'] = "dashboard";
 
+        $loadView= new \Core\ConfigView("adms/Views/dashboard/home");
+        $loadView->render();
+    }
 }
 
 ?>

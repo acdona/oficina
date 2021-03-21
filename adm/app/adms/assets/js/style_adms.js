@@ -20,6 +20,30 @@ $(document).ready(function() {
   }
 });
 
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+function loadBtnSynchronize(){
+    $("#btn-synchronize").html("<button class='btn btn-warning btn-sm' type='button' disabled><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Sincronizando...</button>");
+}
+
+function loadLinkSynchronize(){
+    $("#link-synchronize").html("<span class='dropdown-item'>Sincronizando...</span>");
+}
+
+function loadBtnRegister(){
+    $("#btn-register").html("<button class='btn btn-warning btn-sm' type='button' disabled><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Abrindo o cadastro...</button>");
+}
+
+function loadLinkRegister(){
+    $("#link-register").html("<span class='dropdown-item'>Abrindo o cadastro...</span>");
+}
+
+
+
+
 $(document).ready(function () {
     $('#new_user').on("submit", function () {
         var password = $('#password').val();
@@ -399,23 +423,3 @@ $(document).ready(function () {
         }
     });
 });
-
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
-function loadBtnSynchronize(){
-    $("#btn-synchronize").html("<button class='btn btn-warning btn-sm' type='button' disabled><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Sincronizando...</button>");
-}
-
-function loadLinkSynchronize(){
-    $("#link-synchronize").html("<span class='dropdown-item'>Sincronizando...</span>");
-}
-
-function loadBtnRegister(){
-    $("#btn-register").html("<button class='btn btn-warning btn-sm' type='button' disabled><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Abrindo o cadastro...</button>");
-}
-
-function loadLinkRegister(){
-    $("#link-register").html("<span class='dropdown-item'>Abrindo o cadastro...</span>");
-}

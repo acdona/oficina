@@ -40,7 +40,7 @@ class ConfigView
     public function renderizar() {
         if(file_exists('app/' . $this->nome . '.php')){
             include 'app/sts/Views/include/header.php';
-            include 'app/sts/Views/include/sidebar.php';
+            include 'app/sts/Views/include/menu.php';
             include 'app/' . $this->nome . '.php';
             include 'app/sts/Views/include/footer.php';
             include 'app/sts/Views/include/libraries_js.php';

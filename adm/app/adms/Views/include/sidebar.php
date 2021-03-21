@@ -34,6 +34,7 @@ if(isset($this->data['sidebarActive'])){
             <li class="<?php if($sidebar_active == "list-sits-pages"){ echo 'active'; } ?>"><a href="<?php echo URLADM; ?>list-sits-pages/index"><i class="far fa-file-alt"></i> Situação de Página</a></li>
             <li class="<?php if($sidebar_active == "list-groups-pages"){ echo 'active'; } ?>"><a href="<?php echo URLADM; ?>list-groups-pages/index"><i class="far fa-file-alt"></i> Grupo de Página</a></li>
             <li class="<?php if($sidebar_active == "list-pages"){ echo 'active'; } ?>"><a href="<?php echo URLADM; ?>list-pages/index"><i class="far fa-file-alt"></i> Listar Páginas</a></li>
+            <li class="<?php if($sidebar_active == "list-contacts-page"){ echo 'active'; } ?>"><a href="<?php echo URLADM; ?>list-contacts-page/index"><i class="fas fa-address-book"></i> Contato da Página</a></li>
             
         </ul>
     </li>
